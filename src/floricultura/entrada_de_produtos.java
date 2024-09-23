@@ -120,6 +120,7 @@ public class entrada_de_produtos extends javax.swing.JFrame {
         jLabel6.setText("Operador");
 
         categoria_produto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Plantas", "Cactos", "Arbustos" }));
+        categoria_produto.setSelectedIndex(-1);
 
         jLabel7.setText("Categoria");
 
@@ -231,8 +232,8 @@ public class entrada_de_produtos extends javax.swing.JFrame {
     }//GEN-LAST:event_qtd_produtoKeyTyped
 
     private void nome_produtoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nome_produtoKeyTyped
-        char c = evt.getKeyChar();
-        if(!Character.isAlphabetic((c))){
+        char keyPress = evt.getKeyChar();
+        if(!Character.isAlphabetic(keyPress) && keyPress != ' '){
             evt.consume();
         }        // TODO add your handling code here:
     }//GEN-LAST:event_nome_produtoKeyTyped
@@ -250,8 +251,8 @@ public class entrada_de_produtos extends javax.swing.JFrame {
     }//GEN-LAST:event_fornecedor_produtoActionPerformed
 
     private void fornecedor_produtoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_fornecedor_produtoKeyTyped
-        char c = evt.getKeyChar();
-        if(!Character.isAlphabetic((c))){
+        char keyPress = evt.getKeyChar();
+        if(!Character.isAlphabetic(keyPress) && keyPress != ' '){
             evt.consume();
         }        // TODO add your handling code here:
     }//GEN-LAST:event_fornecedor_produtoKeyTyped
@@ -261,8 +262,8 @@ public class entrada_de_produtos extends javax.swing.JFrame {
     }//GEN-LAST:event_operador_entrada_produtoActionPerformed
 
     private void operador_entrada_produtoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_operador_entrada_produtoKeyTyped
-        char c = evt.getKeyChar();
-        if(!Character.isAlphabetic((c))){
+        char keyPress = evt.getKeyChar();
+        if(!Character.isAlphabetic(keyPress) && keyPress != ' '){
             evt.consume();
         }                // TODO add your handling code here:
     }//GEN-LAST:event_operador_entrada_produtoKeyTyped
