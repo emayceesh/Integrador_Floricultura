@@ -4,6 +4,8 @@
  */
 package floricultura;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Matheus
@@ -66,7 +68,11 @@ public class saida_de_produtos extends javax.swing.JFrame {
 
         jLabel4.setText("Data de Entrada");
 
-        data_entrada_produto.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        try {
+            data_entrada_produto.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
         data_entrada_produto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 data_entrada_produtoActionPerformed(evt);
@@ -125,7 +131,7 @@ public class saida_de_produtos extends javax.swing.JFrame {
 
         jLabel2.setText("Nome do Produto");
 
-        cadastrar_button.setText("Apagar Produto");
+        cadastrar_button.setText("Atualizar Produto");
         cadastrar_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cadastrar_buttonActionPerformed(evt);
@@ -285,15 +291,15 @@ public class saida_de_produtos extends javax.swing.JFrame {
         String[] options = {"Sim", "Não"};
         int resposta = JOptionPane.showOptionDialog(
             this,
-            "Cadastro efetuado!"+ "\n" +
+            "Cadastro Atualizado!"+ "\n" +
             "Nome: " + nome_produto.getText() + "\n" +
             "Quantidade: " + qtd_produto.getText() + "\n" +
             "Data de Entrada: " + data_entrada_produto.getText() + "\n" +
             "Fornecedor: " + fornecedor_produto.getText() + "\n" +
             "Operador: " + operador_entrada_produto.getText() + "\n" +
             "Categoria: " + categoria_produto.getSelectedItem() + "\n\n\n" +
-            "Cadastrar novo produto?" +"\n",
-            "Confirmação de Cadastro",
+            "Alterar outro produto?" +"\n",
+            "Confirmação de Atualização",
             JOptionPane.DEFAULT_OPTION,
             JOptionPane.WARNING_MESSAGE,
             null,
@@ -341,6 +347,7 @@ public class saida_de_produtos extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new saida_de_produtos().setVisible(true);
             }

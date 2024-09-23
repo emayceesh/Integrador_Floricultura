@@ -215,7 +215,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="cadastrar_button">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Apagar Produto"/>
+        <Property name="text" type="java.lang.String" value="Atualizar Produto"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cadastrar_buttonActionPerformed"/>
