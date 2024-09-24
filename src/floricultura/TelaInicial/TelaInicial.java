@@ -7,9 +7,11 @@ package floricultura.TelaInicial;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
-import floricultura.CadastroCliente;
+import Clientes.CadastroCliente;
 import floricultura.entrada_de_produtos;
 import floricultura.saida_de_produtos;
+import Clientes.CadastroCliente;
+import Clientes.ConsultaClientes;
 
 /**
  *
@@ -34,8 +36,14 @@ public class TelaInicial extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        TituloLabel = new javax.swing.JLabel();
+        MenuRapido = new javax.swing.JLabel();
+        RealizarVendaRapida = new javax.swing.JButton();
+        NomeOperador = new javax.swing.JLabel();
+        CadastroRapido = new javax.swing.JButton();
+        ConsultaRapida = new javax.swing.JButton();
+        CadastroProdutosRapido = new javax.swing.JButton();
+        ConsultaProdutosRapido = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jMenuBar = new javax.swing.JMenuBar();
@@ -47,6 +55,7 @@ public class TelaInicial extends javax.swing.JFrame {
         ConsultaClientes = new javax.swing.JMenuItem();
         Vendas = new javax.swing.JMenu();
         ConsultaVendas = new javax.swing.JMenuItem();
+        RealizarVenda = new javax.swing.JMenuItem();
         Categoria = new javax.swing.JMenu();
         CategoriasSubmenu = new javax.swing.JMenu();
         CadastroCategoria = new javax.swing.JMenuItem();
@@ -65,35 +74,104 @@ public class TelaInicial extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(45, 45, 45));
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(242, 242, 242));
-        jLabel3.setText("Sistema Floricultura");
+        TituloLabel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        TituloLabel.setForeground(new java.awt.Color(242, 242, 242));
+        TituloLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        TituloLabel.setText("Sistema Floricultura");
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(242, 242, 242));
-        jLabel4.setText("Pedro Majewski");
+        MenuRapido.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        MenuRapido.setForeground(new java.awt.Color(242, 242, 242));
+        MenuRapido.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        MenuRapido.setText("Menu Rápido:");
+
+        RealizarVendaRapida.setBackground(new java.awt.Color(102, 102, 102));
+        RealizarVendaRapida.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        RealizarVendaRapida.setForeground(new java.awt.Color(255, 255, 255));
+        RealizarVendaRapida.setText("Realizar Venda");
+        RealizarVendaRapida.setBorderPainted(false);
+        RealizarVendaRapida.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        RealizarVendaRapida.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RealizarVendaRapidaActionPerformed(evt);
+            }
+        });
+
+        NomeOperador.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        NomeOperador.setForeground(new java.awt.Color(242, 242, 242));
+        NomeOperador.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        NomeOperador.setText("Pedro Majewski");
+
+        CadastroRapido.setBackground(new java.awt.Color(102, 102, 102));
+        CadastroRapido.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        CadastroRapido.setForeground(new java.awt.Color(255, 255, 255));
+        CadastroRapido.setText("Cadastrar Cliente");
+        CadastroRapido.setBorderPainted(false);
+        CadastroRapido.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        CadastroRapido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CadastroRapidoActionPerformed(evt);
+            }
+        });
+
+        ConsultaRapida.setBackground(new java.awt.Color(102, 102, 102));
+        ConsultaRapida.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        ConsultaRapida.setForeground(new java.awt.Color(255, 255, 255));
+        ConsultaRapida.setText("Consultar Cliente");
+        ConsultaRapida.setBorderPainted(false);
+        ConsultaRapida.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        CadastroProdutosRapido.setBackground(new java.awt.Color(102, 102, 102));
+        CadastroProdutosRapido.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        CadastroProdutosRapido.setForeground(new java.awt.Color(255, 255, 255));
+        CadastroProdutosRapido.setText("Cadastrar Produtos");
+        CadastroProdutosRapido.setBorderPainted(false);
+        CadastroProdutosRapido.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        CadastroProdutosRapido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CadastroProdutosRapidoActionPerformed(evt);
+            }
+        });
+
+        ConsultaProdutosRapido.setBackground(new java.awt.Color(102, 102, 102));
+        ConsultaProdutosRapido.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        ConsultaProdutosRapido.setForeground(new java.awt.Color(255, 255, 255));
+        ConsultaProdutosRapido.setText("Consultar Produtos");
+        ConsultaProdutosRapido.setBorderPainted(false);
+        ConsultaProdutosRapido.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(34, Short.MAX_VALUE)
-                .addComponent(jLabel3)
-                .addGap(32, 32, 32))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(59, 59, 59)
-                .addComponent(jLabel4)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(RealizarVendaRapida, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(NomeOperador, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(TituloLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
+            .addComponent(MenuRapido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(CadastroRapido, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(ConsultaRapida, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(CadastroProdutosRapido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(ConsultaProdutosRapido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(28, 28, 28)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel4)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(TituloLabel)
+                .addGap(18, 18, 18)
+                .addComponent(NomeOperador)
+                .addGap(84, 84, 84)
+                .addComponent(MenuRapido)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(RealizarVendaRapida)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(CadastroRapido)
+                .addGap(12, 12, 12)
+                .addComponent(ConsultaRapida)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(CadastroProdutosRapido)
+                .addGap(12, 12, 12)
+                .addComponent(ConsultaProdutosRapido)
+                .addContainerGap(25, Short.MAX_VALUE))
         );
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -103,11 +181,11 @@ public class TelaInicial extends javax.swing.JFrame {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 490, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
         );
 
         Produtos.setText("Produtos");
@@ -136,6 +214,11 @@ public class TelaInicial extends javax.swing.JFrame {
         Clientes.add(CadastroCliente);
 
         ConsultaClientes.setText("Consultar Clientes");
+        ConsultaClientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ConsultaClientesActionPerformed(evt);
+            }
+        });
         Clientes.add(ConsultaClientes);
 
         jMenuBar.add(Clientes);
@@ -145,6 +228,9 @@ public class TelaInicial extends javax.swing.JFrame {
         ConsultaVendas.setText("Consultar Vendas");
         Vendas.add(ConsultaVendas);
 
+        RealizarVenda.setText("RealizarVendas");
+        Vendas.add(RealizarVenda);
+
         jMenuBar.add(Vendas);
 
         Categoria.setText("Categorias");
@@ -152,9 +238,19 @@ public class TelaInicial extends javax.swing.JFrame {
         CategoriasSubmenu.setText("Categorias");
 
         CadastroCategoria.setText("Adicionar Categoria");
+        CadastroCategoria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CadastroCategoriaActionPerformed(evt);
+            }
+        });
         CategoriasSubmenu.add(CadastroCategoria);
 
         VisualizarCategoria.setText("Visualizar Categorias");
+        VisualizarCategoria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                VisualizarCategoriaActionPerformed(evt);
+            }
+        });
         CategoriasSubmenu.add(VisualizarCategoria);
 
         Categoria.add(CategoriasSubmenu);
@@ -162,9 +258,19 @@ public class TelaInicial extends javax.swing.JFrame {
         SubCategoriasSubmenu.setText("SubCategorias");
 
         CadastroSubCategoria.setText("Adicionar SubCategoria");
+        CadastroSubCategoria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CadastroSubCategoriaActionPerformed(evt);
+            }
+        });
         SubCategoriasSubmenu.add(CadastroSubCategoria);
 
         VisualizarSubCategoria.setText("Visualizar SubCategorias");
+        VisualizarSubCategoria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                VisualizarSubCategoriaActionPerformed(evt);
+            }
+        });
         SubCategoriasSubmenu.add(VisualizarSubCategoria);
 
         Categoria.add(SubCategoriasSubmenu);
@@ -204,15 +310,15 @@ public class TelaInicial extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(488, 488, 488)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -237,6 +343,44 @@ public class TelaInicial extends javax.swing.JFrame {
         // TODO add your handling code here:
         new entrada_de_produtos().setVisible(true);
     }//GEN-LAST:event_EntradaProdutosActionPerformed
+
+    private void RealizarVendaRapidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RealizarVendaRapidaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_RealizarVendaRapidaActionPerformed
+
+    private void CadastroRapidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CadastroRapidoActionPerformed
+        // TODO add your handling code here:
+        new CadastroCliente().setVisible(true);
+    }//GEN-LAST:event_CadastroRapidoActionPerformed
+
+    private void CadastroProdutosRapidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CadastroProdutosRapidoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CadastroProdutosRapidoActionPerformed
+
+    private void CadastroCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CadastroCategoriaActionPerformed
+        // TODO add your handling code here:]
+        new AddCategoria().setVisible(true);
+    }//GEN-LAST:event_CadastroCategoriaActionPerformed
+
+    private void VisualizarCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VisualizarCategoriaActionPerformed
+        // TODO add your handling code here:
+        new AddCategoria().setVisible(true);
+    }//GEN-LAST:event_VisualizarCategoriaActionPerformed
+
+    private void CadastroSubCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CadastroSubCategoriaActionPerformed
+        // TODO add your handling code here:
+        new AddSubCategoria().setVisible(true);
+    }//GEN-LAST:event_CadastroSubCategoriaActionPerformed
+
+    private void VisualizarSubCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VisualizarSubCategoriaActionPerformed
+        // TODO add your handling code here:
+        new AddSubCategoria().setVisible(true);
+    }//GEN-LAST:event_VisualizarSubCategoriaActionPerformed
+
+    private void ConsultaClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConsultaClientesActionPerformed
+        // TODO add your handling code here:
+        new ConsultaClientes().setVisible(true);
+    }//GEN-LAST:event_ConsultaClientesActionPerformed
 
     /**
      * @param args the command line arguments
@@ -282,26 +426,33 @@ public class TelaInicial extends javax.swing.JFrame {
     private javax.swing.JMenuItem CadastroCategoria;
     private javax.swing.JMenuItem CadastroCliente;
     private javax.swing.JMenuItem CadastroProduto;
+    private javax.swing.JButton CadastroProdutosRapido;
+    private javax.swing.JButton CadastroRapido;
     private javax.swing.JMenuItem CadastroSubCategoria;
     private javax.swing.JMenu Categoria;
     private javax.swing.JMenu CategoriasSubmenu;
     private javax.swing.JMenu Clientes;
     private javax.swing.JMenuItem ConsultaClientes;
     private javax.swing.JMenuItem ConsultaProduto;
+    private javax.swing.JButton ConsultaProdutosRapido;
+    private javax.swing.JButton ConsultaRapida;
     private javax.swing.JMenuItem ConsultaVendas;
     private javax.swing.JMenuItem EntradaProdutos;
     private javax.swing.JMenu Estoque;
     private javax.swing.JMenu Logs;
+    private javax.swing.JLabel MenuRapido;
+    private javax.swing.JLabel NomeOperador;
     private javax.swing.JMenu Produtos;
+    private javax.swing.JMenuItem RealizarVenda;
+    private javax.swing.JButton RealizarVendaRapida;
     private javax.swing.JMenuItem SaidaProdutos;
     private javax.swing.JMenu SubCategoriasSubmenu;
+    private javax.swing.JLabel TituloLabel;
     private javax.swing.JMenu Vendas;
     private javax.swing.JMenuItem VisualizarCategoria;
     private javax.swing.JMenuItem VisualizarLog;
     private javax.swing.JMenuItem VisualizarSubCategoria;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JMenuBar jMenuBar;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
