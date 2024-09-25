@@ -23,7 +23,7 @@ public class LoadLogin extends javax.swing.JFrame {
             }
         });
 
-        // Adicionando ação para o botão "Entrar"
+   
          jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -146,12 +146,12 @@ if (!Character.isLetter(c) && !Character.isWhitespace(c)) {
     private void jPasswordField1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPasswordField1KeyTyped
        char c = evt.getKeyChar();
 
-// Permite backspace (código ASCII 8) e outras teclas de controle como delete (código ASCII 127)
+
 if (c == KeyEvent.VK_BACK_SPACE || c == KeyEvent.VK_DELETE) {
     return; // Permite apagar sem validar
 }
 
-// Agora realiza a validação apenas para letras e espaços
+
 if (!Character.isLetter(c) && !Character.isWhitespace(c)) {
     evt.consume(); // Ignora o evento
     JOptionPane.showMessageDialog(this, "Apenas letras são permitidas!", "Erro", JOptionPane.ERROR_MESSAGE);
@@ -161,7 +161,7 @@ if (!Character.isLetter(c) && !Character.isWhitespace(c)) {
     
     
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
+       
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
@@ -184,7 +184,7 @@ if (!Character.isLetter(c) && !Character.isWhitespace(c)) {
         }
         //</editor-fold>
 
-        /* Create and display the form */
+    
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new LoadLogin().setVisible(true);
