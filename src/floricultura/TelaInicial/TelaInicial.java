@@ -12,6 +12,12 @@ import floricultura.entrada_de_produtos;
 import floricultura.saida_de_produtos;
 import Clientes.CadastroCliente;
 import Clientes.ConsultaClientes;
+import java.awt.BorderLayout;
+import java.text.SimpleDateFormat;
+import javax.swing.JDesktopPane;
+import javax.swing.JFrame;
+import javax.swing.JInternalFrame;
+import javax.swing.JPanel;
 
 /**
  *
@@ -25,6 +31,8 @@ public class TelaInicial extends javax.swing.JFrame {
     public TelaInicial() {
         initComponents();
     }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -39,13 +47,15 @@ public class TelaInicial extends javax.swing.JFrame {
         TituloLabel = new javax.swing.JLabel();
         MenuRapido = new javax.swing.JLabel();
         RealizarVendaRapida = new javax.swing.JButton();
-        NomeOperador = new javax.swing.JLabel();
         CadastroRapido = new javax.swing.JButton();
         ConsultaRapida = new javax.swing.JButton();
         CadastroProdutosRapido = new javax.swing.JButton();
         ConsultaProdutosRapido = new javax.swing.JButton();
+        RealizarVendaRapida1 = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        TituloLabel2 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
+        TituloLabel3 = new javax.swing.JLabel();
         jMenuBar = new javax.swing.JMenuBar();
         Produtos = new javax.swing.JMenu();
         CadastroProduto = new javax.swing.JMenuItem();
@@ -72,9 +82,9 @@ public class TelaInicial extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(45, 45, 45));
 
-        jPanel1.setBackground(new java.awt.Color(45, 45, 45));
+        jPanel1.setBackground(new java.awt.Color(218, 58, 68));
 
-        TituloLabel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        TituloLabel.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         TituloLabel.setForeground(new java.awt.Color(242, 242, 242));
         TituloLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         TituloLabel.setText("Sistema Floricultura");
@@ -84,9 +94,10 @@ public class TelaInicial extends javax.swing.JFrame {
         MenuRapido.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         MenuRapido.setText("Menu Rápido:");
 
-        RealizarVendaRapida.setBackground(new java.awt.Color(102, 102, 102));
+        RealizarVendaRapida.setBackground(new java.awt.Color(239, 86, 96));
         RealizarVendaRapida.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         RealizarVendaRapida.setForeground(new java.awt.Color(255, 255, 255));
+        RealizarVendaRapida.setIcon(new javax.swing.ImageIcon(getClass().getResource("/floricultura/TelaInicial/imagens/Cash.png"))); // NOI18N
         RealizarVendaRapida.setText("Realizar Venda");
         RealizarVendaRapida.setBorderPainted(false);
         RealizarVendaRapida.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -96,14 +107,10 @@ public class TelaInicial extends javax.swing.JFrame {
             }
         });
 
-        NomeOperador.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        NomeOperador.setForeground(new java.awt.Color(242, 242, 242));
-        NomeOperador.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        NomeOperador.setText("Pedro Majewski");
-
-        CadastroRapido.setBackground(new java.awt.Color(102, 102, 102));
+        CadastroRapido.setBackground(new java.awt.Color(239, 86, 96));
         CadastroRapido.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         CadastroRapido.setForeground(new java.awt.Color(255, 255, 255));
+        CadastroRapido.setIcon(new javax.swing.ImageIcon(getClass().getResource("/floricultura/TelaInicial/imagens/Edit.png"))); // NOI18N
         CadastroRapido.setText("Cadastrar Cliente");
         CadastroRapido.setBorderPainted(false);
         CadastroRapido.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -113,16 +120,23 @@ public class TelaInicial extends javax.swing.JFrame {
             }
         });
 
-        ConsultaRapida.setBackground(new java.awt.Color(102, 102, 102));
+        ConsultaRapida.setBackground(new java.awt.Color(239, 86, 96));
         ConsultaRapida.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         ConsultaRapida.setForeground(new java.awt.Color(255, 255, 255));
+        ConsultaRapida.setIcon(new javax.swing.ImageIcon(getClass().getResource("/floricultura/TelaInicial/imagens/Person_1.png"))); // NOI18N
         ConsultaRapida.setText("Consultar Cliente");
         ConsultaRapida.setBorderPainted(false);
         ConsultaRapida.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        ConsultaRapida.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ConsultaRapidaActionPerformed(evt);
+            }
+        });
 
-        CadastroProdutosRapido.setBackground(new java.awt.Color(102, 102, 102));
+        CadastroProdutosRapido.setBackground(new java.awt.Color(239, 86, 96));
         CadastroProdutosRapido.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         CadastroProdutosRapido.setForeground(new java.awt.Color(255, 255, 255));
+        CadastroProdutosRapido.setIcon(new javax.swing.ImageIcon(getClass().getResource("/floricultura/TelaInicial/imagens/Box_1.png"))); // NOI18N
         CadastroProdutosRapido.setText("Cadastrar Produtos");
         CadastroProdutosRapido.setBorderPainted(false);
         CadastroProdutosRapido.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -132,60 +146,104 @@ public class TelaInicial extends javax.swing.JFrame {
             }
         });
 
-        ConsultaProdutosRapido.setBackground(new java.awt.Color(102, 102, 102));
+        ConsultaProdutosRapido.setBackground(new java.awt.Color(239, 86, 96));
         ConsultaProdutosRapido.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         ConsultaProdutosRapido.setForeground(new java.awt.Color(255, 255, 255));
+        ConsultaProdutosRapido.setIcon(new javax.swing.ImageIcon(getClass().getResource("/floricultura/TelaInicial/imagens/Task.png"))); // NOI18N
         ConsultaProdutosRapido.setText("Consultar Produtos");
         ConsultaProdutosRapido.setBorderPainted(false);
         ConsultaProdutosRapido.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        RealizarVendaRapida1.setBackground(new java.awt.Color(239, 86, 96));
+        RealizarVendaRapida1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        RealizarVendaRapida1.setForeground(new java.awt.Color(255, 255, 255));
+        RealizarVendaRapida1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/floricultura/TelaInicial/imagens/Smart Home Shield.png"))); // NOI18N
+        RealizarVendaRapida1.setText("Home");
+        RealizarVendaRapida1.setBorderPainted(false);
+        RealizarVendaRapida1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        RealizarVendaRapida1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RealizarVendaRapida1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(RealizarVendaRapida, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(NomeOperador, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(TituloLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
+            .addComponent(TituloLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(MenuRapido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(CadastroRapido, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(ConsultaRapida, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(CadastroProdutosRapido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(CadastroProdutosRapido, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
             .addComponent(ConsultaProdutosRapido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(RealizarVendaRapida1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(28, 28, 28)
+                .addGap(46, 46, 46)
                 .addComponent(TituloLabel)
-                .addGap(18, 18, 18)
-                .addComponent(NomeOperador)
-                .addGap(84, 84, 84)
+                .addGap(99, 99, 99)
                 .addComponent(MenuRapido)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(RealizarVendaRapida)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(CadastroRapido)
-                .addGap(12, 12, 12)
-                .addComponent(ConsultaRapida)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(CadastroProdutosRapido)
-                .addGap(12, 12, 12)
-                .addComponent(ConsultaProdutosRapido)
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addComponent(RealizarVendaRapida1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(RealizarVendaRapida, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(CadastroRapido, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(ConsultaRapida, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(CadastroProdutosRapido, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(ConsultaProdutosRapido, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(116, Short.MAX_VALUE))
         );
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/floricultura/TelaInicial/fundo.jpg"))); // NOI18N
+        TituloLabel2.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        TituloLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        TituloLabel2.setText("Bem Vindo!");
+
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 490, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        TituloLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        TituloLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        TituloLabel3.setText("Sistema Floricultura");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(55, 55, 55)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(TituloLabel2)
+                    .addComponent(TituloLabel3))
+                .addContainerGap(405, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addComponent(TituloLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(TituloLabel3)
+                .addGap(68, 68, 68)
+                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         Produtos.setText("Produtos");
@@ -311,14 +369,14 @@ public class TelaInicial extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(488, 488, 488)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -336,7 +394,6 @@ public class TelaInicial extends javax.swing.JFrame {
 
     private void CadastroClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CadastroClienteActionPerformed
         // TODO add your handling code here:
-        new CadastroCliente().setVisible(true);
     }//GEN-LAST:event_CadastroClienteActionPerformed
 
     private void EntradaProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EntradaProdutosActionPerformed
@@ -350,7 +407,9 @@ public class TelaInicial extends javax.swing.JFrame {
 
     private void CadastroRapidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CadastroRapidoActionPerformed
         // TODO add your handling code here:
+
         new CadastroCliente().setVisible(true);
+
     }//GEN-LAST:event_CadastroRapidoActionPerformed
 
     private void CadastroProdutosRapidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CadastroProdutosRapidoActionPerformed
@@ -358,7 +417,7 @@ public class TelaInicial extends javax.swing.JFrame {
     }//GEN-LAST:event_CadastroProdutosRapidoActionPerformed
 
     private void CadastroCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CadastroCategoriaActionPerformed
-        // TODO add your handling code here:]
+        // TODO add your handling code here:
         new AddCategoria().setVisible(true);
     }//GEN-LAST:event_CadastroCategoriaActionPerformed
 
@@ -382,9 +441,28 @@ public class TelaInicial extends javax.swing.JFrame {
         new ConsultaClientes().setVisible(true);
     }//GEN-LAST:event_ConsultaClientesActionPerformed
 
+    private void RealizarVendaRapida1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RealizarVendaRapida1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_RealizarVendaRapida1ActionPerformed
+
+    private void ConsultaRapidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConsultaRapidaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ConsultaRapidaActionPerformed
+
     /**
      * @param args the command line arguments
      */
+    
+    /**private void ShowPanel(JFrame p){;
+        p.setSize(650, 557);
+        p.setLocation(0,0);
+        
+        Content.removeAll();
+        Content.add(p,BorderLayout.CENTER);
+        Content.revalidate();
+        Content.repaint();
+    } */
+    
     
 
     
@@ -418,8 +496,11 @@ public class TelaInicial extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new TelaInicial().setVisible(true);
+                
             }
         });
+        
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -441,20 +522,22 @@ public class TelaInicial extends javax.swing.JFrame {
     private javax.swing.JMenu Estoque;
     private javax.swing.JMenu Logs;
     private javax.swing.JLabel MenuRapido;
-    private javax.swing.JLabel NomeOperador;
     private javax.swing.JMenu Produtos;
     private javax.swing.JMenuItem RealizarVenda;
     private javax.swing.JButton RealizarVendaRapida;
+    private javax.swing.JButton RealizarVendaRapida1;
     private javax.swing.JMenuItem SaidaProdutos;
     private javax.swing.JMenu SubCategoriasSubmenu;
     private javax.swing.JLabel TituloLabel;
+    private javax.swing.JLabel TituloLabel2;
+    private javax.swing.JLabel TituloLabel3;
     private javax.swing.JMenu Vendas;
     private javax.swing.JMenuItem VisualizarCategoria;
     private javax.swing.JMenuItem VisualizarLog;
     private javax.swing.JMenuItem VisualizarSubCategoria;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JMenuBar jMenuBar;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     // End of variables declaration//GEN-END:variables
 
