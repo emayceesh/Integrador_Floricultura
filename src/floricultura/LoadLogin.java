@@ -182,7 +182,7 @@ if (!Character.isLetter(c) && !Character.isWhitespace(c)) {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(LoadLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
+     
 
     
         java.awt.EventQueue.invokeLater(new Runnable() {
