@@ -26,6 +26,7 @@ import javax.swing.plaf.basic.BasicButtonUI;
 
 import Clientes.CadastroClientes;
 import floricultura.TelaInicial.TelaBoasVindas;
+import Clientes.ClientesPrincipal;
 
 /**
  *
@@ -38,7 +39,7 @@ public class TelaInicial extends javax.swing.JFrame {
      */
     public TelaInicial() {
         initComponents();
-        JButton [] btns = {Principal,RealizarVendaRapida,CadastroRapido,ConsultaRapida,CadastroProdutosRapido,ConsultaProdutosRapido};
+        JButton [] btns = {Principal,RealizarVendaRapida,CadastroRapido,ConsultaRapida,CadastroProdutosRapido,ConsultaProdutosRapido,ConsultarVendas};
        for(JButton btn : btns){
            btn.setBackground(new Color(186,47,57));
            btn.setUI(new BasicButtonUI());
@@ -94,6 +95,7 @@ public class TelaInicial extends javax.swing.JFrame {
         Principal = new javax.swing.JButton();
         Separator = new javax.swing.JLabel();
         Titulo = new javax.swing.JLabel();
+        ConsultarVendas = new javax.swing.JButton();
         Content = new javax.swing.JPanel();
         jMenuBar = new javax.swing.JMenuBar();
         Produtos = new javax.swing.JMenu();
@@ -131,7 +133,7 @@ public class TelaInicial extends javax.swing.JFrame {
         RealizarVendaRapida.setBackground(new java.awt.Color(239, 86, 96));
         RealizarVendaRapida.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         RealizarVendaRapida.setForeground(new java.awt.Color(255, 255, 255));
-        RealizarVendaRapida.setIcon(new javax.swing.ImageIcon(getClass().getResource("/floricultura/TelaInicial/imagens/Cash.png"))); // NOI18N
+        RealizarVendaRapida.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Cash.png"))); // NOI18N
         RealizarVendaRapida.setText("Realizar Venda");
         RealizarVendaRapida.setBorderPainted(false);
         RealizarVendaRapida.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -144,7 +146,7 @@ public class TelaInicial extends javax.swing.JFrame {
         CadastroRapido.setBackground(new java.awt.Color(239, 86, 96));
         CadastroRapido.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         CadastroRapido.setForeground(new java.awt.Color(255, 255, 255));
-        CadastroRapido.setIcon(new javax.swing.ImageIcon(getClass().getResource("/floricultura/TelaInicial/imagens/Edit.png"))); // NOI18N
+        CadastroRapido.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Edit_1.png"))); // NOI18N
         CadastroRapido.setText("Cadastrar Cliente");
         CadastroRapido.setBorderPainted(false);
         CadastroRapido.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -157,7 +159,7 @@ public class TelaInicial extends javax.swing.JFrame {
         ConsultaRapida.setBackground(new java.awt.Color(239, 86, 96));
         ConsultaRapida.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         ConsultaRapida.setForeground(new java.awt.Color(255, 255, 255));
-        ConsultaRapida.setIcon(new javax.swing.ImageIcon(getClass().getResource("/floricultura/TelaInicial/imagens/Person_1.png"))); // NOI18N
+        ConsultaRapida.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Person_1.png"))); // NOI18N
         ConsultaRapida.setText("Consultar Cliente");
         ConsultaRapida.setBorderPainted(false);
         ConsultaRapida.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -170,7 +172,7 @@ public class TelaInicial extends javax.swing.JFrame {
         CadastroProdutosRapido.setBackground(new java.awt.Color(239, 86, 96));
         CadastroProdutosRapido.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         CadastroProdutosRapido.setForeground(new java.awt.Color(255, 255, 255));
-        CadastroProdutosRapido.setIcon(new javax.swing.ImageIcon(getClass().getResource("/floricultura/TelaInicial/imagens/Box_1.png"))); // NOI18N
+        CadastroProdutosRapido.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Box_1.png"))); // NOI18N
         CadastroProdutosRapido.setText("Cadastrar Produtos");
         CadastroProdutosRapido.setBorderPainted(false);
         CadastroProdutosRapido.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -183,7 +185,7 @@ public class TelaInicial extends javax.swing.JFrame {
         ConsultaProdutosRapido.setBackground(new java.awt.Color(239, 86, 96));
         ConsultaProdutosRapido.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         ConsultaProdutosRapido.setForeground(new java.awt.Color(255, 255, 255));
-        ConsultaProdutosRapido.setIcon(new javax.swing.ImageIcon(getClass().getResource("/floricultura/TelaInicial/imagens/Task.png"))); // NOI18N
+        ConsultaProdutosRapido.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Task.png"))); // NOI18N
         ConsultaProdutosRapido.setText("Consultar Produtos");
         ConsultaProdutosRapido.setBorderPainted(false);
         ConsultaProdutosRapido.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -191,7 +193,7 @@ public class TelaInicial extends javax.swing.JFrame {
         Principal.setBackground(new java.awt.Color(239, 86, 96));
         Principal.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         Principal.setForeground(new java.awt.Color(255, 255, 255));
-        Principal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/floricultura/TelaInicial/imagens/Smart Home Shield.png"))); // NOI18N
+        Principal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Smart Home Shield.png"))); // NOI18N
         Principal.setText("Home");
         Principal.setBorderPainted(false);
         Principal.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -213,6 +215,14 @@ public class TelaInicial extends javax.swing.JFrame {
         Titulo.setText("Casa da Planta");
         Titulo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
+        ConsultarVendas.setBackground(new java.awt.Color(239, 86, 96));
+        ConsultarVendas.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        ConsultarVendas.setForeground(new java.awt.Color(255, 255, 255));
+        ConsultarVendas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Task.png"))); // NOI18N
+        ConsultarVendas.setText("Consultar Vendas");
+        ConsultarVendas.setBorderPainted(false);
+        ConsultarVendas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -226,6 +236,7 @@ public class TelaInicial extends javax.swing.JFrame {
             .addComponent(Principal, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(Titulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(Separator, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(ConsultarVendas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -240,6 +251,8 @@ public class TelaInicial extends javax.swing.JFrame {
                 .addComponent(Principal, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(RealizarVendaRapida, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(ConsultarVendas, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(CadastroRapido, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -465,6 +478,8 @@ public class TelaInicial extends javax.swing.JFrame {
 
     private void ConsultaRapidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConsultaRapidaActionPerformed
         // TODO add your handling code here:
+        ClientesPrincipal CLPrincipal = new ClientesPrincipal();
+        ShowPanel(CLPrincipal);
     }//GEN-LAST:event_ConsultaRapidaActionPerformed
 
     /**
@@ -544,6 +559,7 @@ public class TelaInicial extends javax.swing.JFrame {
     private javax.swing.JButton ConsultaProdutosRapido;
     private javax.swing.JButton ConsultaRapida;
     private javax.swing.JMenuItem ConsultaVendas;
+    private javax.swing.JButton ConsultarVendas;
     private javax.swing.JPanel Content;
     private javax.swing.JMenuItem EntradaProdutos;
     private javax.swing.JMenu Estoque;
