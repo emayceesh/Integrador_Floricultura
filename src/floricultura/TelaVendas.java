@@ -2,20 +2,18 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package Clientes;
-
-import javax.swing.JOptionPane;
+package floricultura;
 
 /**
  *
- * @author pedro
+ * @author gm
  */
-public class CadastrodeClientes extends javax.swing.JPanel {
+public class TelaVendas extends javax.swing.JPanel {
 
     /**
-     * Creates new form CadastrodeClientes
+     * Creates new form TelaVendas
      */
-    public CadastrodeClientes() {
+    public TelaVendas() {
         initComponents();
     }
 
@@ -372,7 +370,7 @@ public class CadastrodeClientes extends javax.swing.JPanel {
                         .addComponent(Retornar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(TituloLabel2)))
-                .addContainerGap(421, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -391,7 +389,9 @@ public class CadastrodeClientes extends javax.swing.JPanel {
         ContentLayout.setHorizontalGroup(
             ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addGroup(ContentLayout.createSequentialGroup()
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 800, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         ContentLayout.setVerticalGroup(
             ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -423,163 +423,6 @@ public class CadastrodeClientes extends javax.swing.JPanel {
                     .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void BtnClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnClientesActionPerformed
-        // TODO add your handling code here:
-        JOptionPane.showMessageDialog(null, "Cadastro do Cliente efetuado:"+ "\n" +
-            "Nome: " + NomeCliente.getText() + "\n" +
-            "Telefone: " + TelefoneCliente.getText() + "\n" +
-            "CEP: " + CEPCliente.getText() + "\n" +
-            "Bairro: " + BairroCliente.getText() + "\n" +
-            "Rua: " + EnderecoCliente.getText() + "\n" +
-            "Numero: " + EnderecoCliente.getText() + "\n" +
-            "Cidade: " + CidadeCliente.getText() + "\n" +
-            "UF: " + UFCliente.getText());
-    }//GEN-LAST:event_BtnClientesActionPerformed
-
-    private void RetornarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RetornarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_RetornarActionPerformed
-
-    private void NomeClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NomeClienteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_NomeClienteActionPerformed
-
-    private void NomeClienteKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NomeClienteKeyPressed
-        // TODO add your handling code here:
-        if(evt.getExtendedKeyCode() == evt.VK_ENTER){
-            TelefoneCliente.requestFocus();
-        }
-    }//GEN-LAST:event_NomeClienteKeyPressed
-
-    private void NomeClienteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NomeClienteKeyTyped
-        // TODO add your handling code here:
-        char keyPress = evt.getKeyChar();
-        if(!Character.isAlphabetic(keyPress) && keyPress != ' '){
-            evt.consume();
-        }
-    }//GEN-LAST:event_NomeClienteKeyTyped
-
-    private void BairroClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BairroClienteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_BairroClienteActionPerformed
-
-    private void BairroClienteKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BairroClienteKeyPressed
-        // TODO add your handling code here:
-        if(evt.getExtendedKeyCode() == evt.VK_ENTER){
-            CidadeCliente.requestFocus();
-        }
-    }//GEN-LAST:event_BairroClienteKeyPressed
-
-    private void NumeroClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NumeroClienteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_NumeroClienteActionPerformed
-
-    private void NumeroClienteKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NumeroClienteKeyPressed
-        // TODO add your handling code here:
-        if(evt.getExtendedKeyCode() == evt.VK_ENTER){
-            UFCliente.requestFocus();
-        }
-    }//GEN-LAST:event_NumeroClienteKeyPressed
-
-    private void NumeroClienteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NumeroClienteKeyTyped
-        // TODO add your handling code here:
-
-        char keyPress = evt.getKeyChar();
-        if(!Character.isDigit(keyPress)){
-            evt.consume();
-        }
-    }//GEN-LAST:event_NumeroClienteKeyTyped
-
-    private void EnderecoClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EnderecoClienteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_EnderecoClienteActionPerformed
-
-    private void EnderecoClienteKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_EnderecoClienteKeyPressed
-        if(evt.getExtendedKeyCode() == evt.VK_ENTER){
-            NumeroCliente.requestFocus();
-        }
-    }//GEN-LAST:event_EnderecoClienteKeyPressed
-
-    private void UFClienteInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_UFClienteInputMethodTextChanged
-        // TODO add your handling code here:
-    }//GEN-LAST:event_UFClienteInputMethodTextChanged
-
-    private void UFClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UFClienteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_UFClienteActionPerformed
-
-    private void UFClienteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_UFClienteKeyTyped
-        // TODO add your handling code here
-        char keyPress = evt.getKeyChar();
-        String InputText = UFCliente.getText();
-        UFCliente.setText(InputText.toUpperCase());
-        int TamanhoInput = InputText.length();
-        if(!Character.isAlphabetic(keyPress)){
-            evt.consume();
-        }
-
-        if(TamanhoInput >= 2){
-            evt.consume();
-        }
-    }//GEN-LAST:event_UFClienteKeyTyped
-
-    private void CEPClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CEPClienteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CEPClienteActionPerformed
-
-    private void CEPClienteKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CEPClienteKeyPressed
-        // TODO add your handling code here:
-        if(evt.getExtendedKeyCode() == evt.VK_ENTER){
-            BairroCliente.requestFocus();
-        }
-    }//GEN-LAST:event_CEPClienteKeyPressed
-
-    private void TelefoneClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TelefoneClienteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_TelefoneClienteActionPerformed
-
-    private void TelefoneClienteKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TelefoneClienteKeyPressed
-        // TODO add your handling code here:
-        if(evt.getExtendedKeyCode() == evt.VK_ENTER){
-            CEPCliente.requestFocus();
-        }
-    }//GEN-LAST:event_TelefoneClienteKeyPressed
-
-    private void CidadeClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CidadeClienteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CidadeClienteActionPerformed
-
-    private void CidadeClienteKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CidadeClienteKeyPressed
-        // TODO add your handling code here:
-        if(evt.getExtendedKeyCode() == evt.VK_ENTER){
-            EnderecoCliente.requestFocus();
-        }
-    }//GEN-LAST:event_CidadeClienteKeyPressed
-
-    private void CidadeClienteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CidadeClienteKeyTyped
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CidadeClienteKeyTyped
-
-    private void CancelarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelarBtnActionPerformed
-        // TODO add your handling code here:
-         String[] options = {"Sim", "Cancelar"};
-        int resposta = JOptionPane.showOptionDialog(
-            this,
-            "Esta ação apagará todos os campos, tem certeza?",
-            "Confirmação",
-            JOptionPane.DEFAULT_OPTION,
-            JOptionPane.WARNING_MESSAGE,
-            null,
-            options,
-            options[0]
-        );
-        if (resposta == 0) {
-
-        } else {
-            CancelarBtn.requestFocus();
-        }
-    }//GEN-LAST:event_CancelarBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
