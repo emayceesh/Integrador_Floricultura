@@ -5,6 +5,15 @@
 package Clientes;
 
 import javax.swing.JOptionPane;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import javax.swing.JButton;
+import javax.swing.JPanel;
+import javax.swing.plaf.basic.BasicButtonUI;
+
+import Clientes.ClientesPrincipal;
 
 /**
  *
@@ -17,6 +26,34 @@ public class CadastrodeClientes extends javax.swing.JPanel {
      */
     public CadastrodeClientes() {
         initComponents();
+        JButton [] btns = {BtnClientes,CancelarBtn,Retornar};
+       for(JButton btn : btns){
+           btn.setBackground(new Color(186,47,57));
+           btn.setUI(new BasicButtonUI());
+           btn.addMouseListener(new MouseListener(){
+               @Override
+               public void mouseClicked(MouseEvent e){
+                   
+               }
+               @Override
+               public void mousePressed(MouseEvent e){
+                   
+               }
+               @Override 
+                public void mouseReleased(MouseEvent e){
+                   
+               }
+               @Override
+               public void mouseEntered(MouseEvent e){
+                    btn.setBackground(new Color(239,86,96));
+               }
+               @Override
+               public void mouseExited(MouseEvent e){
+                   btn.setBackground(new Color(186,47,57));
+               }
+           
+           });
+           }
     }
 
     /**
@@ -169,6 +206,9 @@ public class CadastrodeClientes extends javax.swing.JPanel {
             }
         });
         UFCliente.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                UFClienteKeyPressed(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 UFClienteKeyTyped(evt);
             }
@@ -235,7 +275,7 @@ public class CadastrodeClientes extends javax.swing.JPanel {
                 .addGap(36, 36, 36)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(EnderecoClienteLabel)
@@ -244,33 +284,31 @@ public class CadastrodeClientes extends javax.swing.JPanel {
                                     .addComponent(EnderecoCliente))
                                 .addGap(12, 12, 12)
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel3Layout.createSequentialGroup()
-                                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(BairroCliente)
-                                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                                .addComponent(BairroClienteLabel)
-                                                .addGap(0, 0, Short.MAX_VALUE)))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(UFCLienteLabel)
-                                            .addComponent(UFCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addGroup(jPanel3Layout.createSequentialGroup()
-                                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(NumeroCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                                            .addComponent(NumeroClienteLabel))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(CidadeClienteLabel)
-                                            .addComponent(CidadeCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
-                                .addComponent(NomeCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(NumeroCliente)
+                                    .addComponent(NumeroClienteLabel))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(CidadeClienteLabel)
+                                    .addComponent(CidadeCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel3Layout.createSequentialGroup()
-                                        .addComponent(TelefoneClienteLabel)
-                                        .addGap(0, 0, Short.MAX_VALUE))
-                                    .addComponent(TelefoneCliente))))
-                        .addGap(370, 370, 370))
+                                        .addGap(203, 203, 203)
+                                        .addComponent(BairroClienteLabel)
+                                        .addGap(0, 97, Short.MAX_VALUE))
+                                    .addComponent(NomeCliente))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(TelefoneClienteLabel)
+                                    .addComponent(TelefoneCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGap(203, 203, 203)
+                                .addComponent(BairroCliente)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(UFCLienteLabel)
+                                    .addComponent(UFCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(231, 231, 231))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4)
@@ -333,7 +371,7 @@ public class CadastrodeClientes extends javax.swing.JPanel {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BtnClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(CancelarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(163, Short.MAX_VALUE))
+                .addContainerGap(175, Short.MAX_VALUE))
         );
 
         jPanel2.setBackground(new java.awt.Color(185, 35, 44));
@@ -352,6 +390,8 @@ public class CadastrodeClientes extends javax.swing.JPanel {
         Retornar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         Retornar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Back To_1.png"))); // NOI18N
         Retornar.setBorder(null);
+        Retornar.setBorderPainted(false);
+        Retornar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         Retornar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 RetornarActionPerformed(evt);
@@ -372,7 +412,7 @@ public class CadastrodeClientes extends javax.swing.JPanel {
                         .addComponent(Retornar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(TituloLabel2)))
-                .addContainerGap(421, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -391,7 +431,7 @@ public class CadastrodeClientes extends javax.swing.JPanel {
         ContentLayout.setHorizontalGroup(
             ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         ContentLayout.setVerticalGroup(
             ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -406,39 +446,62 @@ public class CadastrodeClientes extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 812, Short.MAX_VALUE)
+            .addGap(0, 800, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(Content, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addComponent(Content, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 692, Short.MAX_VALUE)
+            .addGap(0, 700, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(Content, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addComponent(Content, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnClientesActionPerformed
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(null, "Cadastro do Cliente efetuado:"+ "\n" +
-            "Nome: " + NomeCliente.getText() + "\n" +
-            "Telefone: " + TelefoneCliente.getText() + "\n" +
-            "CEP: " + CEPCliente.getText() + "\n" +
-            "Bairro: " + BairroCliente.getText() + "\n" +
-            "Rua: " + EnderecoCliente.getText() + "\n" +
-            "Numero: " + EnderecoCliente.getText() + "\n" +
-            "Cidade: " + CidadeCliente.getText() + "\n" +
-            "UF: " + UFCliente.getText());
+        if(NomeCliente.getText().isEmpty() && TelefoneCliente.getText().isEmpty() && CEPCliente.getText().isEmpty() && BairroCliente.getText().isEmpty()
+            && EnderecoCliente.getText().isEmpty() && NumeroCliente.getText().isEmpty()
+            && CidadeCliente.getText().isEmpty() && UFCliente.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Os Campos do Cliente devem estar preenchidos!");
+        }else{
+            String[] options = {"Sim", "Não"};
+            int resposta = JOptionPane.showOptionDialog(
+                this,
+                "Cadastro Registrado!"+ "\n" +
+                "Nome Cliente: " + NomeCliente.getText() + "\n" +
+                "Telefone: " + TelefoneCliente.getText() + "\n" +
+                "CEP: " + CEPCliente.getText() + "\n" +
+                "Bairro: " + BairroCliente.getText() + "\n" +
+                "Rua: " + EnderecoCliente.getText() + "\n" +
+                "Numero: " + NumeroCliente.getText() + "\n" +
+                "Cidade: " + CidadeCliente.getText() + "\n" +
+                "UF: " + UFCliente.getText() + "\n\n\n" +
+                "Cadastrar novo Cliente?" + "\n",
+                "Confirmação de Cadastro",
+                JOptionPane.DEFAULT_OPTION,
+                JOptionPane.WARNING_MESSAGE,
+                null,
+                options,
+                options[0]);
+            if (resposta == 1) {
+            }else{
+                NomeCliente.setText("");
+                TelefoneCliente.setText("");
+                CEPCliente.setText("");
+                BairroCliente.setText("");
+                EnderecoCliente.setText("");
+                NumeroCliente.setText("");
+                CidadeCliente.setText("");
+                UFCliente.setText("");
+            }
+        }
     }//GEN-LAST:event_BtnClientesActionPerformed
 
     private void RetornarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RetornarActionPerformed
         // TODO add your handling code here:
+        ClientesPrincipal ClientesPrincip = new ClientesPrincipal();
+        ShowPanel(ClientesPrincip);
     }//GEN-LAST:event_RetornarActionPerformed
 
     private void NomeClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NomeClienteActionPerformed
@@ -467,7 +530,7 @@ public class CadastrodeClientes extends javax.swing.JPanel {
     private void BairroClienteKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BairroClienteKeyPressed
         // TODO add your handling code here:
         if(evt.getExtendedKeyCode() == evt.VK_ENTER){
-            CidadeCliente.requestFocus();
+            UFCliente.requestFocus();
         }
     }//GEN-LAST:event_BairroClienteKeyPressed
 
@@ -478,7 +541,7 @@ public class CadastrodeClientes extends javax.swing.JPanel {
     private void NumeroClienteKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NumeroClienteKeyPressed
         // TODO add your handling code here:
         if(evt.getExtendedKeyCode() == evt.VK_ENTER){
-            UFCliente.requestFocus();
+            CidadeCliente.requestFocus();
         }
     }//GEN-LAST:event_NumeroClienteKeyPressed
 
@@ -575,12 +638,35 @@ public class CadastrodeClientes extends javax.swing.JPanel {
             options[0]
         );
         if (resposta == 0) {
-
+             NomeCliente.setText("");
+               TelefoneCliente.setText("");
+               CEPCliente.setText("");
+               BairroCliente.setText("");
+               EnderecoCliente.setText("");
+               NumeroCliente.setText("");
+               CidadeCliente.setText("");
+              UFCliente.setText("");
         } else {
             CancelarBtn.requestFocus();
         }
     }//GEN-LAST:event_CancelarBtnActionPerformed
 
+    private void UFClienteKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_UFClienteKeyPressed
+        // TODO add your handling code here:
+        if(evt.getExtendedKeyCode() == evt.VK_ENTER){
+            EnderecoCliente.requestFocus();
+        }
+    }//GEN-LAST:event_UFClienteKeyPressed
+
+     private void ShowPanel(JPanel p){
+    p.setSize(800,700);
+    p.setLocation(0,0);
+    
+    Content.removeAll();
+    Content.add(p, BorderLayout.CENTER); 
+    Content.revalidate();
+    Content.repaint();    
+     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField BairroCliente;

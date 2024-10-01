@@ -2,31 +2,30 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package Clientes;
+package Categorias;
 
-import java.awt.BorderLayout;
-import javax.swing.JPanel;
-
-import Clientes.CadastrodeClientes;
 import TelaInicial.TelaBoasVindas;
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.plaf.basic.BasicButtonUI;
 
 /**
  *
  * @author pedro
  */
-public class ClientesPrincipal extends javax.swing.JPanel {
+public class CategoriaPrincipal extends javax.swing.JPanel {
 
     /**
-     * Creates new form ClientesPrincipal
+     * Creates new form CategoriaPrincipal
      */
-    public ClientesPrincipal() {
+    public CategoriaPrincipal() {
         initComponents();
-        JButton [] btns = {CdClientesBtn,PesquisarBtn,Retornar};
+        JButton [] btns = {CdCatBtn,CancelarBtn,Retornar,PesquisarBtn};
        for(JButton btn : btns){
            btn.setBackground(new Color(186,47,57));
            btn.setUI(new BasicButtonUI());
@@ -71,12 +70,15 @@ public class ClientesPrincipal extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        CdClientesBtn = new javax.swing.JButton();
+        CdCatBtn = new javax.swing.JButton();
         PesquisaLabel = new javax.swing.JLabel();
         Pesquisa = new javax.swing.JTextField();
         FiltroLabel = new javax.swing.JLabel();
         FiltroCombo = new javax.swing.JComboBox<>();
         PesquisarBtn = new javax.swing.JButton();
+        NomeCategoria = new javax.swing.JTextField();
+        PesquisaLabel1 = new javax.swing.JLabel();
+        CancelarBtn = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         TituloLabel2 = new javax.swing.JLabel();
         TituloLabel3 = new javax.swing.JLabel();
@@ -85,10 +87,10 @@ public class ClientesPrincipal extends javax.swing.JPanel {
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel3.setText("Consulta de Clientes");
+        jLabel3.setText("Consulta de Categorias");
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel4.setText("Aqui é possível consultar os clientes da floricultura com suas respectivas informações.");
+        jLabel4.setText("Aqui é possível consultar as categorias dos produtos e cadastrá-las.");
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -117,15 +119,15 @@ public class ClientesPrincipal extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        CdClientesBtn.setBackground(new java.awt.Color(239, 86, 96));
-        CdClientesBtn.setForeground(new java.awt.Color(255, 255, 255));
-        CdClientesBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Edit.png"))); // NOI18N
-        CdClientesBtn.setText("Cadastrar Clientes");
-        CdClientesBtn.setBorderPainted(false);
-        CdClientesBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        CdClientesBtn.addActionListener(new java.awt.event.ActionListener() {
+        CdCatBtn.setBackground(new java.awt.Color(239, 86, 96));
+        CdCatBtn.setForeground(new java.awt.Color(255, 255, 255));
+        CdCatBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Edit.png"))); // NOI18N
+        CdCatBtn.setText("Cadastrar Categoria");
+        CdCatBtn.setBorderPainted(false);
+        CdCatBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        CdCatBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CdClientesBtnActionPerformed(evt);
+                CdCatBtnActionPerformed(evt);
             }
         });
 
@@ -147,6 +149,20 @@ public class ClientesPrincipal extends javax.swing.JPanel {
             }
         });
 
+        PesquisaLabel1.setText("Nome da Categoria:");
+
+        CancelarBtn.setBackground(new java.awt.Color(239, 86, 96));
+        CancelarBtn.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
+        CancelarBtn.setForeground(new java.awt.Color(255, 255, 255));
+        CancelarBtn.setText("Cancelar");
+        CancelarBtn.setBorderPainted(false);
+        CancelarBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        CancelarBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CancelarBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -160,31 +176,40 @@ public class ClientesPrincipal extends javax.swing.JPanel {
                             .addComponent(jLabel3))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(CdClientesBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(Pesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(PesquisaLabel))
+                            .addComponent(PesquisaLabel)
+                            .addComponent(NomeCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(PesquisaLabel1))
                         .addGap(34, 34, 34)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(FiltroLabel)
-                            .addComponent(FiltroCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
-                        .addComponent(PesquisarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(26, 26, 26))))
+                            .addComponent(FiltroCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(CdCatBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(PesquisarBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)
+                            .addComponent(CancelarBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap(44, Short.MAX_VALUE))))
             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(24, 24, 24)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(CdClientesBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(12, 12, 12)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(PesquisaLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(NomeCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(CancelarBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(CdCatBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(PesquisaLabel)
                     .addComponent(FiltroLabel))
@@ -202,7 +227,7 @@ public class ClientesPrincipal extends javax.swing.JPanel {
         TituloLabel2.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         TituloLabel2.setForeground(new java.awt.Color(255, 255, 255));
         TituloLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        TituloLabel2.setText("Consulta Clientes");
+        TituloLabel2.setText("Categorias");
 
         TituloLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         TituloLabel3.setForeground(new java.awt.Color(255, 255, 255));
@@ -275,11 +300,15 @@ public class ClientesPrincipal extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 737, Short.MAX_VALUE)
+            .addGap(0, 708, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(PainelCentral, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void PesquisarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PesquisarBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_PesquisarBtnActionPerformed
 
     private void RetornarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RetornarActionPerformed
         // TODO add your handling code here:
@@ -287,15 +316,50 @@ public class ClientesPrincipal extends javax.swing.JPanel {
         ShowPanel(TelaInicio);
     }//GEN-LAST:event_RetornarActionPerformed
 
-    private void CdClientesBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CdClientesBtnActionPerformed
+    private void CdCatBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CdCatBtnActionPerformed
         // TODO add your handling code here:
-        CadastrodeClientes CadastroClientes = new CadastrodeClientes();
-        ShowPanel(CadastroClientes);
-    }//GEN-LAST:event_CdClientesBtnActionPerformed
+        if(NomeCategoria.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Os Campos do Cliente devem estar preenchidos!");
+        }else{
+            String[] options = {"Sim", "Não"};
+            int resposta = JOptionPane.showOptionDialog(
+                this,
+                "Cadastro Registrado!"+ "\n" +
+                "Nome Categoria: " + NomeCategoria.getText() +"\n\n\n" +
+                "Cadastrar nova Categoria?" + "\n",
+                "Confirmação de Cadastro",
+                JOptionPane.DEFAULT_OPTION,
+                JOptionPane.WARNING_MESSAGE,
+                null,
+                options,
+                options[0]);
+            if (resposta == 1) {
+            }else{
+                NomeCategoria.setText("");
+ 
+            }
+        }
+    }//GEN-LAST:event_CdCatBtnActionPerformed
 
-    private void PesquisarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PesquisarBtnActionPerformed
+    private void CancelarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelarBtnActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_PesquisarBtnActionPerformed
+        String[] options = {"Sim", "Cancelar"};
+        int resposta = JOptionPane.showOptionDialog(
+            this,
+            "Esta ação apagará todos os campos, tem certeza?",
+            "Confirmação",
+            JOptionPane.DEFAULT_OPTION,
+            JOptionPane.WARNING_MESSAGE,
+            null,
+            options,
+            options[0]
+        );
+        if (resposta == 0) {
+             NomeCategoria.setText("");
+        } else {
+            CancelarBtn.requestFocus();
+        }
+    }//GEN-LAST:event_CancelarBtnActionPerformed
 
     private void ShowPanel(JPanel p){
     p.setSize(800,700);
@@ -306,14 +370,18 @@ public class ClientesPrincipal extends javax.swing.JPanel {
     PainelCentral.revalidate();
     PainelCentral.repaint();    
      }
-
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton CdClientesBtn;
+    private javax.swing.JButton CancelarBtn;
+    private javax.swing.JButton CdCatBtn;
     private javax.swing.JComboBox<String> FiltroCombo;
     private javax.swing.JLabel FiltroLabel;
+    private javax.swing.JTextField NomeCategoria;
     private javax.swing.JPanel PainelCentral;
     private javax.swing.JTextField Pesquisa;
     private javax.swing.JLabel PesquisaLabel;
+    private javax.swing.JLabel PesquisaLabel1;
     private javax.swing.JButton PesquisarBtn;
     private javax.swing.JButton Retornar;
     private javax.swing.JLabel TituloLabel2;

@@ -2,9 +2,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package floricultura;
+package Venda;
 
-import floricultura.TelaInicial.TelaBoasVindas;
+import TelaInicial.TelaBoasVindas;
+import java.awt.Color;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import javax.swing.JButton;
+import javax.swing.plaf.basic.BasicButtonUI;
 
 /**
  *
@@ -17,6 +22,34 @@ public class TelaVendasPrincipal extends javax.swing.JPanel {
      */
     public TelaVendasPrincipal() {
         initComponents();
+        JButton [] btns = {BtnVendas,BtnPesquisa,Retornar};
+       for(JButton btn : btns){
+           btn.setBackground(new Color(186,47,57));
+           btn.setUI(new BasicButtonUI());
+           btn.addMouseListener(new MouseListener(){
+               @Override
+               public void mouseClicked(MouseEvent e){
+                   
+               }
+               @Override
+               public void mousePressed(MouseEvent e){
+                   
+               }
+               @Override 
+                public void mouseReleased(MouseEvent e){
+                   
+               }
+               @Override
+               public void mouseEntered(MouseEvent e){
+                    btn.setBackground(new Color(239,86,96));
+               }
+               @Override
+               public void mouseExited(MouseEvent e){
+                   btn.setBackground(new Color(186,47,57));
+               }
+           
+           });
+           }
     }
 
     /**
@@ -30,7 +63,7 @@ public class TelaVendasPrincipal extends javax.swing.JPanel {
 
         Content = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
-        BtnClientes = new javax.swing.JButton();
+        BtnVendas = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -47,16 +80,16 @@ public class TelaVendasPrincipal extends javax.swing.JPanel {
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
-        BtnClientes.setBackground(new java.awt.Color(239, 86, 96));
-        BtnClientes.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
-        BtnClientes.setForeground(new java.awt.Color(255, 255, 255));
-        BtnClientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Edit_1.png"))); // NOI18N
-        BtnClientes.setText("Realizar Venda");
-        BtnClientes.setBorderPainted(false);
-        BtnClientes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        BtnClientes.addActionListener(new java.awt.event.ActionListener() {
+        BtnVendas.setBackground(new java.awt.Color(239, 86, 96));
+        BtnVendas.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
+        BtnVendas.setForeground(new java.awt.Color(255, 255, 255));
+        BtnVendas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Edit_1.png"))); // NOI18N
+        BtnVendas.setText("Realizar Venda");
+        BtnVendas.setBorderPainted(false);
+        BtnVendas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BtnVendas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnClientesActionPerformed(evt);
+                BtnVendasActionPerformed(evt);
             }
         });
 
@@ -122,28 +155,29 @@ public class TelaVendasPrincipal extends javax.swing.JPanel {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(36, 36, 36)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(BtnClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(BtnVendas, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel6)
-                        .addGap(312, 312, 312))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 460, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING))
-                        .addGap(16, 16, 16)
-                        .addComponent(FiltroCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(BtnPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(23, 23, 23))))
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel3Layout.createSequentialGroup()
+                                        .addComponent(FiltroCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(54, 54, 54)
+                                        .addComponent(BtnPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jLabel6))))
+                        .addContainerGap())))
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 800, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -152,8 +186,8 @@ public class TelaVendasPrincipal extends javax.swing.JPanel {
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
-                .addComponent(BtnClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(22, 22, 22)
+                .addComponent(BtnVendas, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
@@ -161,10 +195,10 @@ public class TelaVendasPrincipal extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(FiltroCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(FiltroCombo)
                     .addComponent(BtnPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 343, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         jPanel2.setBackground(new java.awt.Color(185, 35, 44));
@@ -183,6 +217,7 @@ public class TelaVendasPrincipal extends javax.swing.JPanel {
         Retornar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         Retornar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Back To_1.png"))); // NOI18N
         Retornar.setBorder(null);
+        Retornar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         Retornar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 RetornarActionPerformed(evt);
@@ -237,7 +272,7 @@ public class TelaVendasPrincipal extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 855, Short.MAX_VALUE)
+            .addGap(0, 800, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addComponent(Content, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -245,7 +280,7 @@ public class TelaVendasPrincipal extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 769, Short.MAX_VALUE)
+            .addGap(0, 786, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addComponent(Content, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -253,11 +288,9 @@ public class TelaVendasPrincipal extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void BtnClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnClientesActionPerformed
+    private void BtnVendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnVendasActionPerformed
         // TODO add your handling code here:
-        TelaVendas  RealizarVendas = new TelaVendas();
-        ShowPanel(RealizarVendas);
-    }//GEN-LAST:event_BtnClientesActionPerformed
+    }//GEN-LAST:event_BtnVendasActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
@@ -265,14 +298,12 @@ public class TelaVendasPrincipal extends javax.swing.JPanel {
 
     private void RetornarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RetornarActionPerformed
         // TODO add your handling code here:
-        TelaBoasVindas TelaInicial = new TelaBoasVindas();
-        ShowPanel(TelaInicial);
     }//GEN-LAST:event_RetornarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BtnClientes;
     private javax.swing.JButton BtnPesquisa;
+    private javax.swing.JButton BtnVendas;
     private javax.swing.JPanel Content;
     private javax.swing.JComboBox<String> FiltroCombo;
     private javax.swing.JButton Retornar;
@@ -289,7 +320,4 @@ public class TelaVendasPrincipal extends javax.swing.JPanel {
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 
-    private void ShowPanel(TelaVendas RealizarVendas) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
 }

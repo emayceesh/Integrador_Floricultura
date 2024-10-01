@@ -2,16 +2,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package floricultura.TelaInicial;
+package TelaInicial;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
-import Clientes.CadastroCliente;
 import floricultura.entrada_de_produtos;
 import floricultura.saida_de_produtos;
-import Clientes.CadastroCliente;
-import Clientes.ConsultaClientes;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.event.MouseEvent;
@@ -24,9 +21,14 @@ import javax.swing.JInternalFrame;
 import javax.swing.JPanel;
 import javax.swing.plaf.basic.BasicButtonUI;
 
-import Clientes.CadastroClientes;
-import floricultura.TelaInicial.TelaBoasVindas;
+import Clientes.CadastrodeClientes;
 import Clientes.ClientesPrincipal;
+
+import Venda.TelaVendasPrincipal;
+
+import Categorias.CategoriaPrincipal;
+
+import TelaInicial.TelaBoasVindas;
 
 /**
  *
@@ -134,7 +136,7 @@ public class TelaInicial extends javax.swing.JFrame {
         RealizarVendaRapida.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         RealizarVendaRapida.setForeground(new java.awt.Color(255, 255, 255));
         RealizarVendaRapida.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Cash.png"))); // NOI18N
-        RealizarVendaRapida.setText("Realizar Venda");
+        RealizarVendaRapida.setText("Vendas");
         RealizarVendaRapida.setBorderPainted(false);
         RealizarVendaRapida.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         RealizarVendaRapida.addActionListener(new java.awt.event.ActionListener() {
@@ -147,7 +149,7 @@ public class TelaInicial extends javax.swing.JFrame {
         CadastroRapido.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         CadastroRapido.setForeground(new java.awt.Color(255, 255, 255));
         CadastroRapido.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Edit_1.png"))); // NOI18N
-        CadastroRapido.setText("Cadastrar Cliente");
+        CadastroRapido.setText("Categorias");
         CadastroRapido.setBorderPainted(false);
         CadastroRapido.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         CadastroRapido.addActionListener(new java.awt.event.ActionListener() {
@@ -173,7 +175,7 @@ public class TelaInicial extends javax.swing.JFrame {
         CadastroProdutosRapido.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         CadastroProdutosRapido.setForeground(new java.awt.Color(255, 255, 255));
         CadastroProdutosRapido.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Box_1.png"))); // NOI18N
-        CadastroProdutosRapido.setText("Cadastrar Produtos");
+        CadastroProdutosRapido.setText("Estoque");
         CadastroProdutosRapido.setBorderPainted(false);
         CadastroProdutosRapido.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         CadastroProdutosRapido.addActionListener(new java.awt.event.ActionListener() {
@@ -186,7 +188,7 @@ public class TelaInicial extends javax.swing.JFrame {
         ConsultaProdutosRapido.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         ConsultaProdutosRapido.setForeground(new java.awt.Color(255, 255, 255));
         ConsultaProdutosRapido.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Task.png"))); // NOI18N
-        ConsultaProdutosRapido.setText("Consultar Produtos");
+        ConsultaProdutosRapido.setText("Logs");
         ConsultaProdutosRapido.setBorderPainted(false);
         ConsultaProdutosRapido.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
@@ -272,7 +274,7 @@ public class TelaInicial extends javax.swing.JFrame {
         );
         ContentLayout.setVerticalGroup(
             ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 694, Short.MAX_VALUE)
+            .addGap(0, 700, Short.MAX_VALUE)
         );
 
         Produtos.setText("Produtos");
@@ -432,12 +434,15 @@ public class TelaInicial extends javax.swing.JFrame {
 
     private void RealizarVendaRapidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RealizarVendaRapidaActionPerformed
         // TODO add your handling code here:
+        TelaVendasPrincipal Vendas = new TelaVendasPrincipal();
+        ShowPanel(Vendas);
+        
     }//GEN-LAST:event_RealizarVendaRapidaActionPerformed
 
     private void CadastroRapidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CadastroRapidoActionPerformed
         // TODO add your handling code here:
-           CadastroClientes CdnClientes = new CadastroClientes();
-        ShowPanel(CdnClientes);
+        CategoriaPrincipal CatPrincipal = new CategoriaPrincipal();
+        ShowPanel(CatPrincipal);
 
     }//GEN-LAST:event_CadastroRapidoActionPerformed
 
@@ -447,27 +452,22 @@ public class TelaInicial extends javax.swing.JFrame {
 
     private void CadastroCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CadastroCategoriaActionPerformed
         // TODO add your handling code here:
-        new AddCategoria().setVisible(true);
     }//GEN-LAST:event_CadastroCategoriaActionPerformed
 
     private void VisualizarCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VisualizarCategoriaActionPerformed
         // TODO add your handling code here:
-        new AddCategoria().setVisible(true);
     }//GEN-LAST:event_VisualizarCategoriaActionPerformed
 
     private void CadastroSubCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CadastroSubCategoriaActionPerformed
         // TODO add your handling code here:
-        new AddSubCategoria().setVisible(true);
     }//GEN-LAST:event_CadastroSubCategoriaActionPerformed
 
     private void VisualizarSubCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VisualizarSubCategoriaActionPerformed
         // TODO add your handling code here:
-        new AddSubCategoria().setVisible(true);
     }//GEN-LAST:event_VisualizarSubCategoriaActionPerformed
 
     private void ConsultaClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConsultaClientesActionPerformed
         // TODO add your handling code here:
-        new ConsultaClientes().setVisible(true);
     }//GEN-LAST:event_ConsultaClientesActionPerformed
 
     private void PrincipalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PrincipalActionPerformed
@@ -478,27 +478,18 @@ public class TelaInicial extends javax.swing.JFrame {
 
     private void ConsultaRapidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConsultaRapidaActionPerformed
         // TODO add your handling code here:
-        ClientesPrincipal CLPrincipal = new ClientesPrincipal();
-        ShowPanel(CLPrincipal);
+        ClientesPrincipal ClientesPrincipal = new ClientesPrincipal();
+        ShowPanel(ClientesPrincipal);
     }//GEN-LAST:event_ConsultaRapidaActionPerformed
 
     /**
      * @param args the command line arguments
      */
     
-    /**private void ShowPanel(JFrame p){;
-        p.setSize(650, 557);
-        p.setLocation(0,0);
-        
-        Content.removeAll();
-        Content.add(p,BorderLayout.CENTER);
-        Content.revalidate();
-        Content.repaint();
-    } */
-    
+
     
     private void ShowPanel(JPanel p){
-        p.setSize(799, 700);
+        p.setSize(800, 700);
         p.setLocation(0,0);
         
         Content.removeAll();
