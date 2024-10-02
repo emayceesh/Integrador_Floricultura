@@ -7,8 +7,8 @@ package TelaInicial;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
-import floricultura.entrada_de_produtos;
-import floricultura.saida_de_produtos;
+import floricultura.entradaProdutos;
+import floricultura.saidaProdutos;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.event.MouseEvent;
@@ -420,7 +420,7 @@ public class TelaInicial extends javax.swing.JFrame {
     
     private void SaidaProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaidaProdutosActionPerformed
         // TODO add your handling code here:
-        new saida_de_produtos().setVisible(true);
+        new saidaProdutos().setVisible(true);
     }//GEN-LAST:event_SaidaProdutosActionPerformed
 
     private void CadastroClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CadastroClienteActionPerformed
@@ -429,7 +429,7 @@ public class TelaInicial extends javax.swing.JFrame {
 
     private void EntradaProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EntradaProdutosActionPerformed
         // TODO add your handling code here:
-        new entrada_de_produtos().setVisible(true);
+        new entradaProdutos().setVisible(true);
     }//GEN-LAST:event_EntradaProdutosActionPerformed
 
     private void RealizarVendaRapidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RealizarVendaRapidaActionPerformed
