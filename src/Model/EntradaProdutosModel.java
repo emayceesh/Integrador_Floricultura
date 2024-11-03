@@ -15,6 +15,7 @@ public class EntradaProdutosModel {
     private String fornecedorProduto;
     private String operadorEntradaProduto;
     private int qtdProduto;
+    
 
     public EntradaProdutosModel(String produtosExistentesCB, String categoriaProdutoCB, String fornecedorProduto, String operadorEntradaProduto, int qtdProduto) {
         this.produtosExistentesCB = produtosExistentesCB;
@@ -23,7 +24,12 @@ public class EntradaProdutosModel {
         this.operadorEntradaProduto = operadorEntradaProduto;
         this.qtdProduto = qtdProduto;
     }
+
     //Getters
+    
+    public String getProdutosExistentesCB() {
+        return produtosExistentesCB;
+    }
     public String getCategoriaProdutoCB() {
         return categoriaProdutoCB;
     }
@@ -39,7 +45,7 @@ public class EntradaProdutosModel {
     public int getQtdProduto() {
         return qtdProduto;
     }
-    
+
     //Setters
     public void setProdutosExistentesCB(String produtosExistentesCB) {
         this.produtosExistentesCB = produtosExistentesCB;
@@ -59,10 +65,6 @@ public class EntradaProdutosModel {
 
     public void setQtdProduto(int qtdProduto) {
         this.qtdProduto = qtdProduto;
-    }
-
-    public String getProdutosExistentesCB() {
-        return produtosExistentesCB;
     }
 
 }

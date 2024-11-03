@@ -5,11 +5,14 @@
 package Produtos;
 
 import TelaInicial.TelaBoasVindas;
+import dao.JBDCCadastroProdutos;
+import Model.NomeIDProdutosModel;
 import javax.swing.JOptionPane;
+import java.util.List;
 
 /**
  *
- * @author Matheus
+ * @author Patryk
  */
 public class entradaProdutos extends javax.swing.JPanel {
 
@@ -18,7 +21,18 @@ public class entradaProdutos extends javax.swing.JPanel {
      */
     public entradaProdutos() {
         initComponents();
+        carregarProdutosNaCB();
     }
+    private void carregarProdutosNaCB() {
+        JBDCCadastroProdutos cadastroProdutosDao = new JBDCCadastroProdutos();
+    List<NomeIDProdutosModel> produtos = cadastroProdutosDao.getNomesDosProdutos(); 
+
+    for (NomeIDProdutosModel produto : produtos) {
+        produtosExistentesCB.addItem(produto); 
+    }
+    
+    
+}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -365,7 +379,7 @@ public class entradaProdutos extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JTextField operadorEntradaProduto;
-    private javax.swing.JComboBox<String> produtosExistentesCB;
+    private javax.swing.JComboBox<NomeIDProdutosModel> produtosExistentesCB;
     private javax.swing.JTextField qtdProduto;
     // End of variables declaration//GEN-END:variables
 
