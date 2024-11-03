@@ -4,10 +4,21 @@
  */
 package dao;
 
+import java.sql.SQLException;
+import java.sql.DriverManager;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import Produtos.entradaProdutos;
+import Model.EntradaProdutosModel;
 /**
  *
- * @author Matheus
+ * @author Patryk
  */
 public class JBDCEntradadeProdutos {
     
+    private JBDCConnect conexao;
+
+    public JBDCEntradadeProdutos() {
+        this.conexao = new JBDCConnect();
+    }
 }
