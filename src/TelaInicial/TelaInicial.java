@@ -30,6 +30,8 @@ import Categorias.CategoriaPrincipal;
 
 import TelaInicial.TelaBoasVindas;
 
+import Produtos.entradaProdutos;
+
 /**
  *
  * @author pedro
@@ -41,42 +43,43 @@ public class TelaInicial extends javax.swing.JFrame {
      */
     public TelaInicial() {
         initComponents();
-        JButton [] btns = {Principal,RealizarVendaRapida,CadastroRapido,ConsultaRapida,CadastroProdutosRapido,ConsultaProdutosRapido,ConsultarVendas};
-       for(JButton btn : btns){
-           btn.setBackground(new Color(186,47,57));
-           btn.setUI(new BasicButtonUI());
-           btn.addMouseListener(new MouseListener(){
-               @Override
-               public void mouseClicked(MouseEvent e){
-                   
-               }
-               @Override
-               public void mousePressed(MouseEvent e){
-                   
-               }
-               @Override 
-                public void mouseReleased(MouseEvent e){
-                   
-               }
-               @Override
-               public void mouseEntered(MouseEvent e){
-                    btn.setBackground(new Color(239,86,96));
-               }
-               @Override
-               public void mouseExited(MouseEvent e){
-                   btn.setBackground(new Color(186,47,57));
-               }
-           
-           });
-           }
-       
-       TelaBoasVindas TelaPrincipal = new TelaBoasVindas();
-       ShowPanel(TelaPrincipal);
-       
-       
+        JButton[] btns = {Principal, RealizarVendaRapida, CadastroRapido, ConsultaRapida, CadastroProdutosRapido, ConsultaProdutosRapido, ConsultarVendas};
+        for (JButton btn : btns) {
+            btn.setBackground(new Color(186, 47, 57));
+            btn.setUI(new BasicButtonUI());
+            btn.addMouseListener(new MouseListener() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+
+                }
+
+                @Override
+                public void mousePressed(MouseEvent e) {
+
+                }
+
+                @Override
+                public void mouseReleased(MouseEvent e) {
+
+                }
+
+                @Override
+                public void mouseEntered(MouseEvent e) {
+                    btn.setBackground(new Color(239, 86, 96));
+                }
+
+                @Override
+                public void mouseExited(MouseEvent e) {
+                    btn.setBackground(new Color(186, 47, 57));
+                }
+
+            });
+        }
+
+        TelaBoasVindas TelaPrincipal = new TelaBoasVindas();
+        ShowPanel(TelaPrincipal);
+
     }
-    
- 
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -417,7 +420,7 @@ public class TelaInicial extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_CadastroProdutoActionPerformed
 
-    
+
     private void SaidaProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaidaProdutosActionPerformed
         // TODO add your handling code here:
         new saidaProdutos().setVisible(true);
@@ -428,15 +431,15 @@ public class TelaInicial extends javax.swing.JFrame {
     }//GEN-LAST:event_CadastroClienteActionPerformed
 
     private void EntradaProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EntradaProdutosActionPerformed
-        // TODO add your handling code here:
-        new entradaProdutos().setVisible(true);
+        entradaProdutos entradaDeProdutos = new entradaProdutos();
+        entradaDeProdutos.setVisible(true);
     }//GEN-LAST:event_EntradaProdutosActionPerformed
 
     private void RealizarVendaRapidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RealizarVendaRapidaActionPerformed
         // TODO add your handling code here:
         TelaVendasPrincipal Vendas = new TelaVendasPrincipal();
         ShowPanel(Vendas);
-        
+
     }//GEN-LAST:event_RealizarVendaRapidaActionPerformed
 
     private void CadastroRapidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CadastroRapidoActionPerformed
@@ -485,27 +488,23 @@ public class TelaInicial extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    
-
-    
-    private void ShowPanel(JPanel p){
+    private void ShowPanel(JPanel p) {
         p.setSize(800, 700);
-        p.setLocation(0,0);
-        
+        p.setLocation(0, 0);
+
         Content.removeAll();
         Content.add(p, BorderLayout.CENTER);
         Content.revalidate();
         Content.repaint();
     }
-    
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-        
-        
+
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -528,11 +527,10 @@ public class TelaInicial extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new TelaInicial().setVisible(true);
-                
+
             }
         });
-        
-        
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

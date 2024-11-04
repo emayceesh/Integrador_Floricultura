@@ -10,61 +10,59 @@ package Model;
  */
 public class EntradaProdutosModel {
 
-    private String produtosExistentesCB;
-    private String categoriaProdutoCB;
-    private String fornecedorProduto;
-    private String operadorEntradaProduto;
-    private int qtdProduto;
-    
+    private String idprodutos_entrada;
+    private String idCategoria;
+    private String idfornecedor_entrada;
+    private String idoperador;
+    private int quantidadeProduto;
 
-    public EntradaProdutosModel(String produtosExistentesCB, String categoriaProdutoCB, String fornecedorProduto, String operadorEntradaProduto, int qtdProduto) {
-        this.produtosExistentesCB = produtosExistentesCB;
-        this.categoriaProdutoCB = categoriaProdutoCB;
-        this.fornecedorProduto = fornecedorProduto;
-        this.operadorEntradaProduto = operadorEntradaProduto;
-        this.qtdProduto = qtdProduto;
+    public String getIdprodutos_entrada() {
+        return idprodutos_entrada;
     }
 
-    //Getters
-    
-    public String getProdutosExistentesCB() {
-        return produtosExistentesCB;
-    }
-    public String getCategoriaProdutoCB() {
-        return categoriaProdutoCB;
+    public void setIdprodutos_entrada(String idprodutos_entrada) {
+        this.idprodutos_entrada = idprodutos_entrada;
     }
 
-    public String getFornecedorProduto() {
-        return fornecedorProduto;
+    public String getIdCategoria() {
+        return idCategoria;
     }
 
-    public String getOperadorEntradaProduto() {
-        return operadorEntradaProduto;
+    public void setIdCategoria(String idCategoria) {
+        this.idCategoria = idCategoria;
     }
 
-    public int getQtdProduto() {
-        return qtdProduto;
+    public String getIdfornecedor_entrada() {
+        return idfornecedor_entrada;
     }
 
-    //Setters
-    public void setProdutosExistentesCB(String produtosExistentesCB) {
-        this.produtosExistentesCB = produtosExistentesCB;
+    public void setIdfornecedor_entrada(String idfornecedor_entrada) {
+        this.idfornecedor_entrada = idfornecedor_entrada;
     }
 
-    public void setCategoriaProdutoCB(String categoriaProdutoCB) {
-        this.categoriaProdutoCB = categoriaProdutoCB;
+    public String getIdoperador() {
+        return idoperador;
     }
 
-    public void setFornecedorProduto(String fornecedorProduto) {
-        this.fornecedorProduto = fornecedorProduto;
+    public void setIdoperador(String idoperador) {
+        this.idoperador = idoperador;
     }
 
-    public void setOperadorEntradaProduto(String operadorEntradaProduto) {
-        this.operadorEntradaProduto = operadorEntradaProduto;
+    public int getQuantidadeProduto() {
+        return quantidadeProduto;
     }
 
-    public void setQtdProduto(int qtdProduto) {
-        this.qtdProduto = qtdProduto;
+    public void setQuantidadeProduto(int quantidadeProduto) {
+        this.quantidadeProduto = quantidadeProduto;
     }
 
+    public EntradaProdutosModel(String idprodutos_entrada, String idCategoria, String idfornecedor_entrada, String idoperador, int quantidadeProduto) {
+        this.idprodutos_entrada = idprodutos_entrada;
+        this.idCategoria = idCategoria;
+        this.idfornecedor_entrada = idfornecedor_entrada;
+        this.idoperador = idoperador;
+        this.quantidadeProduto = quantidadeProduto;
+    }
 }
+
+    

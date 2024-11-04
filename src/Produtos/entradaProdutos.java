@@ -4,9 +4,11 @@
  */
 package Produtos;
 
+import dao.JBDCConnect;
 import TelaInicial.TelaBoasVindas;
-import dao.JBDCCadastroProdutos;
+import dao.JBDCEntradadeProdutos;
 import Model.NomeIDProdutosModel;
+import Model.EntradaProdutosModel;
 import javax.swing.JOptionPane;
 import java.util.List;
 
@@ -23,16 +25,35 @@ public class entradaProdutos extends javax.swing.JPanel {
         initComponents();
         carregarProdutosNaCB();
     }
-    private void carregarProdutosNaCB() {
-        JBDCCadastroProdutos cadastroProdutosDao = new JBDCCadastroProdutos();
-    List<NomeIDProdutosModel> produtos = cadastroProdutosDao.getNomesDosProdutos(); 
 
-    for (NomeIDProdutosModel produto : produtos) {
-        produtosExistentesCB.addItem(produto); 
+    private void carregarProdutosNaCB() {
+        JBDCConnect jbdcConnect = new JBDCConnect();
+
+        if (jbdcConnect.conectar()) {
+            List<NomeIDProdutosModel> produtos = null;
+            try {
+
+                JBDCEntradadeProdutos cadastroProdutosDao = new JBDCEntradadeProdutos();
+
+                produtos = cadastroProdutosDao.getNomesDosProdutos();
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                // Sempre desconecte após terminar
+                jbdcConnect.desconectar();
+            }
+
+            // Adicione os produtos ao JComboBox
+            if (produtos != null) {
+                for (NomeIDProdutosModel produto : produtos) {
+                    produtosExistentesCB.addItem(produto);
+                }
+            }
+        } else {
+            System.out.println("Falha ao conectar ao banco de dados.");
+        }
+
     }
-    
-    
-}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -292,27 +313,27 @@ public class entradaProdutos extends javax.swing.JPanel {
     private void cadastrar_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrar_buttonActionPerformed
         String[] options = {"Sim", "Não"};
         int resposta = JOptionPane.showOptionDialog(
-            this, 
-            "Produto Adicionado!"+ "\n" +  
-            "Nome: " + produtosExistentesCB.getSelectedItem() + "\n" +
-            "Quantidade: " + qtdProduto.getText() + "\n" +
-            "Fornecedor: " + fornecedorProduto.getText() + "\n" +
-            "Operador: " + operadorEntradaProduto.getText() + "\n" +
-            "Categoria: " + categoriaProdutoCB.getSelectedItem() + "\n\n\n" +
-            "Cadastrar novo produto?" +"\n",
-            "Confirmação de Cadastro",
-            JOptionPane.DEFAULT_OPTION,
-            JOptionPane.WARNING_MESSAGE,
-            null,
-            options,
-            options[0]);
+                this,
+                "Produto Adicionado!" + "\n"
+                + "Nome: " + produtosExistentesCB.getSelectedItem() + "\n"
+                + "Quantidade: " + qtdProduto.getText() + "\n"
+                + "Fornecedor: " + fornecedorProduto.getText() + "\n"
+                + "Operador: " + operadorEntradaProduto.getText() + "\n"
+                + "Categoria: " + categoriaProdutoCB.getSelectedItem() + "\n\n\n"
+                + "Cadastrar novo produto?" + "\n",
+                "Confirmação de Cadastro",
+                JOptionPane.DEFAULT_OPTION,
+                JOptionPane.WARNING_MESSAGE,
+                null,
+                options,
+                options[0]);
         if (resposta == 1) {
             TelaBoasVindas TelaInicial = new TelaBoasVindas();
             ShowPanel(TelaInicial);
-        }else{
+        } else {
             produtosExistentesCB.setSelectedItem(-1);
             qtdProduto.setText("");
-            
+
             fornecedorProduto.setText("");
             operadorEntradaProduto.setText("");
             categoriaProdutoCB.setSelectedIndex(-1);
@@ -326,7 +347,7 @@ public class entradaProdutos extends javax.swing.JPanel {
 
     private void fornecedorProdutoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_fornecedorProdutoKeyTyped
         char keyPress = evt.getKeyChar();
-        if(!Character.isAlphabetic(keyPress) && keyPress != ' '){
+        if (!Character.isAlphabetic(keyPress) && keyPress != ' ') {
             evt.consume();
         }        // TODO add your handling code here:
     }//GEN-LAST:event_fornecedorProdutoKeyTyped
@@ -337,7 +358,7 @@ public class entradaProdutos extends javax.swing.JPanel {
 
     private void operadorEntradaProdutoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_operadorEntradaProdutoKeyTyped
         char keyPress = evt.getKeyChar();
-        if(!Character.isAlphabetic(keyPress) && keyPress != ' '){
+        if (!Character.isAlphabetic(keyPress) && keyPress != ' ') {
             evt.consume();
         }                // TODO add your handling code here:
     }//GEN-LAST:event_operadorEntradaProdutoKeyTyped
@@ -348,7 +369,7 @@ public class entradaProdutos extends javax.swing.JPanel {
 
     private void qtdProdutoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_qtdProdutoKeyTyped
         char c = evt.getKeyChar();
-        if(!Character.isDigit((c))){
+        if (!Character.isDigit((c))) {
             evt.consume();
         }        // TODO add your handling code here:
     }//GEN-LAST:event_qtdProdutoKeyTyped

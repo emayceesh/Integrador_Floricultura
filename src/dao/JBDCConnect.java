@@ -30,14 +30,25 @@ public class JBDCConnect {
         try
         {
             this.conexao = DriverManager.getConnection("jdbc:mysql://"+this.servidor+"/"+this.banco,this.usuario,this.senha);
-            return true;
+            return this.conexao != null ;
+        }catch(SQLException ex){
+            ex.printStackTrace();
+            return false;
         }
-        catch(SQLException ex){
-            throw new RuntimeException(ex);
-        }
+        
     }
     public Connection getConnection() {
         return conexao;
+    }
+    
+    public void desconectar() {
+        try {
+            if (this.conexao != null && !this.conexao.isClosed()) {
+                this.conexao.close();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace(); // Exibe a pilha de erros se falhar ao fechar
+        }
     }
            
 }
