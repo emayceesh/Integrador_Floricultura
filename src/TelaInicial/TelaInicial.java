@@ -432,7 +432,7 @@ public class TelaInicial extends javax.swing.JFrame {
 
     private void EntradaProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EntradaProdutosActionPerformed
         entradaProdutos entradaDeProdutos = new entradaProdutos();
-        entradaDeProdutos.setVisible(true);
+        ShowPanel(entradaDeProdutos);
     }//GEN-LAST:event_EntradaProdutosActionPerformed
 
     private void RealizarVendaRapidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RealizarVendaRapidaActionPerformed
@@ -450,7 +450,7 @@ public class TelaInicial extends javax.swing.JFrame {
     }//GEN-LAST:event_CadastroRapidoActionPerformed
 
     private void CadastroProdutosRapidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CadastroProdutosRapidoActionPerformed
-        // TODO add your handling code here:
+                // TODO add your handling code here:
     }//GEN-LAST:event_CadastroProdutosRapidoActionPerformed
 
     private void CadastroCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CadastroCategoriaActionPerformed
