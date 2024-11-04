@@ -33,7 +33,7 @@ public class entradaProdutos extends javax.swing.JPanel {
             List<NomeIDProdutosModel> produtos = null;
             try {
 
-                JBDCEntradadeProdutos cadastroProdutosDao = new JBDCEntradadeProdutos();
+                JBDCEntradadeProdutos cadastroProdutosDao = new JBDCEntradadeProdutos(jbdcConnect.getConnection());
 
                 produtos = cadastroProdutosDao.getNomesDosProdutos();
             } catch (Exception e) {

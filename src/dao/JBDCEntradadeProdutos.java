@@ -22,43 +22,43 @@ import java.util.List;
  */
 public class JBDCEntradadeProdutos {
 
-    private JBDCConnect conexao;
+    private Connection conexao;
 
-    public JBDCEntradadeProdutos() {
-        this.conexao = new JBDCConnect();
+    public JBDCEntradadeProdutos(Connection conexao) {
+        this.conexao = conexao;
     }
 
     public void inserirProduto(EntradaProdutosModel adcProduto) {
-        String sql = "INSERT INTO entrada_de_produtos (idproduto_entrada, quantidadeProduto, idfornecedor_entrada, idoperador, idCategoria)"
-                + "   VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO entrada_de_produtos (idproduto_entrada, quantidadeProduto, idfornecedor_entrada, idoperador, idCategoria) VALUES (?, ?, ?, ?, ?)";
 
-        try {
-            if (this.conexao.conectar()) {
-                Connection conn = this.conexao.getConnection();
-                try (PreparedStatement statement = conn.prepareStatement(sql)) {
-                    statement.setString(1, adcProduto.getIdprodutos_entrada());
-                    statement.setInt(2, adcProduto.getQuantidadeProduto());
-                    statement.setString(3, adcProduto.getIdfornecedor_entrada());
-                    statement.setString(4, adcProduto.getIdoperador());
-                    statement.setString(5, adcProduto.getIdCategoria());
+        JBDCConnect jbdcConnect = new JBDCConnect();
 
-                    // Executa a inserção
-                    statement.executeUpdate();
-                }
-            } else {
-                System.out.println("Erro ao conectar ao banco de dados."); // Log se a conexão falhar
+        if (jbdcConnect.conectar()) {
+            try (Connection conn = jbdcConnect.getConnection(); PreparedStatement statement = conn.prepareStatement(sql)) {
+
+                statement.setString(1, adcProduto.getIdprodutos_entrada());
+                statement.setInt(2, adcProduto.getQuantidadeProduto());
+                statement.setString(3, adcProduto.getIdfornecedor_entrada());
+                statement.setString(4, adcProduto.getIdoperador());
+                statement.setString(5, adcProduto.getIdCategoria());
+
+                statement.executeUpdate();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } finally {
+                jbdcConnect.desconectar();
             }
-        } catch (SQLException e) {
-            e.printStackTrace(); // Exibe o erro no console para depuração
+        } else {
+            System.out.println("Erro ao conectar ao banco de dados.");
         }
     }
-    
+
     //Método para buscar os nomes dos Produtos
     public List<NomeIDProdutosModel> getNomesDosProdutos() {
         List<NomeIDProdutosModel> produtos = new ArrayList<>();
         String sql = "SELECT idProduto, nomeProduto FROM produtos";
 
-        try (Connection conn = this.conexao.getConnection(); Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(sql)) {
+        try (Connection conn = this.conexao; Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(sql)) {
 
             while (rs.next()) {
                 int id = rs.getInt("idProduto");
@@ -71,5 +71,5 @@ public class JBDCEntradadeProdutos {
 
         return produtos;
     }
-    
+
 }
