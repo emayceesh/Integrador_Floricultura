@@ -5,6 +5,7 @@
 package dao;
 
 
+import Model.NomeIDCategoriaModel;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.DriverManager;

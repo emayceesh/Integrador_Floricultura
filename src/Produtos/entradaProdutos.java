@@ -9,6 +9,7 @@ import TelaInicial.TelaBoasVindas;
 import dao.JBDCEntradadeProdutos;
 import Model.NomeIDProdutosModel;
 import Model.EntradaProdutosModel;
+import Model.NomeIDCategoriaModel;
 import javax.swing.JOptionPane;
 import java.util.List;
 
@@ -24,6 +25,7 @@ public class entradaProdutos extends javax.swing.JPanel {
     public entradaProdutos() {
         initComponents();
         carregarProdutosNaCB();
+        carregarCategoriasNaCB();
     }
 
     private void carregarProdutosNaCB() {
@@ -54,6 +56,35 @@ public class entradaProdutos extends javax.swing.JPanel {
         }
 
     }
+    
+    private void carregarCategoriasNaCB() {
+    JBDCConnect jbdcConnect = new JBDCConnect(); // Supondo que você tenha um construtor padrão
+
+    if (jbdcConnect.conectar()) {
+        List<NomeIDCategoriaModel> categorias = null;
+        try {
+            // Passar a conexão para o construtor
+            JBDCEntradadeProdutos cadastroCategoriasDao = new JBDCEntradadeProdutos(jbdcConnect.getConnection());
+
+            // Obter as categorias
+            categorias = cadastroCategoriasDao.getCategorias();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            // Sempre desconecte após terminar
+            jbdcConnect.desconectar();
+        }
+
+        // Adicione as categorias ao JComboBox
+        if (categorias != null) {
+            for (NomeIDCategoriaModel categoria : categorias) {
+                categoriaProdutoCB.addItem(categoria);
+            }
+        }
+    } else {
+        System.out.println("Falha ao conectar ao banco de dados.");
+    }
+}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -158,7 +189,6 @@ public class entradaProdutos extends javax.swing.JPanel {
             }
         });
 
-        categoriaProdutoCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Plantas", "Cactos", "Arbustos" }));
         categoriaProdutoCB.setSelectedIndex(-1);
         categoriaProdutoCB.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -388,7 +418,7 @@ public class entradaProdutos extends javax.swing.JPanel {
     private javax.swing.JLabel TituloLabel2;
     private javax.swing.JLabel TituloLabel3;
     private javax.swing.JButton cadastrar_button;
-    private javax.swing.JComboBox<String> categoriaProdutoCB;
+    private javax.swing.JComboBox<NomeIDCategoriaModel> categoriaProdutoCB;
     private javax.swing.JTextField fornecedorProduto;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;

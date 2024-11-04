@@ -6,15 +6,13 @@ package Model;
 
 /**
  *
- * @author Patryk
+ * @author Matheus
  */
-
-//Guarda po ID e o NOME dos produtos
-public class NomeIDProdutosModel {
+public class NomeIDCategoriaModel {
     private int id;
     private String nome;
 
-    public NomeIDProdutosModel(int id, String nome) {
+    public NomeIDCategoriaModel(int id, String nome) {
         this.id = id;
         this.nome = nome;
     }
@@ -30,7 +28,6 @@ public class NomeIDProdutosModel {
     @Override
     public String toString() {
         String IDNome = id + " " + nome;
-        return IDNome; // Isso garante que o nome do produto seja exibido na JComboBox
+        return IDNome; // Isso garante que o JComboBox mostre o nome
     }
 }
-

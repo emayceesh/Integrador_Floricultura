@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import Produtos.entradaProdutos;
 import Model.EntradaProdutosModel;
+import Model.NomeIDCategoriaModel;
 import Model.NomeIDProdutosModel;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -70,6 +71,23 @@ public class JBDCEntradadeProdutos {
         }
 
         return produtos;
+    }
+    
+    public List<NomeIDCategoriaModel> getCategorias() {
+        List<NomeIDCategoriaModel> categorias = new ArrayList<>();
+        String sql = "SELECT IdCategoria, NomeCategoria FROM categoria";
+
+        try (Connection conn = this.conexao; Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(sql)) {
+            while (rs.next()) {
+                int id = rs.getInt("IdCategoria");
+                String nome = rs.getString("NomeCategoria");
+                categorias.add(new NomeIDCategoriaModel(id, nome));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return categorias;
     }
 
 }
