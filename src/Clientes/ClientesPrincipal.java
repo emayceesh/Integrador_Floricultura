@@ -9,12 +9,17 @@ import javax.swing.JPanel;
 
 import Clientes.CadastrodeClientes;
 import TelaInicial.TelaBoasVindas;
+import dao.JBDCClientes;
 import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.plaf.basic.BasicButtonUI;
-
+import javax.swing.table.DefaultTableModel;
+import Model.ClientesModel;
+import javax.swing.JOptionPane;
+import Clientes.EditarClientes;
 /**
  *
  * @author pedro
@@ -26,7 +31,8 @@ public class ClientesPrincipal extends javax.swing.JPanel {
      */
     public ClientesPrincipal() {
         initComponents();
-        JButton [] btns = {CdClientesBtn,PesquisarBtn,Retornar};
+        MostrarClientesTabela();
+        JButton [] btns = {CdClientesBtn,PesquisarBtn,Retornar,RecarregarTabela,ExcluirClientesBtn};
        for(JButton btn : btns){
            btn.setBackground(new Color(186,47,57));
            btn.setUI(new BasicButtonUI());
@@ -54,6 +60,8 @@ public class ClientesPrincipal extends javax.swing.JPanel {
            
            });
            }
+       
+       
     }
 
     /**
@@ -70,13 +78,16 @@ public class ClientesPrincipal extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        TabelaClientes = new javax.swing.JTable();
         CdClientesBtn = new javax.swing.JButton();
         PesquisaLabel = new javax.swing.JLabel();
-        Pesquisa = new javax.swing.JTextField();
+        PesquisaText = new javax.swing.JTextField();
         FiltroLabel = new javax.swing.JLabel();
         FiltroCombo = new javax.swing.JComboBox<>();
         PesquisarBtn = new javax.swing.JButton();
+        RecarregarTabela = new javax.swing.JButton();
+        ExcluirClientesBtn = new javax.swing.JButton();
+        EditarClientes = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         TituloLabel2 = new javax.swing.JLabel();
         TituloLabel3 = new javax.swing.JLabel();
@@ -90,32 +101,40 @@ public class ClientesPrincipal extends javax.swing.JPanel {
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel4.setText("Aqui é possível consultar os clientes da floricultura com suas respectivas informações.");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        TabelaClientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "IdCliente", "Nome do Cliente", "Telefone", "Email", "Documento", "Tipo do Documento"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(TabelaClientes);
+        if (TabelaClientes.getColumnModel().getColumnCount() > 0) {
+            TabelaClientes.getColumnModel().getColumn(0).setResizable(false);
+            TabelaClientes.getColumnModel().getColumn(1).setResizable(false);
+            TabelaClientes.getColumnModel().getColumn(2).setResizable(false);
+            TabelaClientes.getColumnModel().getColumn(3).setResizable(false);
+            TabelaClientes.getColumnModel().getColumn(4).setResizable(false);
+            TabelaClientes.getColumnModel().getColumn(5).setResizable(false);
+        }
 
         CdClientesBtn.setBackground(new java.awt.Color(239, 86, 96));
         CdClientesBtn.setForeground(new java.awt.Color(255, 255, 255));
@@ -133,7 +152,7 @@ public class ClientesPrincipal extends javax.swing.JPanel {
 
         FiltroLabel.setText("Filtro:");
 
-        FiltroCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        FiltroCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Id do Cliente", "Nome do Cliente", "Telefone", "Email", "Documento", "Tipo do Documento" }));
 
         PesquisarBtn.setBackground(new java.awt.Color(239, 86, 96));
         PesquisarBtn.setForeground(new java.awt.Color(255, 255, 255));
@@ -144,6 +163,41 @@ public class ClientesPrincipal extends javax.swing.JPanel {
         PesquisarBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 PesquisarBtnActionPerformed(evt);
+            }
+        });
+
+        RecarregarTabela.setBackground(new java.awt.Color(239, 86, 96));
+        RecarregarTabela.setForeground(new java.awt.Color(255, 255, 255));
+        RecarregarTabela.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Available Updates_1.png"))); // NOI18N
+        RecarregarTabela.setBorderPainted(false);
+        RecarregarTabela.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        RecarregarTabela.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RecarregarTabelaActionPerformed(evt);
+            }
+        });
+
+        ExcluirClientesBtn.setBackground(new java.awt.Color(239, 86, 96));
+        ExcluirClientesBtn.setForeground(new java.awt.Color(255, 255, 255));
+        ExcluirClientesBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Close.png"))); // NOI18N
+        ExcluirClientesBtn.setText("Excluir Cliente");
+        ExcluirClientesBtn.setBorderPainted(false);
+        ExcluirClientesBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        ExcluirClientesBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ExcluirClientesBtnActionPerformed(evt);
+            }
+        });
+
+        EditarClientes.setBackground(new java.awt.Color(239, 86, 96));
+        EditarClientes.setForeground(new java.awt.Color(255, 255, 255));
+        EditarClientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Box_1.png"))); // NOI18N
+        EditarClientes.setText("Editar Clientes");
+        EditarClientes.setBorderPainted(false);
+        EditarClientes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        EditarClientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EditarClientesActionPerformed(evt);
             }
         });
 
@@ -159,19 +213,30 @@ public class ClientesPrincipal extends javax.swing.JPanel {
                             .addComponent(jLabel4)
                             .addComponent(jLabel3))
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(CdClientesBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Pesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(PesquisaLabel))
-                        .addGap(34, 34, 34)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(FiltroLabel)
-                            .addComponent(FiltroCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
-                        .addComponent(PesquisarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(PesquisaText, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(PesquisaLabel)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(CdClientesBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(EditarClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel3Layout.createSequentialGroup()
+                                        .addComponent(FiltroLabel)
+                                        .addGap(0, 0, Short.MAX_VALUE))
+                                    .addGroup(jPanel3Layout.createSequentialGroup()
+                                        .addComponent(FiltroCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                                        .addComponent(PesquisarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(ExcluirClientesBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(RecarregarTabela, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(26, 26, 26))))
             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
         );
@@ -183,18 +248,23 @@ public class ClientesPrincipal extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(CdClientesBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(CdClientesBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(RecarregarTabela, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ExcluirClientesBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(EditarClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(12, 12, 12)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(PesquisaLabel)
                     .addComponent(FiltroLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Pesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(FiltroCombo)
-                    .addComponent(PesquisarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(PesquisaText, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(PesquisarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(FiltroCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel2.setBackground(new java.awt.Color(185, 35, 44));
@@ -275,7 +345,7 @@ public class ClientesPrincipal extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 737, Short.MAX_VALUE)
+            .addGap(0, 725, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(PainelCentral, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -295,10 +365,80 @@ public class ClientesPrincipal extends javax.swing.JPanel {
 
     private void PesquisarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PesquisarBtnActionPerformed
         // TODO add your handling code here:
+        
+        RecarregarClientesTabela();
+        JBDCClientes ListadeCliente = new JBDCClientes();
+        ClientesModel ListadoModel = new ClientesModel();
+        ListadoModel.setValorConsulta(FiltroCombo.getSelectedIndex());
+        ListadoModel.setItemPesquisar(PesquisaText.getText());
+         ArrayList<ClientesModel> ListaImoveis = ListadeCliente.FiltrarClientes(ListadoModel);
+         
+        DefaultTableModel modelo = (DefaultTableModel) TabelaClientes.getModel();
+        modelo.setRowCount(0);
+
+    for (ClientesModel ClientesModel : ListaImoveis) {
+        modelo.addRow(new Object[] {
+            ClientesModel.getIdcliente(),
+            ClientesModel.getNomecliente(),
+            ClientesModel.getTelefonecliente(),
+            ClientesModel.getEmail(),
+            ClientesModel.getDocumento(),
+            ClientesModel.getTipoDocumento(),
+        });
+    }
     }//GEN-LAST:event_PesquisarBtnActionPerformed
 
+    private void RecarregarTabelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RecarregarTabelaActionPerformed
+        // TODO add your handling code here:
+        RecarregarClientesTabela();
+    }//GEN-LAST:event_RecarregarTabelaActionPerformed
+
+    private void ExcluirClientesBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExcluirClientesBtnActionPerformed
+        // TODO add your handling code here:
+        ClientesModel ListaCliente = new ClientesModel();
+        JBDCClientes ClientesJBDC = new JBDCClientes();
+        int LinhaSelecionada = TabelaClientes.getSelectedRow();
+        DefaultTableModel ModeloTabela = (DefaultTableModel) TabelaClientes.getModel();
+        int ClienteId = ClientesJBDC.MostrarListaclientes().get(LinhaSelecionada).getIdcliente();
+        String ClienteNome = ClientesJBDC.MostrarListaclientes().get(LinhaSelecionada).getNomecliente();
+        String ClienteDocumento = ClientesJBDC.MostrarListaclientes().get(LinhaSelecionada).getDocumento();
+        
+         String[] options = {"Sim", "Cancelar"};
+         int resposta = JOptionPane.showOptionDialog(
+            this,
+            "Deseja excluir mesmo este imóvel?" + "\n\n"+
+            "Id do Cliente: " + ClienteId + "\n" +
+            "Nome do Cliente: " + ClienteNome+ "\n" +
+            "Documento Cliente: " + ClienteDocumento + "\n\n",
+            "Confirmação",
+            JOptionPane.DEFAULT_OPTION,
+            JOptionPane.WARNING_MESSAGE,
+            null,
+            options,
+            options[0]);
+        if (resposta == 0) {
+            ListaCliente.setIdcliente(ClienteId);
+            ClientesJBDC.ExcluirCliente(ListaCliente);
+        } else {
+            JOptionPane.showMessageDialog(null, "Operação Cancelada!");
+        }
+    }//GEN-LAST:event_ExcluirClientesBtnActionPerformed
+
+    private void EditarClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditarClientesActionPerformed
+        // TODO add your handling code here:
+        ClientesModel ModelClientes = new ClientesModel();
+        JBDCClientes ClientesJBDC = new JBDCClientes();
+        int LinhaSelecionada = TabelaClientes.getSelectedRow();
+        DefaultTableModel ModeloTabela = (DefaultTableModel) TabelaClientes.getModel();
+        int ClienteSelecionado = ClientesJBDC.MostrarListaclientes().get(LinhaSelecionada).getIdcliente();
+        ClientesJBDC.ConsultaCliente(ClienteSelecionado);
+        
+        EditarClientes EditarImovel = new EditarClientes();
+        ShowPanel(EditarImovel); 
+    }//GEN-LAST:event_EditarClientesActionPerformed
+
     private void ShowPanel(JPanel p){
-    p.setSize(800,700);
+    p.setSize(800,725);
     p.setLocation(0,0);
     
     PainelCentral.removeAll();
@@ -306,16 +446,50 @@ public class ClientesPrincipal extends javax.swing.JPanel {
     PainelCentral.revalidate();
     PainelCentral.repaint();    
      }
+    
+    public void MostrarClientesTabela(){
+        JBDCClientes ListaClietesJBDC = new JBDCClientes();
+        ArrayList<ClientesModel> listaClientes =  ListaClietesJBDC.MostrarListaclientes();
+        
+        
+        DefaultTableModel model = (DefaultTableModel)TabelaClientes.getModel();
+         model.setRowCount(0);
+         model.setColumnCount(6);
+        
+        Object[] row = new Object[6];
+        for(int i = 0;i < listaClientes.size();i++){
+            row[0] = listaClientes.get(i).getIdcliente();
+            row[1] = listaClientes.get(i).getNomecliente();
+            row[2] = listaClientes.get(i).getTelefonecliente();
+            row[3] = listaClientes.get(i).getEmail();
+            row[4] = listaClientes.get(i).getDocumento();
+            row[5] = listaClientes.get(i).getTipoDocumento(); 
+            model.addRow(row.clone());
+
+        }
+       
+    }
+    
+     public void RecarregarClientesTabela() {
+    DefaultTableModel model = (DefaultTableModel) TabelaClientes.getModel();
+    model.setRowCount(0);
+    model.setColumnCount(6);
+    MostrarClientesTabela();
+}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton CdClientesBtn;
+    private javax.swing.JButton EditarClientes;
+    private javax.swing.JButton ExcluirClientesBtn;
     private javax.swing.JComboBox<String> FiltroCombo;
     private javax.swing.JLabel FiltroLabel;
     private javax.swing.JPanel PainelCentral;
-    private javax.swing.JTextField Pesquisa;
     private javax.swing.JLabel PesquisaLabel;
+    private javax.swing.JTextField PesquisaText;
     private javax.swing.JButton PesquisarBtn;
+    private javax.swing.JButton RecarregarTabela;
     private javax.swing.JButton Retornar;
+    private javax.swing.JTable TabelaClientes;
     private javax.swing.JLabel TituloLabel2;
     private javax.swing.JLabel TituloLabel3;
     private javax.swing.JLabel jLabel3;
@@ -323,6 +497,5 @@ public class ClientesPrincipal extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }

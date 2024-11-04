@@ -319,7 +319,7 @@ public class CategoriaPrincipal extends javax.swing.JPanel {
     private void CdCatBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CdCatBtnActionPerformed
         // TODO add your handling code here:
         if(NomeCategoria.getText().isEmpty()){
-            JOptionPane.showMessageDialog(null, "Os Campos do Cliente devem estar preenchidos!");
+            JOptionPane.showMessageDialog(null, "Os Campos da Categoria devem estar preenchidos!");
         }else{
             String[] options = {"Sim", "Não"};
             int resposta = JOptionPane.showOptionDialog(
