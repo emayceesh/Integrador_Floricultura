@@ -9,12 +9,12 @@ package Model;
  * @author Patryk
  */
 
-//Guarda po ID e o NOME dos produtos
-public class NomeIDProdutosModel {
+//Guarda po ID e o NOME dos operadores
+public class NomeIDOperadorModel {
     private int id;
     private String nome;
 
-    public NomeIDProdutosModel(int id, String nome) {
+    public NomeIDOperadorModel(int id, String nome) {
         this.id = id;
         this.nome = nome;
     }

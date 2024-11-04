@@ -11,10 +11,11 @@ package Model;
 public class EntradaProdutosModel {
 
     private String idprodutos_entrada;
-    private String idCategoria;
-    private String idfornecedor_entrada;
-    private String idoperador;
     private int quantidadeProduto;
+    private String idCategoria_entrada;
+    private String idfornecedor_entrada;
+    private String idoperador_entrada;
+    
 
     public String getIdprodutos_entrada() {
         return idprodutos_entrada;
@@ -24,12 +25,12 @@ public class EntradaProdutosModel {
         this.idprodutos_entrada = idprodutos_entrada;
     }
 
-    public String getIdCategoria() {
-        return idCategoria;
+    public String getIdCategoria_entrada() {
+        return idCategoria_entrada;
     }
 
-    public void setIdCategoria(String idCategoria) {
-        this.idCategoria = idCategoria;
+    public void setIdCategoria_entrada(String idCategoria) {
+        this.idCategoria_entrada = idCategoria;
     }
 
     public String getIdfornecedor_entrada() {
@@ -40,12 +41,12 @@ public class EntradaProdutosModel {
         this.idfornecedor_entrada = idfornecedor_entrada;
     }
 
-    public String getIdoperador() {
-        return idoperador;
+    public String getIdoperador_entrada() {
+        return idoperador_entrada;
     }
 
-    public void setIdoperador(String idoperador) {
-        this.idoperador = idoperador;
+    public void setIdoperador_entrada(String idoperador) {
+        this.idoperador_entrada = idoperador;
     }
 
     public int getQuantidadeProduto() {
@@ -58,9 +59,9 @@ public class EntradaProdutosModel {
 
     public EntradaProdutosModel(String idprodutos_entrada, String idCategoria, String idfornecedor_entrada, String idoperador, int quantidadeProduto) {
         this.idprodutos_entrada = idprodutos_entrada;
-        this.idCategoria = idCategoria;
+        this.idCategoria_entrada = idCategoria;
         this.idfornecedor_entrada = idfornecedor_entrada;
-        this.idoperador = idoperador;
+        this.idoperador_entrada = idoperador;
         this.quantidadeProduto = quantidadeProduto;
     }
 }

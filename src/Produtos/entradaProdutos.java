@@ -9,7 +9,9 @@ import TelaInicial.TelaBoasVindas;
 import dao.JBDCEntradadeProdutos;
 import Model.NomeIDProdutosModel;
 import Model.EntradaProdutosModel;
+import Model.NomeFornecedorModel;
 import Model.NomeIDCategoriaModel;
+import Model.NomeIDOperadorModel;
 import javax.swing.JOptionPane;
 import java.util.List;
 
@@ -26,6 +28,8 @@ public class entradaProdutos extends javax.swing.JPanel {
         initComponents();
         carregarProdutosNaCB();
         carregarCategoriasNaCB();
+        carregarOperadoresNaCB();
+        carregarFornecedoresNaCB();
     }
 
     private void carregarProdutosNaCB() {
@@ -56,35 +60,88 @@ public class entradaProdutos extends javax.swing.JPanel {
         }
 
     }
-    
+
     private void carregarCategoriasNaCB() {
-    JBDCConnect jbdcConnect = new JBDCConnect(); // Supondo que você tenha um construtor padrão
+        JBDCConnect jbdcConnect = new JBDCConnect(); // Supondo que você tenha um construtor padrão
 
-    if (jbdcConnect.conectar()) {
-        List<NomeIDCategoriaModel> categorias = null;
-        try {
-            // Passar a conexão para o construtor
-            JBDCEntradadeProdutos cadastroCategoriasDao = new JBDCEntradadeProdutos(jbdcConnect.getConnection());
+        if (jbdcConnect.conectar()) {
+            List<NomeIDCategoriaModel> categorias = null;
+            try {
 
-            // Obter as categorias
-            categorias = cadastroCategoriasDao.getCategorias();
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            // Sempre desconecte após terminar
-            jbdcConnect.desconectar();
-        }
+                JBDCEntradadeProdutos cadastroCategoriasDao = new JBDCEntradadeProdutos(jbdcConnect.getConnection());
 
-        // Adicione as categorias ao JComboBox
-        if (categorias != null) {
-            for (NomeIDCategoriaModel categoria : categorias) {
-                categoriaProdutoCB.addItem(categoria);
+                categorias = cadastroCategoriasDao.getCategorias();
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+
+                jbdcConnect.desconectar();
             }
+
+            if (categorias != null) {
+                for (NomeIDCategoriaModel categoria : categorias) {
+                    categoriaProdutoCB.addItem(categoria);
+                }
+            }
+        } else {
+            System.out.println("Falha ao conectar ao banco de dados.");
         }
-    } else {
-        System.out.println("Falha ao conectar ao banco de dados.");
     }
-}
+
+    private void carregarOperadoresNaCB() {
+        JBDCConnect jbdcConnect = new JBDCConnect();
+
+        if (jbdcConnect.conectar()) {
+            List<NomeIDOperadorModel> operadores = null;
+            try {
+
+                JBDCEntradadeProdutos cadastroOperadoresDao = new JBDCEntradadeProdutos(jbdcConnect.getConnection());
+
+                operadores = cadastroOperadoresDao.getIDNomeOperador();
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+
+                jbdcConnect.desconectar();
+            }
+
+            if (operadores != null) {
+                for (NomeIDOperadorModel operador : operadores) {
+                    operadorEntradanaCB.addItem(operador);
+                }
+            }
+        } else {
+            System.out.println("Falha ao conectar ao banco de dados.");
+        }
+
+    }
+
+    private void carregarFornecedoresNaCB() {
+        JBDCConnect jbdcConnect = new JBDCConnect();
+
+        if (jbdcConnect.conectar()) {
+            List<NomeFornecedorModel> fornecedores = null;
+            try {
+
+                JBDCEntradadeProdutos cadastroFornecedoresDao = new JBDCEntradadeProdutos(jbdcConnect.getConnection());
+
+                fornecedores = cadastroFornecedoresDao.getFornecedorIDNome();
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+
+                jbdcConnect.desconectar();
+            }
+            if (fornecedores != null) {
+                for (NomeFornecedorModel fornecedor : fornecedores) {
+                    fornecedorProduto.addItem(fornecedor);
+                }
+            }
+        } else {
+            System.out.println("Falha ao conectar ao banco de dados.");
+        }
+
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -100,19 +157,19 @@ public class entradaProdutos extends javax.swing.JPanel {
         TituloLabel3 = new javax.swing.JLabel();
         Retornar = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
-        cadastrar_button = new javax.swing.JButton();
+        adicionarProduto = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        fornecedorProduto = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        operadorEntradaProduto = new javax.swing.JTextField();
         categoriaProdutoCB = new javax.swing.JComboBox<>();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         qtdProduto = new javax.swing.JTextField();
         produtosExistentesCB = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
+        operadorEntradanaCB = new javax.swing.JComboBox<>();
+        fornecedorProduto = new javax.swing.JComboBox<>();
 
         setPreferredSize(new java.awt.Dimension(815, 589));
 
@@ -140,54 +197,32 @@ public class entradaProdutos extends javax.swing.JPanel {
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
-        cadastrar_button.setBackground(new java.awt.Color(239, 86, 96));
-        cadastrar_button.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
-        cadastrar_button.setForeground(new java.awt.Color(255, 255, 255));
-        cadastrar_button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Edit_1.png"))); // NOI18N
-        cadastrar_button.setText("Adicionar Produto");
-        cadastrar_button.setBorderPainted(false);
-        cadastrar_button.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        cadastrar_button.addActionListener(new java.awt.event.ActionListener() {
+        adicionarProduto.setBackground(new java.awt.Color(239, 86, 96));
+        adicionarProduto.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
+        adicionarProduto.setForeground(new java.awt.Color(255, 255, 255));
+        adicionarProduto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Edit_1.png"))); // NOI18N
+        adicionarProduto.setText("Adicionar Produto");
+        adicionarProduto.setBorderPainted(false);
+        adicionarProduto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        adicionarProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cadastrar_buttonActionPerformed(evt);
+                adicionarProdutoActionPerformed(evt);
             }
         });
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel3.setForeground(new java.awt.Color(153, 153, 153));
         jLabel3.setText("Adicionar Produtos");
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel4.setForeground(new java.awt.Color(153, 153, 153));
         jLabel4.setText("Aqui é possível dar entrada em novos produtos.");
 
-        fornecedorProduto.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                fornecedorProdutoActionPerformed(evt);
-            }
-        });
-        fornecedorProduto.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                fornecedorProdutoKeyTyped(evt);
-            }
-        });
-
-        jLabel6.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel6.setForeground(new java.awt.Color(153, 153, 153));
         jLabel6.setText("Fornecedor");
 
-        jLabel7.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel7.setForeground(new java.awt.Color(153, 153, 153));
         jLabel7.setText("Operador");
-
-        operadorEntradaProduto.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                operadorEntradaProdutoActionPerformed(evt);
-            }
-        });
-        operadorEntradaProduto.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                operadorEntradaProdutoKeyTyped(evt);
-            }
-        });
 
         categoriaProdutoCB.setSelectedIndex(-1);
         categoriaProdutoCB.addActionListener(new java.awt.event.ActionListener() {
@@ -196,10 +231,10 @@ public class entradaProdutos extends javax.swing.JPanel {
             }
         });
 
-        jLabel8.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel8.setText("Categoria");
+        jLabel8.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel8.setText("ID - Categoria");
 
-        jLabel9.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel9.setForeground(new java.awt.Color(153, 153, 153));
         jLabel9.setText("Quantidade");
 
         qtdProduto.addActionListener(new java.awt.event.ActionListener() {
@@ -219,8 +254,20 @@ public class entradaProdutos extends javax.swing.JPanel {
             }
         });
 
-        jLabel1.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel1.setText("Produtos Existentes");
+        jLabel1.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel1.setText("ID - Produtos Existentes");
+
+        operadorEntradanaCB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                operadorEntradanaCBActionPerformed(evt);
+            }
+        });
+
+        fornecedorProduto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fornecedorProdutoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -230,32 +277,31 @@ public class entradaProdutos extends javax.swing.JPanel {
                 .addGap(36, 36, 36)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(cadastrar_button, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(adicionarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel6)
-                                    .addComponent(fornecedorProduto, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
                                     .addComponent(jLabel1)
-                                    .addComponent(produtosExistentesCB, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(produtosExistentesCB, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(fornecedorProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(12, 12, 12)
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel7)
                                     .addGroup(jPanel3Layout.createSequentialGroup()
-                                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                                .addComponent(categoriaProdutoCB, 0, 140, Short.MAX_VALUE)
-                                                .addComponent(operadorEntradaProduto))
-                                            .addComponent(jLabel8))
+                                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addComponent(operadorEntradanaCB, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(categoriaProdutoCB, javax.swing.GroupLayout.Alignment.LEADING, 0, 140, Short.MAX_VALUE)
+                                            .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.LEADING))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel9)
                                             .addComponent(qtdProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                             .addComponent(jLabel3)
                             .addComponent(jLabel4))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addContainerGap(389, Short.MAX_VALUE))))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -280,10 +326,10 @@ public class entradaProdutos extends javax.swing.JPanel {
                     .addComponent(jLabel7))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(fornecedorProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(operadorEntradaProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(operadorEntradanaCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(fornecedorProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
-                .addComponent(cadastrar_button, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(adicionarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(32, 32, 32))
         );
 
@@ -303,7 +349,7 @@ public class entradaProdutos extends javax.swing.JPanel {
                                 .addComponent(Retornar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(TituloLabel2)))
-                        .addGap(0, 467, Short.MAX_VALUE))
+                        .addGap(0, 364, Short.MAX_VALUE))
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -340,58 +386,63 @@ public class entradaProdutos extends javax.swing.JPanel {
         ShowPanel(TelaInicial);        // TODO add your handling code here:
     }//GEN-LAST:event_RetornarActionPerformed
 
-    private void cadastrar_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrar_buttonActionPerformed
-        String[] options = {"Sim", "Não"};
-        int resposta = JOptionPane.showOptionDialog(
-                this,
-                "Produto Adicionado!" + "\n"
-                + "Nome: " + produtosExistentesCB.getSelectedItem() + "\n"
-                + "Quantidade: " + qtdProduto.getText() + "\n"
-                + "Fornecedor: " + fornecedorProduto.getText() + "\n"
-                + "Operador: " + operadorEntradaProduto.getText() + "\n"
-                + "Categoria: " + categoriaProdutoCB.getSelectedItem() + "\n\n\n"
-                + "Cadastrar novo produto?" + "\n",
-                "Confirmação de Cadastro",
-                JOptionPane.DEFAULT_OPTION,
-                JOptionPane.WARNING_MESSAGE,
-                null,
-                options,
-                options[0]);
-        if (resposta == 1) {
-            TelaBoasVindas TelaInicial = new TelaBoasVindas();
-            ShowPanel(TelaInicial);
-        } else {
-            produtosExistentesCB.setSelectedItem(-1);
-            qtdProduto.setText("");
+    private void adicionarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adicionarProdutoActionPerformed
 
-            fornecedorProduto.setText("");
-            operadorEntradaProduto.setText("");
-            categoriaProdutoCB.setSelectedIndex(-1);
-            cadastrar_button.requestFocus();
+        try {
+            // Obtendo os valores dos campos
+            String idProdutoEntrada = produtosExistentesCB.getSelectedItem().toString();
+            int quantidade = Integer.parseInt(qtdProduto.getText());
+            String idFornecedorEntrada = fornecedorProduto.getSelectedItem().toString();
+            String idOperadorEntrada = operadorEntradanaCB.getSelectedItem().toString();
+            String idCategoriaEntrada = categoriaProdutoCB.getSelectedItem().toString();
+
+            EntradaProdutosModel produtoEntrada = new EntradaProdutosModel(idProdutoEntrada, idCategoriaEntrada, idFornecedorEntrada, idOperadorEntrada, quantidade);
+
+            JBDCConnect conexao = new JBDCConnect();
+            conexao.conectar();
+
+            JBDCEntradadeProdutos dao = new JBDCEntradadeProdutos(conexao.getConnection());
+            dao.inserirProduto(produtoEntrada);
+
+            JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso!");
+        } catch (Exception ex) {
+
+            JOptionPane.showMessageDialog(null, "Erro ao cadastrar: " + ex.getMessage());
         }
-    }//GEN-LAST:event_cadastrar_buttonActionPerformed
 
-    private void fornecedorProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fornecedorProdutoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_fornecedorProdutoActionPerformed
+        if (qtdProduto.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "A quantidade do produto não pode estar vazia!");
+        } else {
+            String[] options = {"Sim", "Não"};
+            int resposta = JOptionPane.showOptionDialog(
+                    this,
+                    "Cadastro Registrado!" + "\n"
+                    + "ID Produto: " + produtosExistentesCB.getSelectedItem() + "\n"
+                    + "ID Categoria: " + categoriaProdutoCB.getSelectedItem() + "\n"
+                    + "ID Fornecedor: " + fornecedorProduto.getSelectedItem() + "\n"
+                    + "ID Operador: " + operadorEntradanaCB.getSelectedItem() + "\n"
+                    + "Quantidade: " + qtdProduto.getText() + "\n\n\n"
+                    + "Cadastrar novo Produto?" + "\n",
+                    "Confirmação de Cadastro",
+                    JOptionPane.DEFAULT_OPTION,
+                    JOptionPane.WARNING_MESSAGE,
+                    null,
+                    options,
+                    options[0]);
 
-    private void fornecedorProdutoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_fornecedorProdutoKeyTyped
-        char keyPress = evt.getKeyChar();
-        if (!Character.isAlphabetic(keyPress) && keyPress != ' ') {
-            evt.consume();
-        }        // TODO add your handling code here:
-    }//GEN-LAST:event_fornecedorProdutoKeyTyped
+            if (resposta == 1) {
 
-    private void operadorEntradaProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_operadorEntradaProdutoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_operadorEntradaProdutoActionPerformed
+            } else {
 
-    private void operadorEntradaProdutoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_operadorEntradaProdutoKeyTyped
-        char keyPress = evt.getKeyChar();
-        if (!Character.isAlphabetic(keyPress) && keyPress != ' ') {
-            evt.consume();
-        }                // TODO add your handling code here:
-    }//GEN-LAST:event_operadorEntradaProdutoKeyTyped
+                produtosExistentesCB.setSelectedIndex(-1);
+                categoriaProdutoCB.setSelectedIndex(-1);
+                fornecedorProduto.setSelectedIndex(-1);
+                operadorEntradanaCB.setSelectedIndex(-1);
+                qtdProduto.setText("");
+            }
+        }
+
+    }//GEN-LAST:event_adicionarProdutoActionPerformed
 
     private void qtdProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_qtdProdutoActionPerformed
         // TODO add your handling code here:
@@ -405,6 +456,13 @@ public class entradaProdutos extends javax.swing.JPanel {
     }//GEN-LAST:event_qtdProdutoKeyTyped
 
     private void produtosExistentesCBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_produtosExistentesCBActionPerformed
+
+        NomeIDProdutosModel produtoSelecionado = (NomeIDProdutosModel) produtosExistentesCB.getSelectedItem();
+        if (produtosExistentesCB.getSelectedItem() == null) {
+
+            int idProdutoSelecionado = produtoSelecionado.getId();
+            System.out.println("ID do produto selecionado: " + idProdutoSelecionado);
+        }
         // TODO add your handling code here:
     }//GEN-LAST:event_produtosExistentesCBActionPerformed
 
@@ -412,14 +470,22 @@ public class entradaProdutos extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_categoriaProdutoCBActionPerformed
 
+    private void operadorEntradanaCBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_operadorEntradanaCBActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_operadorEntradanaCBActionPerformed
+
+    private void fornecedorProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fornecedorProdutoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_fornecedorProdutoActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Retornar;
     private javax.swing.JLabel TituloLabel2;
     private javax.swing.JLabel TituloLabel3;
-    private javax.swing.JButton cadastrar_button;
+    private javax.swing.JButton adicionarProduto;
     private javax.swing.JComboBox<NomeIDCategoriaModel> categoriaProdutoCB;
-    private javax.swing.JTextField fornecedorProduto;
+    private javax.swing.JComboBox<NomeFornecedorModel> fornecedorProduto;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -429,7 +495,7 @@ public class entradaProdutos extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JTextField operadorEntradaProduto;
+    private javax.swing.JComboBox<NomeIDOperadorModel> operadorEntradanaCB;
     private javax.swing.JComboBox<NomeIDProdutosModel> produtosExistentesCB;
     private javax.swing.JTextField qtdProduto;
     // End of variables declaration//GEN-END:variables

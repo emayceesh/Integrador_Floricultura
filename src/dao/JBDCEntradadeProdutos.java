@@ -10,7 +10,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import Produtos.entradaProdutos;
 import Model.EntradaProdutosModel;
+import Model.NomeFornecedorModel;
 import Model.NomeIDCategoriaModel;
+import Model.NomeIDOperadorModel;
 import Model.NomeIDProdutosModel;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -30,18 +32,18 @@ public class JBDCEntradadeProdutos {
     }
 
     public void inserirProduto(EntradaProdutosModel adcProduto) {
-        String sql = "INSERT INTO entrada_de_produtos (idproduto_entrada, quantidadeProduto, idfornecedor_entrada, idoperador, idCategoria) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO entrada_de_produtos (idproduto_entrada, quantidadeProduto, idfornecedor_entrada, idoperador_entrada, idCategoria_entrada) VALUES (?, ?, ?, ?, ?)";
 
         JBDCConnect jbdcConnect = new JBDCConnect();
 
         if (jbdcConnect.conectar()) {
             try (Connection conn = jbdcConnect.getConnection(); PreparedStatement statement = conn.prepareStatement(sql)) {
 
-                statement.setString(1, adcProduto.getIdprodutos_entrada());
+                statement.setInt(1, Integer.parseInt(adcProduto.getIdprodutos_entrada()));
                 statement.setInt(2, adcProduto.getQuantidadeProduto());
-                statement.setString(3, adcProduto.getIdfornecedor_entrada());
-                statement.setString(4, adcProduto.getIdoperador());
-                statement.setString(5, adcProduto.getIdCategoria());
+                statement.setInt(3, Integer.parseInt(adcProduto.getIdfornecedor_entrada()));
+                statement.setInt(4, Integer.parseInt(adcProduto.getIdoperador_entrada()));
+                statement.setInt(5, Integer.parseInt(adcProduto.getIdCategoria_entrada()));
 
                 statement.executeUpdate();
             } catch (SQLException e) {
@@ -72,7 +74,7 @@ public class JBDCEntradadeProdutos {
 
         return produtos;
     }
-    
+
     public List<NomeIDCategoriaModel> getCategorias() {
         List<NomeIDCategoriaModel> categorias = new ArrayList<>();
         String sql = "SELECT IdCategoria, NomeCategoria FROM categoria";
@@ -88,6 +90,40 @@ public class JBDCEntradadeProdutos {
         }
 
         return categorias;
+    }
+
+    public List<NomeIDOperadorModel> getIDNomeOperador() {
+        List<NomeIDOperadorModel> operadores = new ArrayList<>();
+        String sql = "SELECT idoperador, nomeoperador FROM usuario_sistema_floricultura";
+
+        try (Connection conn = this.conexao; Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(sql)) {
+            while (rs.next()) {
+                int id = rs.getInt("idoperador");
+                String nome = rs.getString("nomeoperador");
+                operadores.add(new NomeIDOperadorModel(id, nome));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return operadores;
+    }
+
+    public List<NomeFornecedorModel> getFornecedorIDNome() {
+        List<NomeFornecedorModel> fornecedores = new ArrayList<>();
+        String sql = "SELECT idfornecedor, nomefornecedor FROM fornecedor_floricultura";
+
+        try (Connection conn = this.conexao; Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(sql)) {
+            while (rs.next()) {
+                int id = rs.getInt("idfornecedor");
+                String nome = rs.getString("nomefornecedor");
+                fornecedores.add(new NomeFornecedorModel(id, nome));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return fornecedores;
     }
 
 }
