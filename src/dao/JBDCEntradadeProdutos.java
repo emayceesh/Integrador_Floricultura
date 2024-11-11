@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import java.sql.DriverManager;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import Produtos.entradaProdutos;
+import Model.EntradaIDProdutosConstModel;
 import Model.EntradaProdutosModel;
 import Model.NomeFornecedorModel;
 import Model.NomeIDCategoriaModel;
@@ -31,7 +31,7 @@ public class JBDCEntradadeProdutos {
         this.conexao = conexao;
     }
 
-    public void inserirProduto(EntradaProdutosModel adcProduto) {
+    public void inserirProduto(EntradaIDProdutosConstModel adcProduto) {
         String sql = "INSERT INTO entrada_de_produtos (idproduto_entrada, quantidadeProduto, idfornecedor_entrada, idoperador_entrada, idCategoria_entrada) VALUES (?, ?, ?, ?, ?)";
 
         JBDCConnect jbdcConnect = new JBDCConnect();
@@ -39,11 +39,11 @@ public class JBDCEntradadeProdutos {
         if (jbdcConnect.conectar()) {
             try (Connection conn = jbdcConnect.getConnection(); PreparedStatement statement = conn.prepareStatement(sql)) {
 
-                statement.setInt(1, Integer.parseInt(adcProduto.getIdprodutos_entrada()));
-                statement.setInt(2, adcProduto.getQuantidadeProduto());
-                statement.setInt(3, Integer.parseInt(adcProduto.getIdfornecedor_entrada()));
-                statement.setInt(4, Integer.parseInt(adcProduto.getIdoperador_entrada()));
-                statement.setInt(5, Integer.parseInt(adcProduto.getIdCategoria_entrada()));
+                statement.setInt(1, adcProduto.getProduto().getId()); 
+            statement.setInt(2, adcProduto.getQuantidadeProduto()); 
+            statement.setInt(3, adcProduto.getFornecedor().getId()); 
+            statement.setInt(4, adcProduto.getOperador().getId()); 
+            statement.setInt(5, adcProduto.getCategoria().getId());
 
                 statement.executeUpdate();
             } catch (SQLException e) {
