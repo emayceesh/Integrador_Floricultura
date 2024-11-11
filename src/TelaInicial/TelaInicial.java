@@ -43,44 +43,7 @@ public class TelaInicial extends javax.swing.JFrame {
      */
     public TelaInicial() {
         initComponents();
-<<<<<<< HEAD
-        JButton[] btns = {Principal, RealizarVendaRapida, CadastroRapido, ConsultaRapida, CadastroProdutosRapido, ConsultaProdutosRapido, ConsultarVendas};
-        for (JButton btn : btns) {
-            btn.setBackground(new Color(186, 47, 57));
-            btn.setUI(new BasicButtonUI());
-            btn.addMouseListener(new MouseListener() {
-                @Override
-                public void mouseClicked(MouseEvent e) {
 
-                }
-
-                @Override
-                public void mousePressed(MouseEvent e) {
-
-                }
-
-                @Override
-                public void mouseReleased(MouseEvent e) {
-
-                }
-
-                @Override
-                public void mouseEntered(MouseEvent e) {
-                    btn.setBackground(new Color(239, 86, 96));
-                }
-
-                @Override
-                public void mouseExited(MouseEvent e) {
-                    btn.setBackground(new Color(186, 47, 57));
-                }
-
-            });
-        }
-
-        TelaBoasVindas TelaPrincipal = new TelaBoasVindas();
-        ShowPanel(TelaPrincipal);
-
-=======
         JButton [] btns = {Principal,RealizarVendaRapida,CadastroRapido,ConsultaRapida,CadastroProdutosRapido,ConsultaProdutosRapido};
        for(JButton btn : btns){
            btn.setBackground(new Color(186,47,57));
@@ -113,8 +76,7 @@ public class TelaInicial extends javax.swing.JFrame {
        TelaBoasVindas TelaPrincipal = new TelaBoasVindas();
        ShowPanel(TelaPrincipal);
        
-       
->>>>>>> 5c3c365781de618d4dce7a528a9a0864982dcdec
+      
     }
 
     /**
@@ -300,7 +262,6 @@ public class TelaInicial extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-<<<<<<< HEAD
     private void CadastroProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CadastroProdutoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_CadastroProdutoActionPerformed
@@ -320,9 +281,7 @@ public class TelaInicial extends javax.swing.JFrame {
         ShowPanel(entradaDeProdutos);
     }//GEN-LAST:event_EntradaProdutosActionPerformed
 
-=======
-    
->>>>>>> 5c3c365781de618d4dce7a528a9a0864982dcdec
+
     private void RealizarVendaRapidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RealizarVendaRapidaActionPerformed
         // TODO add your handling code here:
         TelaVendasPrincipal Vendas = new TelaVendasPrincipal();
@@ -353,23 +312,12 @@ public class TelaInicial extends javax.swing.JFrame {
         ShowPanel(ClientesPrincipal);
     }//GEN-LAST:event_ConsultaRapidaActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-<<<<<<< HEAD
-    private void ShowPanel(JPanel p) {
-        p.setSize(800, 700);
-        p.setLocation(0, 0);
-
-=======
-    
-
     
     private void ShowPanel(JPanel p){
         p.setSize(800, 725);
         p.setLocation(0,0);
         
->>>>>>> 5c3c365781de618d4dce7a528a9a0864982dcdec
+
         Content.removeAll();
         Content.add(p, BorderLayout.CENTER);
         Content.revalidate();

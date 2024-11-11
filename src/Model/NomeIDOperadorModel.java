@@ -29,8 +29,7 @@ public class NomeIDOperadorModel {
 
     @Override
     public String toString() {
-        String IDNome = id + " " + nome;
-        return IDNome; 
+        return nome; 
     }
 }
 

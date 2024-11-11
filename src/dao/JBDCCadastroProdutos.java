@@ -14,7 +14,6 @@ import java.sql.Statement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
-import Model.NomeIDProdutosModel;
 
 /**
  *
@@ -41,24 +40,7 @@ public class JBDCCadastroProdutos {
     
     
     
-    //Método para buscar os nomes dos Produtos
-    public List<NomeIDProdutosModel> getNomesDosProdutos() {
-        List<NomeIDProdutosModel> produtos = new ArrayList<>();
-        String sql = "SELECT idProduto, nomeProduto FROM produtos";
-
-        try (Connection conn = this.conexao.getConnection(); Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(sql)) {
-
-            while (rs.next()) {
-                int id = rs.getInt("idProduto");
-                String nome = rs.getString("nomeProduto");
-                produtos.add(new NomeIDProdutosModel(id, nome));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        return produtos;
-    }
+    
 
 
 }

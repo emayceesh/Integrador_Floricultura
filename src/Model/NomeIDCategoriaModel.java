@@ -6,7 +6,7 @@ package Model;
 
 /**
  *
- * @author Matheus
+ * @author Patryk
  */
 public class NomeIDCategoriaModel {
     private int id;
@@ -27,7 +27,7 @@ public class NomeIDCategoriaModel {
 
     @Override
     public String toString() {
-        String IDNome = id + " " + nome;
-        return IDNome; // Isso garante que o JComboBox mostre o nome
+        
+        return nome; 
     }
 }
