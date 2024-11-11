@@ -4,60 +4,25 @@
  */
 package Clientes;
 
-import javax.swing.JOptionPane;
+import Model.ClientesModel;
+import ViaCEP.ViaCEP;
+import dao.JBDCClientes;
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.plaf.basic.BasicButtonUI;
-
-
-import Clientes.ClientesPrincipal;
-import ViaCEP.ViaCEP;
-import Model.ClientesModel;
-import dao.JBDCClientes;
 
 /**
  *
  * @author pedro
  */
-public class CadastrodeClientes extends javax.swing.JPanel {
+public class EditarClientes extends javax.swing.JPanel {
 
     /**
-     * Creates new form CadastrodeClientes
+     * Creates new form EditarClientes
      */
-    public CadastrodeClientes() {
+    public EditarClientes() {
         initComponents();
-        JButton [] btns = {BtnClientes,CancelarBtn,Retornar};
-       for(JButton btn : btns){
-           btn.setBackground(new Color(186,47,57));
-           btn.setUI(new BasicButtonUI());
-           btn.addMouseListener(new MouseListener(){
-               @Override
-               public void mouseClicked(MouseEvent e){
-                   
-               }
-               @Override
-               public void mousePressed(MouseEvent e){
-                   
-               }
-               @Override 
-                public void mouseReleased(MouseEvent e){
-                   
-               }
-               @Override
-               public void mouseEntered(MouseEvent e){
-                    btn.setBackground(new Color(239,86,96));
-               }
-               @Override
-               public void mouseExited(MouseEvent e){
-                   btn.setBackground(new Color(186,47,57));
-               }
-           
-           });
-           }
     }
 
     /**
@@ -101,6 +66,8 @@ public class CadastrodeClientes extends javax.swing.JPanel {
         CNPJCheckBox = new javax.swing.JCheckBox();
         EnderecoCliente1 = new javax.swing.JTextField();
         EnderecoClienteLabel1 = new javax.swing.JLabel();
+        IdImovel = new javax.swing.JTextField();
+        EnderecoClienteLabel2 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         TituloLabel2 = new javax.swing.JLabel();
         TituloLabel3 = new javax.swing.JLabel();
@@ -112,7 +79,7 @@ public class CadastrodeClientes extends javax.swing.JPanel {
         BtnClientes.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         BtnClientes.setForeground(new java.awt.Color(255, 255, 255));
         BtnClientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Edit_1.png"))); // NOI18N
-        BtnClientes.setText("Cadastrar Cliente");
+        BtnClientes.setText("Editar Cliente");
         BtnClientes.setBorderPainted(false);
         BtnClientes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         BtnClientes.addActionListener(new java.awt.event.ActionListener() {
@@ -122,10 +89,10 @@ public class CadastrodeClientes extends javax.swing.JPanel {
         });
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel3.setText("Cadastro Clientes");
+        jLabel3.setText("Editar Clientes");
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel4.setText("Aqui é possível cadastrar os clientes da floricultura com suas respectivas informações.");
+        jLabel4.setText("Aqui é possível editar os clientes da floricultura com suas respectivas informações.");
 
         CancelarBtn.setBackground(new java.awt.Color(239, 86, 96));
         CancelarBtn.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
@@ -353,6 +320,20 @@ public class CadastrodeClientes extends javax.swing.JPanel {
         EnderecoClienteLabel1.setForeground(new java.awt.Color(12, 12, 12));
         EnderecoClienteLabel1.setText("Email");
 
+        IdImovel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                IdImovelActionPerformed(evt);
+            }
+        });
+        IdImovel.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                IdImovelKeyPressed(evt);
+            }
+        });
+
+        EnderecoClienteLabel2.setForeground(new java.awt.Color(12, 12, 12));
+        EnderecoClienteLabel2.setText("ID Imóvel");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -394,7 +375,7 @@ public class CadastrodeClientes extends javax.swing.JPanel {
                                             .addGroup(jPanel3Layout.createSequentialGroup()
                                                 .addGap(203, 203, 203)
                                                 .addComponent(BairroClienteLabel)
-                                                .addGap(0, 0, Short.MAX_VALUE))
+                                                .addGap(0, 109, Short.MAX_VALUE))
                                             .addComponent(NomeCliente))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -424,6 +405,10 @@ public class CadastrodeClientes extends javax.swing.JPanel {
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(EnderecoClienteLabel1)
                             .addComponent(EnderecoCliente1, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(EnderecoClienteLabel2)
+                            .addComponent(IdImovel, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
         jPanel3Layout.setVerticalGroup(
@@ -432,71 +417,77 @@ public class CadastrodeClientes extends javax.swing.JPanel {
                 .addGap(24, 24, 24)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel4)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(NomeClienteLabel)
-                    .addComponent(TelefoneClienteLabel)
-                    .addComponent(TelefoneClienteLabel4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(CPFCheckBox)
-                        .addComponent(CNPJCheckBox))
-                    .addComponent(TelefoneCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(NomeCliente, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(NomeClienteLabel)
+                            .addComponent(TelefoneClienteLabel)
+                            .addComponent(TelefoneClienteLabel4))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(CPFCheckBox)
+                                .addComponent(CNPJCheckBox))
+                            .addComponent(TelefoneCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(NomeCliente, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGap(7, 7, 7)
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                                        .addComponent(BairroClienteLabel)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(BairroCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(jPanel3Layout.createSequentialGroup()
+                                        .addGap(7, 7, 7)
                                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                                                .addComponent(CEPClienteLabel)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                                                .addComponent(BairroClienteLabel)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(BairroCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
                                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                                .addComponent(UFCLienteLabel)
-                                                .addGap(1, 1, 1)))
-                                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                                .addComponent(UFCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(DocumentoCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addComponent(CEPCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                                                        .addComponent(CEPClienteLabel)
+                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                                                    .addGroup(jPanel3Layout.createSequentialGroup()
+                                                        .addComponent(UFCLienteLabel)
+                                                        .addGap(1, 1, 1)))
+                                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                                        .addComponent(UFCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(DocumentoCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                    .addComponent(CEPCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addGroup(jPanel3Layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(TelefoneClienteLabel1)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addGroup(jPanel3Layout.createSequentialGroup()
+                                            .addComponent(EnderecoClienteLabel)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(EnderecoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(jPanel3Layout.createSequentialGroup()
+                                            .addComponent(NumeroClienteLabel)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(NumeroCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                            .addComponent(CidadeClienteLabel)
+                                            .addComponent(TelefoneClienteLabel3))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                            .addComponent(CidadeCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(DocumentoCNPJ, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(TelefoneClienteLabel1)))
+                                .addComponent(TelefoneClienteLabel2)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(jPanel3Layout.createSequentialGroup()
-                                    .addComponent(EnderecoClienteLabel)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(EnderecoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(jPanel3Layout.createSequentialGroup()
-                                    .addComponent(NumeroClienteLabel)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(NumeroCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(CidadeClienteLabel)
-                                    .addComponent(TelefoneClienteLabel3))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(CidadeCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(DocumentoCNPJ, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addComponent(EnderecoClienteLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(EnderecoCliente1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(EnderecoClienteLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(TelefoneClienteLabel2)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(EnderecoClienteLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(EnderecoCliente1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(IdImovel, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(27, 27, 27)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BtnClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -509,7 +500,7 @@ public class CadastrodeClientes extends javax.swing.JPanel {
         TituloLabel2.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         TituloLabel2.setForeground(new java.awt.Color(255, 255, 255));
         TituloLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        TituloLabel2.setText("Clientes");
+        TituloLabel2.setText("Editar Clientes");
 
         TituloLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         TituloLabel3.setForeground(new java.awt.Color(255, 255, 255));
@@ -603,7 +594,7 @@ public class CadastrodeClientes extends javax.swing.JPanel {
                 "Telefone: " + TelefoneCliente.getText() + "\n" +
                 "Email: " + EnderecoCliente1.getText() + "\n" +
                 "CPF: " + DocumentoCPF.getText() + "\n" +
-                "CNPJ: " + DocumentoCNPJ.getText() + "\n" +       
+                "CNPJ: " + DocumentoCNPJ.getText() + "\n" +
                 "CEP: " + CEPCliente.getText() + "\n" +
                 "Bairro: " + BairroCliente.getText() + "\n" +
                 "Rua: " + EnderecoCliente.getText() + "\n" +
@@ -618,9 +609,9 @@ public class CadastrodeClientes extends javax.swing.JPanel {
                 options,
                 options[0]);
             if (resposta == 0) {
-                
+
                 ClientesModel ModelClientes = new ClientesModel();
-                
+
                 ModelClientes.setNomecliente(NomeCliente.getText());
                 ModelClientes.setTelefonecliente(TelefoneCliente.getText());
                 ModelClientes.setCepcliente(CEPCliente.getText());
@@ -638,7 +629,7 @@ public class CadastrodeClientes extends javax.swing.JPanel {
                 }
                 JBDCClientes ClientesBanco = new JBDCClientes();
                 ClientesBanco.CadastroClientes(ModelClientes);
-                
+
                 NomeCliente.setText("");
                 TelefoneCliente.setText("");
                 CEPCliente.setText("");
@@ -650,20 +641,41 @@ public class CadastrodeClientes extends javax.swing.JPanel {
                 DocumentoCPF.setText("");
                 DocumentoCNPJ.setText("");
                 EnderecoCliente1.setText("");
-               
-                
-                
+
             }else{
-                
+
             }
         }
     }//GEN-LAST:event_BtnClientesActionPerformed
 
-    private void RetornarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RetornarActionPerformed
+    private void CancelarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelarBtnActionPerformed
         // TODO add your handling code here:
-        ClientesPrincipal ClientesPrincip = new ClientesPrincipal();
-        ShowPanel(ClientesPrincip);
-    }//GEN-LAST:event_RetornarActionPerformed
+        String[] options = {"Sim", "Cancelar"};
+        int resposta = JOptionPane.showOptionDialog(
+            this,
+            "Esta ação apagará todos os campos, tem certeza?",
+            "Confirmação",
+            JOptionPane.DEFAULT_OPTION,
+            JOptionPane.WARNING_MESSAGE,
+            null,
+            options,
+            options[0]
+        );
+        if (resposta == 0) {
+            NomeCliente.setText("");
+            TelefoneCliente.setText("");
+            CEPCliente.setText("");
+            BairroCliente.setText("");
+            EnderecoCliente.setText("");
+            NumeroCliente.setText("");
+            CidadeCliente.setText("");
+            UFCliente.setText("");
+            EnderecoCliente1.setText("");
+
+        } else {
+            CancelarBtn.requestFocus();
+        }
+    }//GEN-LAST:event_CancelarBtnActionPerformed
 
     private void NomeClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NomeClienteActionPerformed
         // TODO add your handling code here:
@@ -733,6 +745,17 @@ public class CadastrodeClientes extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_UFClienteActionPerformed
 
+    private void UFClienteKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_UFClienteKeyPressed
+        // TODO add your handling code here:
+        if(evt.getExtendedKeyCode() == evt.VK_ENTER){
+            if(CPFCheckBox.isSelected()){
+                DocumentoCPF.requestFocus();
+            }else if(CNPJCheckBox.isSelected()){
+                DocumentoCNPJ.requestFocus();
+            }
+        }
+    }//GEN-LAST:event_UFClienteKeyPressed
+
     private void UFClienteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_UFClienteKeyTyped
         // TODO add your handling code here
         char keyPress = evt.getKeyChar();
@@ -767,7 +790,7 @@ public class CadastrodeClientes extends javax.swing.JPanel {
             }
             BairroCliente.requestFocus();
         }
-        
+
     }//GEN-LAST:event_CEPClienteKeyPressed
 
     private void TelefoneClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TelefoneClienteActionPerformed
@@ -795,46 +818,6 @@ public class CadastrodeClientes extends javax.swing.JPanel {
     private void CidadeClienteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CidadeClienteKeyTyped
         // TODO add your handling code here:
     }//GEN-LAST:event_CidadeClienteKeyTyped
-
-    private void CancelarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelarBtnActionPerformed
-        // TODO add your handling code here:
-         String[] options = {"Sim", "Cancelar"};
-        int resposta = JOptionPane.showOptionDialog(
-            this,
-            "Esta ação apagará todos os campos, tem certeza?",
-            "Confirmação",
-            JOptionPane.DEFAULT_OPTION,
-            JOptionPane.WARNING_MESSAGE,
-            null,
-            options,
-            options[0]
-        );
-        if (resposta == 0) {
-             NomeCliente.setText("");
-               TelefoneCliente.setText("");
-               CEPCliente.setText("");
-               BairroCliente.setText("");
-               EnderecoCliente.setText("");
-               NumeroCliente.setText("");
-               CidadeCliente.setText("");
-              UFCliente.setText("");
-              EnderecoCliente1.setText("");
-              
-        } else {
-            CancelarBtn.requestFocus();
-        }
-    }//GEN-LAST:event_CancelarBtnActionPerformed
-
-    private void UFClienteKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_UFClienteKeyPressed
-        // TODO add your handling code here:
-        if(evt.getExtendedKeyCode() == evt.VK_ENTER){
-            if(CPFCheckBox.isSelected()){
-               DocumentoCPF.requestFocus();
-            }else if(CNPJCheckBox.isSelected()){
-                DocumentoCNPJ.requestFocus();
-            }
-        }
-    }//GEN-LAST:event_UFClienteKeyPressed
 
     private void DocumentoCPFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DocumentoCPFActionPerformed
         // TODO add your handling code here:
@@ -882,6 +865,21 @@ public class CadastrodeClientes extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_EnderecoCliente1KeyPressed
 
+    private void RetornarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RetornarActionPerformed
+        // TODO add your handling code here:
+        ClientesPrincipal ClientesPrincip = new ClientesPrincipal();
+        ShowPanel(ClientesPrincip);
+    }//GEN-LAST:event_RetornarActionPerformed
+
+    private void IdImovelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IdImovelActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_IdImovelActionPerformed
+
+    private void IdImovelKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_IdImovelKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_IdImovelKeyPressed
+
+
      private void ShowPanel(JPanel p){
     p.setSize(800,700);
     p.setLocation(0,0);
@@ -891,7 +889,6 @@ public class CadastrodeClientes extends javax.swing.JPanel {
     Content.revalidate();
     Content.repaint();    
      }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField BairroCliente;
     private javax.swing.JLabel BairroClienteLabel;
@@ -910,6 +907,8 @@ public class CadastrodeClientes extends javax.swing.JPanel {
     private javax.swing.JTextField EnderecoCliente1;
     private javax.swing.JLabel EnderecoClienteLabel;
     private javax.swing.JLabel EnderecoClienteLabel1;
+    private javax.swing.JLabel EnderecoClienteLabel2;
+    private javax.swing.JTextField IdImovel;
     private javax.swing.JTextField NomeCliente;
     private javax.swing.JLabel NomeClienteLabel;
     private javax.swing.JTextField NumeroCliente;

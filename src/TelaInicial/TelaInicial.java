@@ -43,6 +43,7 @@ public class TelaInicial extends javax.swing.JFrame {
      */
     public TelaInicial() {
         initComponents();
+<<<<<<< HEAD
         JButton[] btns = {Principal, RealizarVendaRapida, CadastroRapido, ConsultaRapida, CadastroProdutosRapido, ConsultaProdutosRapido, ConsultarVendas};
         for (JButton btn : btns) {
             btn.setBackground(new Color(186, 47, 57));
@@ -79,6 +80,41 @@ public class TelaInicial extends javax.swing.JFrame {
         TelaBoasVindas TelaPrincipal = new TelaBoasVindas();
         ShowPanel(TelaPrincipal);
 
+=======
+        JButton [] btns = {Principal,RealizarVendaRapida,CadastroRapido,ConsultaRapida,CadastroProdutosRapido,ConsultaProdutosRapido};
+       for(JButton btn : btns){
+           btn.setBackground(new Color(186,47,57));
+           btn.setUI(new BasicButtonUI());
+           btn.addMouseListener(new MouseListener(){
+               @Override
+               public void mouseClicked(MouseEvent e){
+                   
+               }
+               @Override
+               public void mousePressed(MouseEvent e){
+                   
+               }
+               @Override 
+                public void mouseReleased(MouseEvent e){
+                   
+               }
+               @Override
+               public void mouseEntered(MouseEvent e){
+                    btn.setBackground(new Color(239,86,96));
+               }
+               @Override
+               public void mouseExited(MouseEvent e){
+                   btn.setBackground(new Color(186,47,57));
+               }
+           
+           });
+           }
+       
+       TelaBoasVindas TelaPrincipal = new TelaBoasVindas();
+       ShowPanel(TelaPrincipal);
+       
+       
+>>>>>>> 5c3c365781de618d4dce7a528a9a0864982dcdec
     }
 
     /**
@@ -100,30 +136,7 @@ public class TelaInicial extends javax.swing.JFrame {
         Principal = new javax.swing.JButton();
         Separator = new javax.swing.JLabel();
         Titulo = new javax.swing.JLabel();
-        ConsultarVendas = new javax.swing.JButton();
         Content = new javax.swing.JPanel();
-        jMenuBar = new javax.swing.JMenuBar();
-        Produtos = new javax.swing.JMenu();
-        CadastroProduto = new javax.swing.JMenuItem();
-        ConsultaProduto = new javax.swing.JMenuItem();
-        Clientes = new javax.swing.JMenu();
-        CadastroCliente = new javax.swing.JMenuItem();
-        ConsultaClientes = new javax.swing.JMenuItem();
-        Vendas = new javax.swing.JMenu();
-        ConsultaVendas = new javax.swing.JMenuItem();
-        RealizarVenda = new javax.swing.JMenuItem();
-        Categoria = new javax.swing.JMenu();
-        CategoriasSubmenu = new javax.swing.JMenu();
-        CadastroCategoria = new javax.swing.JMenuItem();
-        VisualizarCategoria = new javax.swing.JMenuItem();
-        SubCategoriasSubmenu = new javax.swing.JMenu();
-        CadastroSubCategoria = new javax.swing.JMenuItem();
-        VisualizarSubCategoria = new javax.swing.JMenuItem();
-        Estoque = new javax.swing.JMenu();
-        EntradaProdutos = new javax.swing.JMenuItem();
-        SaidaProdutos = new javax.swing.JMenuItem();
-        Logs = new javax.swing.JMenu();
-        VisualizarLog = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(45, 45, 45));
@@ -165,7 +178,7 @@ public class TelaInicial extends javax.swing.JFrame {
         ConsultaRapida.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         ConsultaRapida.setForeground(new java.awt.Color(255, 255, 255));
         ConsultaRapida.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Person_1.png"))); // NOI18N
-        ConsultaRapida.setText("Consultar Cliente");
+        ConsultaRapida.setText("Clientes");
         ConsultaRapida.setBorderPainted(false);
         ConsultaRapida.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         ConsultaRapida.addActionListener(new java.awt.event.ActionListener() {
@@ -220,14 +233,6 @@ public class TelaInicial extends javax.swing.JFrame {
         Titulo.setText("Casa da Planta");
         Titulo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
-        ConsultarVendas.setBackground(new java.awt.Color(239, 86, 96));
-        ConsultarVendas.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        ConsultarVendas.setForeground(new java.awt.Color(255, 255, 255));
-        ConsultarVendas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Task.png"))); // NOI18N
-        ConsultarVendas.setText("Consultar Vendas");
-        ConsultarVendas.setBorderPainted(false);
-        ConsultarVendas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -241,7 +246,6 @@ public class TelaInicial extends javax.swing.JFrame {
             .addComponent(Principal, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(Titulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(Separator, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(ConsultarVendas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -256,8 +260,6 @@ public class TelaInicial extends javax.swing.JFrame {
                 .addComponent(Principal, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(RealizarVendaRapida, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(ConsultarVendas, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(CadastroRapido, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -277,126 +279,8 @@ public class TelaInicial extends javax.swing.JFrame {
         );
         ContentLayout.setVerticalGroup(
             ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 700, Short.MAX_VALUE)
+            .addGap(0, 723, Short.MAX_VALUE)
         );
-
-        Produtos.setText("Produtos");
-
-        CadastroProduto.setText("Cadastro de Produto");
-        CadastroProduto.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CadastroProdutoActionPerformed(evt);
-            }
-        });
-        Produtos.add(CadastroProduto);
-
-        ConsultaProduto.setText("Consultar Produto");
-        Produtos.add(ConsultaProduto);
-
-        jMenuBar.add(Produtos);
-
-        Clientes.setText("Clientes");
-
-        CadastroCliente.setText("Cadastrar Clientes");
-        CadastroCliente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CadastroClienteActionPerformed(evt);
-            }
-        });
-        Clientes.add(CadastroCliente);
-
-        ConsultaClientes.setText("Consultar Clientes");
-        ConsultaClientes.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ConsultaClientesActionPerformed(evt);
-            }
-        });
-        Clientes.add(ConsultaClientes);
-
-        jMenuBar.add(Clientes);
-
-        Vendas.setText("Vendas");
-
-        ConsultaVendas.setText("Consultar Vendas");
-        Vendas.add(ConsultaVendas);
-
-        RealizarVenda.setText("RealizarVendas");
-        Vendas.add(RealizarVenda);
-
-        jMenuBar.add(Vendas);
-
-        Categoria.setText("Categorias");
-
-        CategoriasSubmenu.setText("Categorias");
-
-        CadastroCategoria.setText("Adicionar Categoria");
-        CadastroCategoria.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CadastroCategoriaActionPerformed(evt);
-            }
-        });
-        CategoriasSubmenu.add(CadastroCategoria);
-
-        VisualizarCategoria.setText("Visualizar Categorias");
-        VisualizarCategoria.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                VisualizarCategoriaActionPerformed(evt);
-            }
-        });
-        CategoriasSubmenu.add(VisualizarCategoria);
-
-        Categoria.add(CategoriasSubmenu);
-
-        SubCategoriasSubmenu.setText("SubCategorias");
-
-        CadastroSubCategoria.setText("Adicionar SubCategoria");
-        CadastroSubCategoria.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CadastroSubCategoriaActionPerformed(evt);
-            }
-        });
-        SubCategoriasSubmenu.add(CadastroSubCategoria);
-
-        VisualizarSubCategoria.setText("Visualizar SubCategorias");
-        VisualizarSubCategoria.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                VisualizarSubCategoriaActionPerformed(evt);
-            }
-        });
-        SubCategoriasSubmenu.add(VisualizarSubCategoria);
-
-        Categoria.add(SubCategoriasSubmenu);
-
-        jMenuBar.add(Categoria);
-
-        Estoque.setText("Estoque");
-
-        EntradaProdutos.setText("Entrada de Produtos");
-        EntradaProdutos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                EntradaProdutosActionPerformed(evt);
-            }
-        });
-        Estoque.add(EntradaProdutos);
-
-        SaidaProdutos.setText("Saida de Produtos");
-        SaidaProdutos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SaidaProdutosActionPerformed(evt);
-            }
-        });
-        Estoque.add(SaidaProdutos);
-
-        jMenuBar.add(Estoque);
-
-        Logs.setText("Logs");
-
-        VisualizarLog.setText("Visualizar Logs");
-        Logs.add(VisualizarLog);
-
-        jMenuBar.add(Logs);
-
-        setJMenuBar(jMenuBar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -416,6 +300,7 @@ public class TelaInicial extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+<<<<<<< HEAD
     private void CadastroProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CadastroProdutoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_CadastroProdutoActionPerformed
@@ -435,6 +320,9 @@ public class TelaInicial extends javax.swing.JFrame {
         ShowPanel(entradaDeProdutos);
     }//GEN-LAST:event_EntradaProdutosActionPerformed
 
+=======
+    
+>>>>>>> 5c3c365781de618d4dce7a528a9a0864982dcdec
     private void RealizarVendaRapidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RealizarVendaRapidaActionPerformed
         // TODO add your handling code here:
         TelaVendasPrincipal Vendas = new TelaVendasPrincipal();
@@ -453,26 +341,6 @@ public class TelaInicial extends javax.swing.JFrame {
                 // TODO add your handling code here:
     }//GEN-LAST:event_CadastroProdutosRapidoActionPerformed
 
-    private void CadastroCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CadastroCategoriaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CadastroCategoriaActionPerformed
-
-    private void VisualizarCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VisualizarCategoriaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_VisualizarCategoriaActionPerformed
-
-    private void CadastroSubCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CadastroSubCategoriaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CadastroSubCategoriaActionPerformed
-
-    private void VisualizarSubCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VisualizarSubCategoriaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_VisualizarSubCategoriaActionPerformed
-
-    private void ConsultaClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConsultaClientesActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ConsultaClientesActionPerformed
-
     private void PrincipalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PrincipalActionPerformed
         // TODO add your handling code here:
         TelaBoasVindas TelaPrincipal = new TelaBoasVindas();
@@ -488,10 +356,20 @@ public class TelaInicial extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
+<<<<<<< HEAD
     private void ShowPanel(JPanel p) {
         p.setSize(800, 700);
         p.setLocation(0, 0);
 
+=======
+    
+
+    
+    private void ShowPanel(JPanel p){
+        p.setSize(800, 725);
+        p.setLocation(0,0);
+        
+>>>>>>> 5c3c365781de618d4dce7a528a9a0864982dcdec
         Content.removeAll();
         Content.add(p, BorderLayout.CENTER);
         Content.revalidate();
@@ -534,39 +412,16 @@ public class TelaInicial extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenuItem CadastroCategoria;
-    private javax.swing.JMenuItem CadastroCliente;
-    private javax.swing.JMenuItem CadastroProduto;
     private javax.swing.JButton CadastroProdutosRapido;
     private javax.swing.JButton CadastroRapido;
-    private javax.swing.JMenuItem CadastroSubCategoria;
-    private javax.swing.JMenu Categoria;
-    private javax.swing.JMenu CategoriasSubmenu;
-    private javax.swing.JMenu Clientes;
-    private javax.swing.JMenuItem ConsultaClientes;
-    private javax.swing.JMenuItem ConsultaProduto;
     private javax.swing.JButton ConsultaProdutosRapido;
     private javax.swing.JButton ConsultaRapida;
-    private javax.swing.JMenuItem ConsultaVendas;
-    private javax.swing.JButton ConsultarVendas;
     private javax.swing.JPanel Content;
-    private javax.swing.JMenuItem EntradaProdutos;
-    private javax.swing.JMenu Estoque;
-    private javax.swing.JMenu Logs;
     private javax.swing.JLabel MenuRapido;
     private javax.swing.JButton Principal;
-    private javax.swing.JMenu Produtos;
-    private javax.swing.JMenuItem RealizarVenda;
     private javax.swing.JButton RealizarVendaRapida;
-    private javax.swing.JMenuItem SaidaProdutos;
     private javax.swing.JLabel Separator;
-    private javax.swing.JMenu SubCategoriasSubmenu;
     private javax.swing.JLabel Titulo;
-    private javax.swing.JMenu Vendas;
-    private javax.swing.JMenuItem VisualizarCategoria;
-    private javax.swing.JMenuItem VisualizarLog;
-    private javax.swing.JMenuItem VisualizarSubCategoria;
-    private javax.swing.JMenuBar jMenuBar;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 
