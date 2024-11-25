@@ -28,7 +28,7 @@ public class JBDCClientes {
     public void CadastroClientes(ClientesModel cadastroclientes){
         String sql = "INSERT INTO cliente_floricultura (nomecliente, telefonecliente, cepcliente,"
                 + " enderecocliente, numerocliente, bairrocliente, UF, TipoDocumento,"
-                + " Documento, email) VALUES (?,?,?,?,?,?,?,?,?,?);";
+                + " Documento, email, cidadecliente) VALUES (?,?,?,?,?,?,?,?,?,?,?);";
                 
          try
         {
@@ -49,6 +49,7 @@ public class JBDCClientes {
                 ConexaoSentenca.setString(8,cadastroclientes.getTipoDocumento());
                 ConexaoSentenca.setString(9,cadastroclientes.getDocumento());
                 ConexaoSentenca.setString(10,cadastroclientes.getEmail());
+                ConexaoSentenca.setString(11,cadastroclientes.getcidadecliente());
                 
                 ConexaoSentenca.execute(); //executa o comando no banco
                 ConexaoSentenca.close(); //fecha a sentença
@@ -76,7 +77,7 @@ public class JBDCClientes {
 "    c.uf, \n" +
 "    c.tipoDocumento, \n" +
 "    c.documento, \n" +
-"    c.email \n" +
+"    c.email, c.cidadecliente \n" +
 "FROM \n" +
 "    cliente_floricultura AS c\n" +
 "ORDER BY \n" +
@@ -105,6 +106,7 @@ public class JBDCClientes {
                     ClientesModel.setTipoDocumento(SentencaCLientes.getString("TipoDocumento"));
                     ClientesModel.setDocumento(SentencaCLientes.getString("Documento"));
                     ClientesModel.setEmail(SentencaCLientes.getString("Email"));
+                    ClientesModel.setcidadecliente(SentencaCLientes.getString("cidadecliente"));
                   
 
                     ListaClientes.add(ClientesModel);
@@ -134,7 +136,7 @@ public class JBDCClientes {
 "    c.uf, \n" +
 "    c.tipoDocumento, \n" +
 "    c.documento, \n" +
-"    c.email \n" +
+"    c.email, c.cidadecliente \n" +
 "FROM \n" +
 "    cliente_floricultura AS c\n" +
 "WHERE \n" +
@@ -165,7 +167,9 @@ public class JBDCClientes {
                     ClientesModel.setTipoDocumento(SentencaCLientes.getString("TipoDocumento"));
                     ClientesModel.setDocumento(SentencaCLientes.getString("Documento"));
                     ClientesModel.setEmail(SentencaCLientes.getString("Email"));
+                    ClientesModel.setcidadecliente(SentencaCLientes.getString("cidadecliente"));
 
+                    GuardarClienteSelecionado.setClienteSelecionado(ClienteSelecionado);
                     ClienteSelecionado.add(ClientesModel);
                 }
                 
@@ -241,7 +245,7 @@ public class JBDCClientes {
 "    c.uf, \n" +
 "    c.tipoDocumento, \n" +
 "    c.documento, \n" +
-"    c.email \n" +
+"    c.email, c.cidadecliente \n" +
 "FROM \n" +
 "    cliente_floricultura AS c WHERE " + ColunaSelecionada + " = ? \n" +
 "ORDER BY \n" +
@@ -300,6 +304,7 @@ public class JBDCClientes {
                     ClientesModel.setTipoDocumento(SentencaCLientes.getString("TipoDocumento"));
                     ClientesModel.setDocumento(SentencaCLientes.getString("Documento"));
                     ClientesModel.setEmail(SentencaCLientes.getString("Email"));
+                    ClientesModel.setcidadecliente(SentencaCLientes.getString("cidadecliente"));
                     
 
                     ListaCliente.add(ClientesModel);
@@ -313,6 +318,20 @@ public class JBDCClientes {
             return ListaCliente;
         } catch (SQLException ex) {
             throw new RuntimeException(ex);
+        }
+    }
+     
+     
+    public class GuardarClienteSelecionado {
+
+        private static ArrayList<ClientesModel> ClienteSelecionado = new ArrayList<>();
+
+        public static ArrayList<ClientesModel> getClienteSelecionado() {
+            return ClienteSelecionado;
+        }
+
+        public static void setClienteSelecionado(ArrayList<ClientesModel> Cliente) {
+            ClienteSelecionado = Cliente;
         }
     }
 }

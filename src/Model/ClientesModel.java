@@ -17,6 +17,7 @@ public class ClientesModel {
     private String numerocliente;
     private String bairrocliente;
     private String uf;
+    private String cidadecliente;
     private String tipoDocumento;
     private String documento;
     private String email;
@@ -28,7 +29,7 @@ public class ClientesModel {
 
     public ClientesModel(int idcliente, String nomecliente, String telefonecliente, String cepcliente, 
                                 String enderecocliente, String numerocliente, String bairrocliente, 
-                                String uf, String tipoDocumento, String documento, String email, int valorconsulta, String itempesquisar) {
+                                String uf, String tipoDocumento, String documento, String email, int valorconsulta, String itempesquisar, String cidadecliente) {
         this.idcliente = idcliente;
         this.nomecliente = nomecliente;
         this.telefonecliente = telefonecliente;
@@ -40,6 +41,7 @@ public class ClientesModel {
         this.tipoDocumento = tipoDocumento;
         this.documento = documento;
         this.email = email;
+        this.cidadecliente = cidadecliente;
     }
 
     public int getIdcliente() {
@@ -56,6 +58,14 @@ public class ClientesModel {
 
     public void setNomecliente(String nomecliente) {
         this.nomecliente = nomecliente;
+    }
+    
+    public String getcidadecliente() {
+        return cidadecliente;
+    }
+
+    public void setcidadecliente(String cidadecliente) {
+        this.cidadecliente = cidadecliente;
     }
 
     public String getTelefonecliente() {

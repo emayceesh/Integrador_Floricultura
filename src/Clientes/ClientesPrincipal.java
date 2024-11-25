@@ -32,7 +32,7 @@ public class ClientesPrincipal extends javax.swing.JPanel {
     public ClientesPrincipal() {
         initComponents();
         MostrarClientesTabela();
-        JButton [] btns = {CdClientesBtn,PesquisarBtn,Retornar,RecarregarTabela,ExcluirClientesBtn};
+        JButton [] btns = {CdClientesBtn,PesquisarBtn,Retornar,RecarregarTabela,ExcluirClientesBtn,EditarClientes};
        for(JButton btn : btns){
            btn.setBackground(new Color(186,47,57));
            btn.setUI(new BasicButtonUI());
@@ -126,6 +126,11 @@ public class ClientesPrincipal extends javax.swing.JPanel {
                 "IdCliente", "Nome do Cliente", "Telefone", "Email", "Documento", "Tipo do Documento"
             }
         ));
+        TabelaClientes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TabelaClientesMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(TabelaClientes);
         if (TabelaClientes.getColumnModel().getColumnCount() > 0) {
             TabelaClientes.getColumnModel().getColumn(0).setResizable(false);
@@ -436,7 +441,13 @@ public class ClientesPrincipal extends javax.swing.JPanel {
         
         EditarClientes EditarImovel = new EditarClientes();
         ShowPanel(EditarImovel); 
+         
     }//GEN-LAST:event_EditarClientesActionPerformed
+
+    private void TabelaClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TabelaClientesMouseClicked
+        // TODO add your handling code here:
+        ClientesModel ClientesModel = new ClientesModel();
+    }//GEN-LAST:event_TabelaClientesMouseClicked
 
     private void ShowPanel(JPanel p){
     p.setSize(800,725);

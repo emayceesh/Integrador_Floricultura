@@ -9,9 +9,13 @@ import ViaCEP.ViaCEP;
 import dao.JBDCClientes;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.util.ArrayList;
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-
+import javax.swing.plaf.basic.BasicButtonUI;
 /**
  *
  * @author pedro
@@ -23,6 +27,36 @@ public class EditarClientes extends javax.swing.JPanel {
      */
     public EditarClientes() {
         initComponents();
+        PuxarItensSelecionados();
+        
+        JButton [] btns = {BtnClientes,CancelarBtn,Retornar};
+        for(JButton btn : btns){
+           btn.setBackground(new Color(186,47,57));
+           btn.setUI(new BasicButtonUI());
+           btn.addMouseListener(new MouseListener(){
+               @Override
+               public void mouseClicked(MouseEvent e){
+                   
+               }
+               @Override
+               public void mousePressed(MouseEvent e){
+                   
+               }
+               @Override 
+                public void mouseReleased(MouseEvent e){
+                   
+               }
+               @Override
+               public void mouseEntered(MouseEvent e){
+                    btn.setBackground(new Color(239,86,96));
+               }
+               @Override
+               public void mouseExited(MouseEvent e){
+                   btn.setBackground(new Color(186,47,57));
+               }
+           
+           });
+           }
     }
 
     /**
@@ -64,10 +98,10 @@ public class EditarClientes extends javax.swing.JPanel {
         TelefoneClienteLabel4 = new javax.swing.JLabel();
         CPFCheckBox = new javax.swing.JCheckBox();
         CNPJCheckBox = new javax.swing.JCheckBox();
-        EnderecoCliente1 = new javax.swing.JTextField();
+        EmailCliente = new javax.swing.JTextField();
         EnderecoClienteLabel1 = new javax.swing.JLabel();
-        IdImovel = new javax.swing.JTextField();
-        EnderecoClienteLabel2 = new javax.swing.JLabel();
+        IdCliente = new javax.swing.JTextField();
+        IdClienteLabel = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         TituloLabel2 = new javax.swing.JLabel();
         TituloLabel3 = new javax.swing.JLabel();
@@ -306,33 +340,33 @@ public class EditarClientes extends javax.swing.JPanel {
             }
         });
 
-        EnderecoCliente1.addActionListener(new java.awt.event.ActionListener() {
+        EmailCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                EnderecoCliente1ActionPerformed(evt);
+                EmailClienteActionPerformed(evt);
             }
         });
-        EnderecoCliente1.addKeyListener(new java.awt.event.KeyAdapter() {
+        EmailCliente.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                EnderecoCliente1KeyPressed(evt);
+                EmailClienteKeyPressed(evt);
             }
         });
 
         EnderecoClienteLabel1.setForeground(new java.awt.Color(12, 12, 12));
         EnderecoClienteLabel1.setText("Email");
 
-        IdImovel.addActionListener(new java.awt.event.ActionListener() {
+        IdCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                IdImovelActionPerformed(evt);
+                IdClienteActionPerformed(evt);
             }
         });
-        IdImovel.addKeyListener(new java.awt.event.KeyAdapter() {
+        IdCliente.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                IdImovelKeyPressed(evt);
+                IdClienteKeyPressed(evt);
             }
         });
 
-        EnderecoClienteLabel2.setForeground(new java.awt.Color(12, 12, 12));
-        EnderecoClienteLabel2.setText("ID Imóvel");
+        IdClienteLabel.setForeground(new java.awt.Color(12, 12, 12));
+        IdClienteLabel.setText("ID Cliente");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -404,11 +438,11 @@ public class EditarClientes extends javax.swing.JPanel {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(EnderecoClienteLabel1)
-                            .addComponent(EnderecoCliente1, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(EmailCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(EnderecoClienteLabel2)
-                            .addComponent(IdImovel, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(IdClienteLabel)
+                            .addComponent(IdCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
         jPanel3Layout.setVerticalGroup(
@@ -483,11 +517,11 @@ public class EditarClientes extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(EnderecoClienteLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(EnderecoCliente1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(EmailCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(EnderecoClienteLabel2)
+                        .addComponent(IdClienteLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(IdImovel, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(IdCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(27, 27, 27)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BtnClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -592,7 +626,7 @@ public class EditarClientes extends javax.swing.JPanel {
                 "Cadastro Registrado!"+ "\n" +
                 "Nome Cliente: " + NomeCliente.getText() + "\n" +
                 "Telefone: " + TelefoneCliente.getText() + "\n" +
-                "Email: " + EnderecoCliente1.getText() + "\n" +
+                "Email: " + EmailCliente.getText() + "\n" +
                 "CPF: " + DocumentoCPF.getText() + "\n" +
                 "CNPJ: " + DocumentoCNPJ.getText() + "\n" +
                 "CEP: " + CEPCliente.getText() + "\n" +
@@ -619,7 +653,8 @@ public class EditarClientes extends javax.swing.JPanel {
                 ModelClientes.setEnderecocliente(EnderecoCliente.getText());
                 ModelClientes.setNumerocliente(NumeroCliente.getText());
                 ModelClientes.setUf(UFCliente.getText());
-                ModelClientes.setEmail(EnderecoCliente1.getText());
+                ModelClientes.setEmail(EmailCliente.getText());
+                ModelClientes.setcidadecliente(CidadeCliente.getText());
                 if(CPFCheckBox.isSelected()){
                     ModelClientes.setDocumento(DocumentoCPF.getText());
                     ModelClientes.setTipoDocumento("CPF");
@@ -640,7 +675,7 @@ public class EditarClientes extends javax.swing.JPanel {
                 UFCliente.setText("");
                 DocumentoCPF.setText("");
                 DocumentoCNPJ.setText("");
-                EnderecoCliente1.setText("");
+                EmailCliente.setText("");
 
             }else{
 
@@ -670,7 +705,7 @@ public class EditarClientes extends javax.swing.JPanel {
             NumeroCliente.setText("");
             CidadeCliente.setText("");
             UFCliente.setText("");
-            EnderecoCliente1.setText("");
+            EmailCliente.setText("");
 
         } else {
             CancelarBtn.requestFocus();
@@ -811,7 +846,7 @@ public class EditarClientes extends javax.swing.JPanel {
     private void CidadeClienteKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CidadeClienteKeyPressed
         // TODO add your handling code here:
         if(evt.getExtendedKeyCode() == evt.VK_ENTER){
-            EnderecoCliente1.requestFocus();
+            EmailCliente.requestFocus();
         }
     }//GEN-LAST:event_CidadeClienteKeyPressed
 
@@ -857,13 +892,13 @@ public class EditarClientes extends javax.swing.JPanel {
         DocumentoCPF.setBackground(Color.LIGHT_GRAY);
     }//GEN-LAST:event_CNPJCheckBoxActionPerformed
 
-    private void EnderecoCliente1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EnderecoCliente1ActionPerformed
+    private void EmailClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EmailClienteActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_EnderecoCliente1ActionPerformed
+    }//GEN-LAST:event_EmailClienteActionPerformed
 
-    private void EnderecoCliente1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_EnderecoCliente1KeyPressed
+    private void EmailClienteKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_EmailClienteKeyPressed
         // TODO add your handling code here:
-    }//GEN-LAST:event_EnderecoCliente1KeyPressed
+    }//GEN-LAST:event_EmailClienteKeyPressed
 
     private void RetornarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RetornarActionPerformed
         // TODO add your handling code here:
@@ -871,13 +906,13 @@ public class EditarClientes extends javax.swing.JPanel {
         ShowPanel(ClientesPrincip);
     }//GEN-LAST:event_RetornarActionPerformed
 
-    private void IdImovelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IdImovelActionPerformed
+    private void IdClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IdClienteActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_IdImovelActionPerformed
+    }//GEN-LAST:event_IdClienteActionPerformed
 
-    private void IdImovelKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_IdImovelKeyPressed
+    private void IdClienteKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_IdClienteKeyPressed
         // TODO add your handling code here:
-    }//GEN-LAST:event_IdImovelKeyPressed
+    }//GEN-LAST:event_IdClienteKeyPressed
 
 
      private void ShowPanel(JPanel p){
@@ -889,6 +924,33 @@ public class EditarClientes extends javax.swing.JPanel {
     Content.revalidate();
     Content.repaint();    
      }
+     
+     public void PuxarItensSelecionados(){
+        ArrayList<ClientesModel> ClienteSelecionado = JBDCClientes.GuardarClienteSelecionado.getClienteSelecionado();
+        for(ClientesModel Clientes : ClienteSelecionado){
+            IdCliente.setText(String.valueOf(Clientes.getIdcliente()));
+            IdCliente.setEditable(false);
+            NomeCliente.setText(Clientes.getNomecliente());
+            TelefoneCliente.setText(Clientes.getTelefonecliente());
+            EnderecoCliente.setText(Clientes.getEnderecocliente());
+            NumeroCliente.setText(Clientes.getNumerocliente());
+            CidadeCliente.setText(Clientes.getcidadecliente());
+            CEPCliente.setText(Clientes.getCepcliente());
+            BairroCliente.setText(Clientes.getBairrocliente());
+            EmailCliente.setText(Clientes.getEmail());
+            UFCliente.setText(Clientes.getUf());
+            
+        
+            String TipoDOC = Clientes.getTipoDocumento();          
+            if(TipoDOC.equals("CNPJ")){
+                DocumentoCNPJ.setText(Clientes.getDocumento());
+                CNPJCheckBox.setSelected(true);
+            }else if(TipoDOC.equals("CPF")){
+                DocumentoCPF.setText(Clientes.getDocumento());
+                CPFCheckBox.setSelected(true);
+            }   
+        }
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField BairroCliente;
     private javax.swing.JLabel BairroClienteLabel;
@@ -903,12 +965,12 @@ public class EditarClientes extends javax.swing.JPanel {
     private javax.swing.JPanel Content;
     private javax.swing.JFormattedTextField DocumentoCNPJ;
     private javax.swing.JFormattedTextField DocumentoCPF;
+    private javax.swing.JTextField EmailCliente;
     private javax.swing.JTextField EnderecoCliente;
-    private javax.swing.JTextField EnderecoCliente1;
     private javax.swing.JLabel EnderecoClienteLabel;
     private javax.swing.JLabel EnderecoClienteLabel1;
-    private javax.swing.JLabel EnderecoClienteLabel2;
-    private javax.swing.JTextField IdImovel;
+    private javax.swing.JTextField IdCliente;
+    private javax.swing.JLabel IdClienteLabel;
     private javax.swing.JTextField NomeCliente;
     private javax.swing.JLabel NomeClienteLabel;
     private javax.swing.JTextField NumeroCliente;

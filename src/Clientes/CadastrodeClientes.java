@@ -99,7 +99,7 @@ public class CadastrodeClientes extends javax.swing.JPanel {
         TelefoneClienteLabel4 = new javax.swing.JLabel();
         CPFCheckBox = new javax.swing.JCheckBox();
         CNPJCheckBox = new javax.swing.JCheckBox();
-        EnderecoCliente1 = new javax.swing.JTextField();
+        Email = new javax.swing.JTextField();
         EnderecoClienteLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         TituloLabel2 = new javax.swing.JLabel();
@@ -339,14 +339,14 @@ public class CadastrodeClientes extends javax.swing.JPanel {
             }
         });
 
-        EnderecoCliente1.addActionListener(new java.awt.event.ActionListener() {
+        Email.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                EnderecoCliente1ActionPerformed(evt);
+                EmailActionPerformed(evt);
             }
         });
-        EnderecoCliente1.addKeyListener(new java.awt.event.KeyAdapter() {
+        Email.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                EnderecoCliente1KeyPressed(evt);
+                EmailKeyPressed(evt);
             }
         });
 
@@ -423,7 +423,7 @@ public class CadastrodeClientes extends javax.swing.JPanel {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(EnderecoClienteLabel1)
-                            .addComponent(EnderecoCliente1, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(Email, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
         jPanel3Layout.setVerticalGroup(
@@ -496,7 +496,7 @@ public class CadastrodeClientes extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(EnderecoClienteLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(EnderecoCliente1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Email, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BtnClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -601,7 +601,7 @@ public class CadastrodeClientes extends javax.swing.JPanel {
                 "Cadastro Registrado!"+ "\n" +
                 "Nome Cliente: " + NomeCliente.getText() + "\n" +
                 "Telefone: " + TelefoneCliente.getText() + "\n" +
-                "Email: " + EnderecoCliente1.getText() + "\n" +
+                "Email: " + Email.getText() + "\n" +
                 "CPF: " + DocumentoCPF.getText() + "\n" +
                 "CNPJ: " + DocumentoCNPJ.getText() + "\n" +       
                 "CEP: " + CEPCliente.getText() + "\n" +
@@ -628,7 +628,8 @@ public class CadastrodeClientes extends javax.swing.JPanel {
                 ModelClientes.setEnderecocliente(EnderecoCliente.getText());
                 ModelClientes.setNumerocliente(NumeroCliente.getText());
                 ModelClientes.setUf(UFCliente.getText());
-                ModelClientes.setEmail(EnderecoCliente1.getText());
+                ModelClientes.setEmail(Email.getText());
+                ModelClientes.setcidadecliente(CidadeCliente.getText());
                 if(CPFCheckBox.isSelected()){
                     ModelClientes.setDocumento(DocumentoCPF.getText());
                     ModelClientes.setTipoDocumento("CPF");
@@ -649,7 +650,7 @@ public class CadastrodeClientes extends javax.swing.JPanel {
                 UFCliente.setText("");
                 DocumentoCPF.setText("");
                 DocumentoCNPJ.setText("");
-                EnderecoCliente1.setText("");
+                Email.setText("");
                
                 
                 
@@ -788,7 +789,7 @@ public class CadastrodeClientes extends javax.swing.JPanel {
     private void CidadeClienteKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CidadeClienteKeyPressed
         // TODO add your handling code here:
         if(evt.getExtendedKeyCode() == evt.VK_ENTER){
-            EnderecoCliente1.requestFocus();
+            Email.requestFocus();
         }
     }//GEN-LAST:event_CidadeClienteKeyPressed
 
@@ -818,7 +819,7 @@ public class CadastrodeClientes extends javax.swing.JPanel {
                NumeroCliente.setText("");
                CidadeCliente.setText("");
               UFCliente.setText("");
-              EnderecoCliente1.setText("");
+              Email.setText("");
               
         } else {
             CancelarBtn.requestFocus();
@@ -874,13 +875,13 @@ public class CadastrodeClientes extends javax.swing.JPanel {
         DocumentoCPF.setBackground(Color.LIGHT_GRAY);
     }//GEN-LAST:event_CNPJCheckBoxActionPerformed
 
-    private void EnderecoCliente1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EnderecoCliente1ActionPerformed
+    private void EmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EmailActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_EnderecoCliente1ActionPerformed
+    }//GEN-LAST:event_EmailActionPerformed
 
-    private void EnderecoCliente1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_EnderecoCliente1KeyPressed
+    private void EmailKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_EmailKeyPressed
         // TODO add your handling code here:
-    }//GEN-LAST:event_EnderecoCliente1KeyPressed
+    }//GEN-LAST:event_EmailKeyPressed
 
      private void ShowPanel(JPanel p){
     p.setSize(800,700);
@@ -906,8 +907,8 @@ public class CadastrodeClientes extends javax.swing.JPanel {
     private javax.swing.JPanel Content;
     private javax.swing.JFormattedTextField DocumentoCNPJ;
     private javax.swing.JFormattedTextField DocumentoCPF;
+    private javax.swing.JTextField Email;
     private javax.swing.JTextField EnderecoCliente;
-    private javax.swing.JTextField EnderecoCliente1;
     private javax.swing.JLabel EnderecoClienteLabel;
     private javax.swing.JLabel EnderecoClienteLabel1;
     private javax.swing.JTextField NomeCliente;
