@@ -4,15 +4,18 @@
  */
 package Produtos;
 
-
 import dao.JBDCConnect;
 import TelaInicial.TelaBoasVindas;
 import dao.JBDCEntradadeProdutos;
 import Model.EntradaProdutosModel;
 import Model.NomeIDCategoriaModel;
 import Model.NomeIDOperadorModel;
+import Model.TabelaEntradadeProdutosModel;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import java.util.List;
+import javax.swing.table.DefaultTableModel;
+import java.sql.Connection;
 
 /**
  *
@@ -27,6 +30,7 @@ public class entradaProdutos extends javax.swing.JPanel {
         initComponents();
         carregarCategoriasNaCB();
         carregarOperadoresNaCB();
+        MostrarProdutosTabela();
     }
 
     private void carregarCategoriasNaCB() {
@@ -36,7 +40,7 @@ public class entradaProdutos extends javax.swing.JPanel {
             List<NomeIDCategoriaModel> categorias = null;
             try {
 
-                JBDCEntradadeProdutos cadastroCategoriasDao = new JBDCEntradadeProdutos(jbdcConnect.getConnection());
+                JBDCEntradadeProdutos cadastroCategoriasDao = new JBDCEntradadeProdutos();
 
                 categorias = cadastroCategoriasDao.getCategorias();
             } catch (Exception e) {
@@ -63,7 +67,7 @@ public class entradaProdutos extends javax.swing.JPanel {
             List<NomeIDOperadorModel> operadores = null;
             try {
 
-                JBDCEntradadeProdutos cadastroOperadoresDao = new JBDCEntradadeProdutos(jbdcConnect.getConnection());
+                JBDCEntradadeProdutos cadastroOperadoresDao = new JBDCEntradadeProdutos();
 
                 operadores = cadastroOperadoresDao.getIDNomeOperador();
             } catch (Exception e) {
@@ -84,6 +88,28 @@ public class entradaProdutos extends javax.swing.JPanel {
 
     }
 
+    public void MostrarProdutosTabela() {
+        JBDCConnect jbdcConnect = new JBDCConnect();
+        Connection conexao = jbdcConnect.getConnection();
+
+        JBDCEntradadeProdutos ListaProdutos = new JBDCEntradadeProdutos();
+
+        ArrayList<TabelaEntradadeProdutosModel> listaProdutos = ListaProdutos.MostrarListaProdutos();
+
+        DefaultTableModel model = (DefaultTableModel) tabelaEntradaProdutos.getModel();
+        model.setRowCount(0);
+        model.setColumnCount(3);
+
+        Object[] row = new Object[3];
+        for (int i = 0; i < listaProdutos.size(); i++) {
+            row[0] = listaProdutos.get(i).getIdproduto_entrada();
+            row[1] = listaProdutos.get(i).getQuantidadeProduto();
+            row[2] = listaProdutos.get(i).getIdCategoria_entrada();
+            model.addRow(row.clone());
+
+        }
+
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -109,9 +135,10 @@ public class entradaProdutos extends javax.swing.JPanel {
         operadorEntradanaCB = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tabelaEntradaProdutos = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
         nomeProdutoEntrada = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
 
         setPreferredSize(new java.awt.Dimension(815, 589));
 
@@ -167,7 +194,7 @@ public class entradaProdutos extends javax.swing.JPanel {
         });
 
         jLabel8.setForeground(new java.awt.Color(153, 153, 153));
-        jLabel8.setText("ID - Categoria");
+        jLabel8.setText("Categoria");
 
         jLabel9.setForeground(new java.awt.Color(153, 153, 153));
         jLabel9.setText("Quantidade");
@@ -186,7 +213,7 @@ public class entradaProdutos extends javax.swing.JPanel {
         jLabel1.setForeground(new java.awt.Color(153, 153, 153));
         jLabel1.setText("Operador");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tabelaEntradaProdutos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -194,10 +221,11 @@ public class entradaProdutos extends javax.swing.JPanel {
                 {null, null, null}
             },
             new String [] {
-                "Produtos", "Quantidade", "Categoria"
+                "Produto", "Quantidade", "Categoria"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        tabelaEntradaProdutos.setShowGrid(true);
+        jScrollPane1.setViewportView(tabelaEntradaProdutos);
 
         jLabel2.setForeground(new java.awt.Color(153, 153, 153));
         jLabel2.setText("Nome do Produto");
@@ -208,6 +236,9 @@ public class entradaProdutos extends javax.swing.JPanel {
             }
         });
 
+        jLabel5.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel5.setText("Produtos:");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -216,15 +247,22 @@ public class entradaProdutos extends javax.swing.JPanel {
                 .addGap(36, 36, 36)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(adicionarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4))
+                        .addContainerGap())
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 366, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5))
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2)
                                     .addComponent(jLabel9)
                                     .addComponent(qtdProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(40, 40, 40)
+                                .addGap(18, 18, 18)
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -237,14 +275,11 @@ public class entradaProdutos extends javax.swing.JPanel {
                                             .addComponent(operadorEntradanaCB, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGap(0, 0, Short.MAX_VALUE))))
                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(nomeProdutoEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(adicionarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4))
-                        .addContainerGap())))
+                                .addGap(9, 9, 9)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(nomeProdutoEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE))))))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -253,14 +288,19 @@ public class entradaProdutos extends javax.swing.JPanel {
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel4)
-                .addGap(39, 39, 39)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(39, 39, 39)
                         .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(nomeProdutoEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(1, 1, 1))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(nomeProdutoEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel9)
                             .addComponent(jLabel8))
@@ -271,9 +311,9 @@ public class entradaProdutos extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(operadorEntradanaCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(33, 33, 33)))
-                .addGap(39, 39, 39)
+                        .addComponent(operadorEntradanaCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(45, 45, 45)
                 .addComponent(adicionarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(39, Short.MAX_VALUE))
         );
@@ -332,7 +372,54 @@ public class entradaProdutos extends javax.swing.JPanel {
 
     private void adicionarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adicionarProdutoActionPerformed
 
-        
+        int selectedRow = tabelaEntradaProdutos.getSelectedRow();
+
+        if (selectedRow >= 0) {
+            String idProduto = tabelaEntradaProdutos.getValueAt(selectedRow, 0).toString();
+            String quantidadeTexto = qtdProduto.getText().trim();
+            String novaCategoria = categoriaProdutoCB.getSelectedItem().toString();
+
+            // Validação de quantidade
+            if (quantidadeTexto.isEmpty() || !quantidadeTexto.matches("\\d+")) {
+                JOptionPane.showMessageDialog(this, "Por favor, insira uma quantidade válida.", "Erro", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            int quantidadeAdicionada = Integer.parseInt(quantidadeTexto);
+
+            // Atualizar quantidade no banco de dados
+            JBDCEntradadeProdutos dao = new JBDCEntradadeProdutos();
+            boolean sucessoQuantidade = dao.adicionarQuantidade(idProduto, quantidadeAdicionada);
+
+            if (!sucessoQuantidade) {
+                JOptionPane.showMessageDialog(this, "Erro ao adicionar a quantidade.", "Erro", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            // Atualizar categoria se for diferente
+            String categoriaAtual = tabelaEntradaProdutos.getValueAt(selectedRow, 2).toString();
+
+            if (!categoriaAtual.equals(novaCategoria)) {
+                boolean categoriaExiste = dao.categoriaExiste(novaCategoria);
+                if (!categoriaExiste) {
+                    JOptionPane.showMessageDialog(this, "A categoria selecionada não existe.", "Erro", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+
+                boolean sucessoCategoria = dao.atualizarCategoria(idProduto, novaCategoria);
+                if (!sucessoCategoria) {
+                    JOptionPane.showMessageDialog(this, "Erro ao atualizar a categoria.", "Erro", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+            }
+
+            JOptionPane.showMessageDialog(this, "Produto atualizado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+            MostrarProdutosTabela(); // Recarregar a tabela
+            qtdProduto.setText(""); // Limpar campo de quantidade
+        } else {
+            JOptionPane.showMessageDialog(this, "Por favor, selecione um produto na tabela.", "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+
 
     }//GEN-LAST:event_adicionarProdutoActionPerformed
 
@@ -366,15 +453,16 @@ public class entradaProdutos extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextField nomeProdutoEntrada;
     private javax.swing.JComboBox<NomeIDOperadorModel> operadorEntradanaCB;
     private javax.swing.JTextField qtdProduto;
+    private javax.swing.JTable tabelaEntradaProdutos;
     // End of variables declaration//GEN-END:variables
 
     private void ShowPanel(TelaBoasVindas TelaInicial) {

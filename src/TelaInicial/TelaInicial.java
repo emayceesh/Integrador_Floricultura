@@ -297,7 +297,9 @@ public class TelaInicial extends javax.swing.JFrame {
     }//GEN-LAST:event_CadastroRapidoActionPerformed
 
     private void CadastroProdutosRapidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CadastroProdutosRapidoActionPerformed
-                // TODO add your handling code here:
+        entradaProdutos entradaProdutos = new entradaProdutos(); 
+        ShowPanel(entradaProdutos);
+        // TODO add your handling code here:
     }//GEN-LAST:event_CadastroProdutosRapidoActionPerformed
 
     private void PrincipalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PrincipalActionPerformed
