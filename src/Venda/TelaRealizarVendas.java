@@ -4,9 +4,18 @@
  */
 package Venda;
 
+import javax.swing.JOptionPane;
 import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.plaf.basic.BasicButtonUI;
 
+import Venda.TelaVendasPrincipal;
+import dao.JBDCVendas;
+import Model.VendasModel;
 /**
  *
  * @author gm
@@ -182,7 +191,6 @@ public class TelaRealizarVendas extends javax.swing.JPanel {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ClienteCBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(OperadorText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(jPanel2Layout.createSequentialGroup()
@@ -240,6 +248,20 @@ public class TelaRealizarVendas extends javax.swing.JPanel {
 
     private void ConfirmaVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConfirmaVendaActionPerformed
         // TODO add your handling code here:
+        if (ClienteCBox.getText().isEmpty() && 
+    OperadorText.getText().isEmpty() &&
+    ProdutoText.getText().isEmpty() &&
+    QuantText.getText().isEmpty() &&
+    CodVendaText.getText().isEmpty() &&
+    DataText.getText().isEmpty()) {
+            //passa mensagem de erro quando areas estão vazias.
+            JOptionPane.showMessageDialog(null, "Os Campos devem estar preenchidos para realizar uma venda!");
+        }else{
+            String[] options = {"Sim", "Não"};
+            int resposta = JOptionPane.showOptionDialog(
+                this,
+                    );
+        }
     }//GEN-LAST:event_ConfirmaVendaActionPerformed
 
     private void CancelaVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelaVendaActionPerformed
