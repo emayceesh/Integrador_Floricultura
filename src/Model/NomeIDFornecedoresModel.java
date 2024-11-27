@@ -8,12 +8,13 @@ package Model;
  *
  * @author Patryk
  */
-public class NomeIDProdutosModel {
+
+// Guarda o ID e o NOME dos fornecedores
+public class NomeIDFornecedoresModel {
     private int id;
     private String nome;
-    
 
-    public NomeIDProdutosModel(int id, String nome) {
+    public NomeIDFornecedoresModel(int id, String nome) {
         this.id = id;
         this.nome = nome;
     }
@@ -28,7 +29,6 @@ public class NomeIDProdutosModel {
 
     @Override
     public String toString() {
-        
         return nome; 
     }
 }

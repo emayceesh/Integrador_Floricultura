@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import Model.NomeIDCategoriaModel;
+import Model.NomeIDFornecedoresModel;
 import Model.NomeIDOperadorModel;
 import Model.TabelaEntradadeProdutosModel;
 import java.sql.ResultSet;
@@ -76,6 +77,36 @@ public class JBDCEntradadeProdutos {
         return categorias;
     }
 
+    public List<NomeIDFornecedoresModel> getIDNomeFornecedor() {
+        List<NomeIDFornecedoresModel> fornecedores = new ArrayList<>();
+        String sql = "SELECT idfornecedor, nomefornecedor FROM fornecedor_floricultura";
+
+        JBDCConnect jbdcConnect = new JBDCConnect();
+
+        try {
+            if (jbdcConnect.conectar()) {
+                Connection conn = jbdcConnect.getConnection();
+
+                try (Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(sql)) {
+                    while (rs.next()) {
+                        int id = rs.getInt("idfornecedor");
+                        String nome = rs.getString("nomefornecedor");
+                        fornecedores.add(new NomeIDFornecedoresModel(id, nome));
+                    }
+                }
+            } else {
+                System.out.println("Erro ao conectar ao banco de dados.");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            // Fechar a conexão, se necessário
+            jbdcConnect.desconectar();
+        }
+
+        return fornecedores;
+    }
+
     public List<NomeIDOperadorModel> getIDNomeOperador() {
         List<NomeIDOperadorModel> operadores = new ArrayList<>();
         String sql = "SELECT idoperador, nomeoperador FROM usuario_sistema_floricultura";
@@ -113,13 +144,13 @@ public class JBDCEntradadeProdutos {
         ArrayList<TabelaEntradadeProdutosModel> listaProdutos = new ArrayList<>();
 
         String sql = "SELECT "
-                + "    p.NomeProduto, "
-                + "    ep.quantidadeProduto, "
-                + "    c.NomeCategoria "
-                + "FROM entrada_de_produtos ep "
-                + "JOIN produtos p ON ep.idproduto_entrada = p.idProduto "
-                + "JOIN categoria c ON ep.IdCategoria_entrada = c.IdCategoria "
-                + "ORDER BY ep.idproduto_entrada;";
+                + "   p.idProduto, "
+                + "   p.NomeProduto, "
+                + "   p.QuantidadeProduto, "
+                + "   COALESCE(c.nomefornecedor, 'Sem Fornecedor') AS nomefornecedor "
+                + "FROM produtos p "
+                + "LEFT JOIN fornecedor_floricultura c ON p.idFornecedor_produtos = c.idfornecedor "
+                + "ORDER BY p.idProduto;";
 
         JBDCConnect jbdcConnect = new JBDCConnect();
 
@@ -134,9 +165,10 @@ public class JBDCEntradadeProdutos {
                     while (rs.next()) {
                         TabelaEntradadeProdutosModel produto = new TabelaEntradadeProdutosModel();
 
+                        produto.setIdProduto(rs.getInt("idProduto"));
                         produto.setIdproduto_entrada(rs.getString("NomeProduto"));
-                        produto.setQuantidadeProduto(rs.getInt("quantidadeProduto"));
-                        produto.setIdCategoria_entrada(rs.getString("NomeCategoria"));
+                        produto.setQuantidadeProduto(rs.getInt("QuantidadeProduto"));
+                        produto.setIdfornecedor_entrada(rs.getString("nomefornecedor"));
 
                         listaProdutos.add(produto);
                     }
@@ -155,7 +187,7 @@ public class JBDCEntradadeProdutos {
     }
 
     public boolean adicionarQuantidade(String idProduto, int quantidadeAdicionada) {
-        String sql = "UPDATE produtos SET QuantidadeProduto = QuantidadeProduto + ? WHERE iDProduto = ?";
+        String sql = "UPDATE produtos SET QuantidadeProduto = QuantidadeProduto + ? WHERE idProduto = ?";
         JBDCConnect jbdcConnect = new JBDCConnect();
 
         try {
@@ -170,6 +202,7 @@ public class JBDCEntradadeProdutos {
                 return rowsAffected > 0;
             }
         } catch (SQLException e) {
+            System.err.println("Erro ao executar o método adicionarQuantidade:");
             e.printStackTrace();
         } finally {
             jbdcConnect.desconectar();
@@ -177,41 +210,50 @@ public class JBDCEntradadeProdutos {
         return false;
     }
 
-    public boolean categoriaExiste(String nomeCategoria) {
-        String sql = "SELECT COUNT(*) FROM categoria WHERE NomeCategoria = ?";
+    public boolean registrarEntradaProduto(String idProduto, int quantidadeEntrada, String idFornecedor, String idOperador) {
+        String sql = "INSERT INTO entrada_de_produtos (idproduto_entrada, quantidadeProduto, idfornecedor_entrada, idoperador_entrada, dataEntrada) "
+                + "VALUES (?, ?, ?, ?, CURRENT_TIMESTAMP)"; 
         JBDCConnect jbdcConnect = new JBDCConnect();
 
         try {
             if (jbdcConnect.conectar()) {
                 Connection conn = jbdcConnect.getConnection();
                 PreparedStatement pstmt = conn.prepareStatement(sql);
-                pstmt.setString(1, nomeCategoria);
 
-                ResultSet rs = pstmt.executeQuery();
-                if (rs.next()) {
-                    int count = rs.getInt(1);
-                    return count > 0; // Retorna true se a categoria existir
-                }
+                pstmt.setString(1, idProduto);          
+                pstmt.setInt(2, quantidadeEntrada);      
+                pstmt.setString(3, idFornecedor);     
+                pstmt.setString(4, idOperador);       
+
+                int rowsAffected = pstmt.executeUpdate();
+                return rowsAffected > 0;
             }
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
             jbdcConnect.desconectar();
         }
-
-        return false; // Retorna false se a categoria não existir
+        return false;
     }
 
-    public boolean atualizarCategoria(String idProduto, String novaCategoria) {
-        String sql = "UPDATE entrada_de_produtos SET IdCategoria_entrada = (SELECT IdCategoria FROM categoria WHERE NomeCategoria = ?) WHERE idproduto_entrada = ?";
+    public boolean atualizarFornecedorDoProduto(String idProduto, String novoFornecedor) {
+        String sql = "UPDATE produtos "
+                + "SET idFornecedor_produtos = ("
+                + "    SELECT idfornecedor FROM fornecedor_floricultura WHERE nomefornecedor = ?"
+                + ") "
+                + "WHERE idProduto = ? AND EXISTS ("
+                + "    SELECT 1 FROM fornecedor_floricultura WHERE nomefornecedor = ?"
+                + ")";
         JBDCConnect jbdcConnect = new JBDCConnect();
 
         try {
             if (jbdcConnect.conectar()) {
                 Connection conn = jbdcConnect.getConnection();
                 PreparedStatement pstmt = conn.prepareStatement(sql);
-                pstmt.setString(1, novaCategoria);
+
+                pstmt.setString(1, novoFornecedor);
                 pstmt.setString(2, idProduto);
+                pstmt.setString(3, novoFornecedor);
 
                 int rowsAffected = pstmt.executeUpdate();
                 return rowsAffected > 0;

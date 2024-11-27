@@ -9,12 +9,21 @@ package Model;
  * @author Patryk
  */
 public class TabelaEntradadeProdutosModel {
+    private int idProduto;
     private String idproduto_entrada;
     private int quantidadeProduto;
-    private String idCategoria_entrada;
+    private String idfornecedor_entrada;
     
     public TabelaEntradadeProdutosModel(){
     
+    }
+    
+    public int getIdProduto() {
+        return idProduto;
+    }
+
+    public void setIdProduto(int idProduto) {
+        this.idProduto = idProduto;
     }
     
     public String getIdproduto_entrada() {
@@ -33,17 +42,18 @@ public class TabelaEntradadeProdutosModel {
         this.quantidadeProduto = quantidadeProduto;
     }
     
-    public String getIdCategoria_entrada() {
-        return idCategoria_entrada;
+    public String getIdfornecedor_entrada() {
+        return idfornecedor_entrada;
     }
 
-    public void setIdCategoria_entrada(String idCategoria_entrada) {
-        this.idCategoria_entrada = idCategoria_entrada;
+    public void setIdfornecedor_entrada(String idfornecedor_entrada) {
+        this.idfornecedor_entrada = idfornecedor_entrada;
     }
 
-    public TabelaEntradadeProdutosModel(String idproduto_entrada,int quantidadeProduto, String idCategoria_entrada) {
+    public TabelaEntradadeProdutosModel(int idProduto, String idproduto_entrada,int quantidadeProduto, String idfornecedor_entrada) {
+        this.idProduto = idProduto;
         this.idproduto_entrada = idproduto_entrada;
         this.quantidadeProduto = quantidadeProduto;
-        this.idCategoria_entrada = idCategoria_entrada;
+        this.idfornecedor_entrada = idfornecedor_entrada;
     }
 }
