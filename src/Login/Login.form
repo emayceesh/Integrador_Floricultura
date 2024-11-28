@@ -54,7 +54,7 @@
               <Component id="Separator1" max="32767" attributes="0"/>
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace pref="144" max="32767" attributes="0"/>
-                  <Component id="User" pref="202" max="32767" attributes="0"/>
+                  <Component id="Usuario" pref="202" max="32767" attributes="0"/>
                   <EmptySpace pref="144" max="32767" attributes="0"/>
               </Group>
               <Group type="102" alignment="1" attributes="0">
@@ -62,12 +62,12 @@
                   <Component id="BtnLogar" min="-2" pref="151" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="164" max="-2" attributes="0"/>
               </Group>
+              <Component id="Titulo2" alignment="0" max="32767" attributes="0"/>
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace max="32767" attributes="0"/>
                   <Component id="Password" min="-2" pref="200" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
-              <Component id="Titulo2" alignment="0" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
@@ -82,7 +82,7 @@
                   <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                   <Component id="Separator1" min="-2" pref="26" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="User" min="-2" pref="36" max="-2" attributes="0"/>
+                  <Component id="Usuario" min="-2" pref="36" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="Separator3" min="-2" pref="26" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
@@ -118,23 +118,16 @@
             <Property name="horizontalTextPosition" type="int" value="0"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="User">
+        <Component class="javax.swing.JTextField" name="Usuario">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="f4" green="f3" red="ff" type="rgb"/>
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="UserActionPerformed"/>
-            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="UserKeyPressed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="UsuarioActionPerformed"/>
+            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="UsuarioKeyPressed"/>
           </Events>
-        </Component>
-        <Component class="javax.swing.JTextField" name="Password">
-          <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="f4" green="f3" red="ff" type="rgb"/>
-            </Property>
-          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="Separator2">
           <Properties>
@@ -190,6 +183,14 @@
               <Image iconType="3" name="/Imagens/Person_3.png"/>
             </Property>
             <Property name="horizontalTextPosition" type="int" value="0"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JPasswordField" name="Password">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="f4" green="f3" red="ff" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="teste123"/>
           </Properties>
         </Component>
       </SubComponents>

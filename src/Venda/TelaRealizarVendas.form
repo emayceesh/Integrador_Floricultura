@@ -83,7 +83,7 @@
                       <Component id="TituloLabel2" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="TituloLabel3" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="68" max="32767" attributes="0"/>
+                      <EmptySpace pref="60" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -229,9 +229,6 @@
           <SubComponents>
             <Component class="javax.swing.JLabel" name="ClienteLabel">
               <Properties>
-                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="0" green="0" red="0" type="rgb"/>
-                </Property>
                 <Property name="text" type="java.lang.String" value="Nome do Cliente"/>
               </Properties>
             </Component>
@@ -252,9 +249,6 @@
             </Component>
             <Component class="javax.swing.JLabel" name="OperadorLabel">
               <Properties>
-                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="0" green="0" red="0" type="rgb"/>
-                </Property>
                 <Property name="text" type="java.lang.String" value="Nome do Operador"/>
               </Properties>
             </Component>
@@ -262,9 +256,6 @@
             </Component>
             <Component class="javax.swing.JLabel" name="ProdutoLabel">
               <Properties>
-                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="0" green="0" red="0" type="rgb"/>
-                </Property>
                 <Property name="text" type="java.lang.String" value="Nome do Produto"/>
               </Properties>
             </Component>
@@ -272,9 +263,6 @@
             </Component>
             <Component class="javax.swing.JLabel" name="QuantLabel">
               <Properties>
-                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="0" green="0" red="0" type="rgb"/>
-                </Property>
                 <Property name="text" type="java.lang.String" value="Quantidade de Produto"/>
               </Properties>
             </Component>
@@ -282,9 +270,6 @@
             </Component>
             <Component class="javax.swing.JLabel" name="CodVendaLabel">
               <Properties>
-                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="0" green="0" red="0" type="rgb"/>
-                </Property>
                 <Property name="text" type="java.lang.String" value="Codigo da Venda"/>
               </Properties>
             </Component>
@@ -292,9 +277,6 @@
             </Component>
             <Component class="javax.swing.JLabel" name="DataLabel">
               <Properties>
-                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="0" green="0" red="0" type="rgb"/>
-                </Property>
                 <Property name="text" type="java.lang.String" value="Data da Venda"/>
               </Properties>
             </Component>

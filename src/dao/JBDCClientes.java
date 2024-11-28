@@ -63,6 +63,62 @@ public class JBDCClientes {
         
     }
     
+    public void AtualizarCliete(ClientesModel cadastroclientes){
+        String sql = "UPDATE cliente_floricultura as c SET c.nomecliente = ?,\n"
+                + " c.telefonecliente = ?,\n"
+                + " c.cepcliente = ?,\n"
+                + " c.enderecocliente = ?,\n"
+                + " c.numerocliente = ?,\n"
+                + " c.bairrocliente = ?,\n"
+                + " c.UF = ?,\n"
+                + " c.TipoDocumento = ?,\n"
+                + " c.Documento = ?,\n"
+                + " c.email = ?,\n"
+                + " c.cidadecliente = ?\n"
+                + "WHERE c.idcliente = ?";
+                
+         try
+        {
+            //tenta realizar a conexão, se retornar verdadeiro entra no IF
+            if(this.conexao.conectar())
+            {
+                //prepara a sentença com a consulta da string
+                PreparedStatement ConexaoSentenca = this.conexao.getConnection().prepareStatement(sql);
+                
+                
+                ConexaoSentenca.setString(1,cadastroclientes.getNomecliente()); 
+                ConexaoSentenca.setString(2,cadastroclientes.getTelefonecliente());
+                ConexaoSentenca.setString(3,cadastroclientes.getCepcliente()); 
+                ConexaoSentenca.setString(4,cadastroclientes.getEnderecocliente());
+                ConexaoSentenca.setString(5,cadastroclientes.getNumerocliente());
+                ConexaoSentenca.setString(6,cadastroclientes.getBairrocliente());
+                ConexaoSentenca.setString(7,cadastroclientes.getUf());
+                ConexaoSentenca.setString(8,cadastroclientes.getTipoDocumento());
+                ConexaoSentenca.setString(9,cadastroclientes.getDocumento());
+                ConexaoSentenca.setString(10,cadastroclientes.getEmail());
+                ConexaoSentenca.setString(11,cadastroclientes.getcidadecliente());
+                ConexaoSentenca.setInt(12, cadastroclientes.getIdcliente());
+                
+                ConexaoSentenca.execute(); //executa o comando no banco
+                ConexaoSentenca.close(); //fecha a sentença
+                this.conexao.getConnection().close(); //fecha a conexão com o banco
+                
+                
+                
+            }
+            
+            
+              
+        }
+        catch(SQLException ex)
+        {
+           throw new RuntimeException(ex);
+        }        
+        
+    }
+    
+    
+    
     public ArrayList<ClientesModel> MostrarListaclientes() {
 
         ArrayList<ClientesModel> ListaClientes = new ArrayList<ClientesModel>();
@@ -121,6 +177,7 @@ public class JBDCClientes {
             throw new RuntimeException(ex);
         }
     }
+    
     
         public ArrayList<ClientesModel> ConsultaCliente(int IdCliente) {
 

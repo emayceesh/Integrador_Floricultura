@@ -248,7 +248,7 @@ public class TelaRealizarVendas extends javax.swing.JPanel {
 
     private void ConfirmaVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConfirmaVendaActionPerformed
         // TODO add your handling code here:
-        if (ClienteCBox.getText().isEmpty() && 
+        if ( 
     OperadorText.getText().isEmpty() &&
     ProdutoText.getText().isEmpty() &&
     QuantText.getText().isEmpty() &&
@@ -258,9 +258,7 @@ public class TelaRealizarVendas extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Os Campos devem estar preenchidos para realizar uma venda!");
         }else{
             String[] options = {"Sim", "Não"};
-            int resposta = JOptionPane.showOptionDialog(
-                this,
-                    );
+           
         }
     }//GEN-LAST:event_ConfirmaVendaActionPerformed
 

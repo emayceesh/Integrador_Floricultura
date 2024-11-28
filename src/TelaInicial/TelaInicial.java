@@ -27,6 +27,7 @@ import Clientes.ClientesPrincipal;
 import Venda.TelaVendasPrincipal;
 
 import Categorias.CategoriaPrincipal;
+import Model.OperadorModel;
 
 import TelaInicial.TelaBoasVindas;
 
@@ -72,7 +73,6 @@ public class TelaInicial extends javax.swing.JFrame {
            
            });
            }
-       
        TelaBoasVindas TelaPrincipal = new TelaBoasVindas();
        ShowPanel(TelaPrincipal);
        
@@ -96,8 +96,9 @@ public class TelaInicial extends javax.swing.JFrame {
         CadastroProdutosRapido = new javax.swing.JButton();
         ConsultaProdutosRapido = new javax.swing.JButton();
         Principal = new javax.swing.JButton();
-        Separator = new javax.swing.JLabel();
+        Operador = new javax.swing.JLabel();
         Titulo = new javax.swing.JLabel();
+        Separator1 = new javax.swing.JLabel();
         Content = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -183,17 +184,23 @@ public class TelaInicial extends javax.swing.JFrame {
             }
         });
 
-        Separator.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        Separator.setForeground(new java.awt.Color(255, 255, 255));
-        Separator.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        Separator.setText("Sistema Floricultura");
-        Separator.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        Operador.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        Operador.setForeground(new java.awt.Color(255, 255, 255));
+        Operador.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Operador.setText("Usuário: ");
+        Operador.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         Titulo.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         Titulo.setForeground(new java.awt.Color(255, 255, 255));
         Titulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Titulo.setText("Casa da Planta");
         Titulo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
+        Separator1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        Separator1.setForeground(new java.awt.Color(255, 255, 255));
+        Separator1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Separator1.setText("Sistema Floricultura");
+        Separator1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -207,16 +214,21 @@ public class TelaInicial extends javax.swing.JFrame {
             .addComponent(ConsultaProdutosRapido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(Principal, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(Titulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(Separator, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(Operador, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(Separator1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap()))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(61, 61, 61)
                 .addComponent(Titulo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Separator, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(45, 45, 45)
+                .addGap(77, 77, 77)
                 .addComponent(MenuRapido)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(Principal, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -230,7 +242,14 @@ public class TelaInicial extends javax.swing.JFrame {
                 .addComponent(CadastroProdutosRapido, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(ConsultaProdutosRapido, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(Operador, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(15, 15, 15))
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGap(109, 109, 109)
+                    .addComponent(Separator1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(588, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout ContentLayout = new javax.swing.GroupLayout(Content);
@@ -360,6 +379,10 @@ public class TelaInicial extends javax.swing.JFrame {
         });
 
     }
+    
+    public void OperadorSistema(OperadorModel OperadorSistema){
+        Operador.setText(OperadorSistema.getNome());
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton CadastroProdutosRapido;
@@ -368,9 +391,10 @@ public class TelaInicial extends javax.swing.JFrame {
     private javax.swing.JButton ConsultaRapida;
     private javax.swing.JPanel Content;
     private javax.swing.JLabel MenuRapido;
+    private javax.swing.JLabel Operador;
     private javax.swing.JButton Principal;
     private javax.swing.JButton RealizarVendaRapida;
-    private javax.swing.JLabel Separator;
+    private javax.swing.JLabel Separator1;
     private javax.swing.JLabel Titulo;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables

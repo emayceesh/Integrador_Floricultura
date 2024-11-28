@@ -5,6 +5,7 @@
 package dao;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 
@@ -49,6 +50,10 @@ public class JBDCConnect {
         } catch (SQLException e) {
             e.printStackTrace(); // Exibe a pilha de erros se falhar ao fechar
         }
+    }
+
+    PreparedStatement prepareStatement(String sql) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
            
 }
