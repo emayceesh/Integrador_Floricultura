@@ -432,7 +432,7 @@ public class ClientesPrincipal extends javax.swing.JPanel {
          String[] options = {"Sim", "Cancelar"};
          int resposta = JOptionPane.showOptionDialog(
             this,
-            "Deseja excluir mesmo este imóvel?" + "\n\n"+
+            "Deseja excluir mesmo este Cliente?" + "\n\n"+
             "Id do Cliente: " + ClienteId + "\n" +
             "Nome do Cliente: " + ClienteNome+ "\n" +
             "Documento Cliente: " + ClienteDocumento + "\n\n",

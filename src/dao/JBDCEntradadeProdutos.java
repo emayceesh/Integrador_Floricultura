@@ -4,17 +4,20 @@
  */
 package dao;
 
+import Model.EntradaProdutosModel;
 import java.sql.SQLException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import Model.NomeIDCategoriaModel;
 import Model.NomeIDFornecedoresModel;
+import Model.NomeIDProdutosModel;
 import Model.NomeIDOperadorModel;
 import Model.TabelaEntradadeProdutosModel;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -26,55 +29,6 @@ public class JBDCEntradadeProdutos {
 
     public JBDCEntradadeProdutos() {
 
-    }
-
-    public void inserirProduto() {
-        String sql = "INSERT INTO entrada_de_produtos (idproduto_entrada, quantidadeProduto, idfornecedor_entrada, idoperador_entrada, idCategoria_entrada) VALUES (?, ?, ?, ?, ?)";
-
-        JBDCConnect jbdcConnect = new JBDCConnect();
-
-        if (jbdcConnect.conectar()) {
-            try (Connection conn = jbdcConnect.getConnection(); PreparedStatement statement = conn.prepareStatement(sql)) {
-
-                ///INCOMPLETA
-                statement.executeUpdate();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            } finally {
-                jbdcConnect.desconectar();
-            }
-        } else {
-            System.out.println("Erro ao conectar ao banco de dados.");
-        }
-    }
-
-    public List<NomeIDCategoriaModel> getCategorias() {
-        List<NomeIDCategoriaModel> categorias = new ArrayList<>();
-        String sql = "SELECT IdCategoria, NomeCategoria FROM categoria";
-
-        JBDCConnect jbdcConnect = new JBDCConnect();
-
-        try {
-            if (jbdcConnect.conectar()) {
-                Connection conn = jbdcConnect.getConnection();
-
-                try (Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(sql)) {
-                    while (rs.next()) {
-                        int id = rs.getInt("IdCategoria");
-                        String nome = rs.getString("NomeCategoria");
-                        categorias.add(new NomeIDCategoriaModel(id, nome));
-                    }
-                }
-            } else {
-                System.out.println("Erro ao conectar ao banco de dados.");
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            jbdcConnect.desconectar();
-        }
-
-        return categorias;
     }
 
     public List<NomeIDFornecedoresModel> getIDNomeFornecedor() {
@@ -107,38 +61,7 @@ public class JBDCEntradadeProdutos {
         return fornecedores;
     }
 
-    public List<NomeIDOperadorModel> getIDNomeOperador() {
-        List<NomeIDOperadorModel> operadores = new ArrayList<>();
-        String sql = "SELECT idoperador, nomeoperador FROM usuario_sistema_floricultura";
-
-        JBDCConnect jbdcConnect = new JBDCConnect();
-
-        try {
-
-            if (jbdcConnect.conectar()) {
-
-                Connection conn = jbdcConnect.getConnection();
-
-                try (Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(sql)) {
-                    while (rs.next()) {
-                        int id = rs.getInt("idoperador");
-                        String nome = rs.getString("nomeoperador");
-                        operadores.add(new NomeIDOperadorModel(id, nome));
-                    }
-                }
-            } else {
-                System.out.println("Erro ao conectar ao banco de dados.");
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            // Fechar a conexão, se necessário
-            jbdcConnect.desconectar();
-        }
-
-        return operadores;
-    }
-
+    //MOstra os produtos na tabela
     public ArrayList<TabelaEntradadeProdutosModel> MostrarListaProdutos() {
 
         ArrayList<TabelaEntradadeProdutosModel> listaProdutos = new ArrayList<>();
@@ -186,6 +109,7 @@ public class JBDCEntradadeProdutos {
         return listaProdutos;
     }
 
+    //Adiciona a quantidade escolhida pelo usuário ao item selecionado na tabela
     public boolean adicionarQuantidade(String idProduto, int quantidadeAdicionada) {
         String sql = "UPDATE produtos SET QuantidadeProduto = QuantidadeProduto + ? WHERE idProduto = ?";
         JBDCConnect jbdcConnect = new JBDCConnect();
@@ -212,7 +136,7 @@ public class JBDCEntradadeProdutos {
 
     public boolean registrarEntradaProduto(String idProduto, int quantidadeEntrada, String idFornecedor, String idOperador) {
         String sql = "INSERT INTO entrada_de_produtos (idproduto_entrada, quantidadeProduto, idfornecedor_entrada, idoperador_entrada, dataEntrada) "
-                + "VALUES (?, ?, ?, ?, CURRENT_TIMESTAMP)"; 
+                + "VALUES (?, ?, ?, ?, CURRENT_TIMESTAMP)";
         JBDCConnect jbdcConnect = new JBDCConnect();
 
         try {
@@ -220,10 +144,10 @@ public class JBDCEntradadeProdutos {
                 Connection conn = jbdcConnect.getConnection();
                 PreparedStatement pstmt = conn.prepareStatement(sql);
 
-                pstmt.setString(1, idProduto);          
-                pstmt.setInt(2, quantidadeEntrada);      
-                pstmt.setString(3, idFornecedor);     
-                pstmt.setString(4, idOperador);       
+                pstmt.setString(1, idProduto);
+                pstmt.setInt(2, quantidadeEntrada);
+                pstmt.setString(3, idFornecedor);
+                pstmt.setString(4, idOperador);
 
                 int rowsAffected = pstmt.executeUpdate();
                 return rowsAffected > 0;
@@ -236,6 +160,7 @@ public class JBDCEntradadeProdutos {
         return false;
     }
 
+    //Atualiza o fornecedor do produto caso o usuário decida muda-lo
     public boolean atualizarFornecedorDoProduto(String idProduto, String novoFornecedor) {
         String sql = "UPDATE produtos "
                 + "SET idFornecedor_produtos = ("
@@ -265,5 +190,60 @@ public class JBDCEntradadeProdutos {
         }
         return false;
     }
+
+    public ArrayList<EntradaProdutosModel> filtrarProdutos(String colunaSelecionada, String valorPesquisa) {
+        ArrayList<EntradaProdutosModel> listaProdutos = new ArrayList<>();
+
+        String colunaSQL;
+        switch (colunaSelecionada) {
+            case "ID do Produto":
+                colunaSQL = "p.idproduto";
+                break;
+            case "Nome do Produto":
+                colunaSQL = "p.nomeproduto";
+                break;
+            case "Fornecedor":
+                colunaSQL = "f.nomefornecedor";
+                break;
+            default:
+                throw new IllegalArgumentException("Coluna inválida: " + colunaSelecionada);
+        }
+
+        String sql = "SELECT p.idProduto, p.NomeProduto, p.QuantidadeProduto, f.nomefornecedor "
+                + "FROM produtos AS p "
+                + "INNER JOIN fornecedor_floricultura AS f ON p.idFornecedor_produtos = f.idfornecedor "
+                + "WHERE " + colunaSQL + " LIKE ?";
+
+        JBDCConnect jbdcConnect = new JBDCConnect();
+        try {
+            if (jbdcConnect.conectar()) {
+                PreparedStatement sentenca = jbdcConnect.getConnection().prepareStatement(sql);
+
+                sentenca.setString(1, "%" + valorPesquisa + "%");
+
+                ResultSet resultados = sentenca.executeQuery();
+
+                while (resultados.next()) {
+                    EntradaProdutosModel produto = new EntradaProdutosModel(
+                            resultados.getString("idProduto"),
+                            resultados.getString("NomeProduto"),
+                            resultados.getInt("QuantidadeProduto"),
+                            resultados.getString("nomefornecedor")
+                    );
+                    listaProdutos.add(produto);
+                }
+
+                sentenca.close();
+                jbdcConnect.getConnection().close();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+
+        return listaProdutos;
+    }
+
+    
 
 }

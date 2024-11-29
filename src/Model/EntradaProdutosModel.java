@@ -15,7 +15,8 @@ public class EntradaProdutosModel {
     private String idCategoria_entrada;
     private String idfornecedor_entrada;
     private String idoperador_entrada;
-    
+    private String itempesquisar;
+    private int valorconsulta;
 
     public String getIdprodutos_entrada() {
         return idprodutos_entrada;
@@ -57,13 +58,38 @@ public class EntradaProdutosModel {
         this.quantidadeProduto = quantidadeProduto;
     }
 
-    public EntradaProdutosModel(String idprodutos_entrada, String idCategoria, String idfornecedor_entrada, String idoperador, int quantidadeProduto) {
+    public String getItempesquisar() {
+        return itempesquisar;
+    }
+
+    public void setItempesquisar(String itempesquisar) {
+        this.itempesquisar = itempesquisar;
+    }
+
+    public int getValorconsulta() {
+        return valorconsulta;
+    }
+
+    public void setValorconsulta(int valorconsulta) {
+        this.valorconsulta = valorconsulta;
+    }
+
+    public EntradaProdutosModel(String idprodutos_entrada, String idCategoria, String idfornecedor_entrada, String idoperador, int quantidadeProduto,
+            String itempesquisar, int valorconsulta) {
         this.idprodutos_entrada = idprodutos_entrada;
         this.idCategoria_entrada = idCategoria;
         this.idfornecedor_entrada = idfornecedor_entrada;
         this.idoperador_entrada = idoperador;
         this.quantidadeProduto = quantidadeProduto;
+        this.itempesquisar = itempesquisar;
+        this.valorconsulta = valorconsulta;
     }
-}
 
-    
+    public EntradaProdutosModel(String idprodutos_entrada,String itempesquisar , int quantidadeProduto, String idfornecedor_entrada ) {
+        this.idprodutos_entrada = idprodutos_entrada;
+        this.itempesquisar = itempesquisar;
+        this.quantidadeProduto = quantidadeProduto;
+        this.idfornecedor_entrada = idfornecedor_entrada;
+    }   
+
+}
