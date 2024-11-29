@@ -11,6 +11,10 @@ package Model;
 public class NomeIDCategoriaModel {
     private int id;
     private String nome;
+    
+    public NomeIDCategoriaModel() {
+ 
+    }
 
     public NomeIDCategoriaModel(int id, String nome) {
         this.id = id;
@@ -23,6 +27,14 @@ public class NomeIDCategoriaModel {
 
     public String getNome() {
         return nome;
+    }
+    
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     @Override

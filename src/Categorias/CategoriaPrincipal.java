@@ -4,15 +4,21 @@
  */
 package Categorias;
 
+import Model.ClientesModel;
+import Model.NomeIDCategoriaModel;
+import dao.JBDCCategorias;
 import TelaInicial.TelaBoasVindas;
+import dao.JBDCClientes;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.plaf.basic.BasicButtonUI;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -25,7 +31,8 @@ public class CategoriaPrincipal extends javax.swing.JPanel {
      */
     public CategoriaPrincipal() {
         initComponents();
-        JButton [] btns = {CdCatBtn,CancelarBtn,Retornar,PesquisarBtn};
+        MostrarCategoriasTabela();
+        JButton [] btns = {CdCatBtn,Retornar,ExcluirBtn};
        for(JButton btn : btns){
            btn.setBackground(new Color(186,47,57));
            btn.setUI(new BasicButtonUI());
@@ -71,16 +78,11 @@ public class CategoriaPrincipal extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        TabelaCategorias = new javax.swing.JTable();
         CdCatBtn = new javax.swing.JButton();
-        PesquisaLabel = new javax.swing.JLabel();
-        Pesquisa = new javax.swing.JTextField();
-        FiltroLabel = new javax.swing.JLabel();
-        FiltroCombo = new javax.swing.JComboBox<>();
-        PesquisarBtn = new javax.swing.JButton();
         NomeCategoria = new javax.swing.JTextField();
         PesquisaLabel1 = new javax.swing.JLabel();
-        CancelarBtn = new javax.swing.JButton();
+        ExcluirBtn = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         TituloLabel2 = new javax.swing.JLabel();
         TituloLabel3 = new javax.swing.JLabel();
@@ -94,32 +96,44 @@ public class CategoriaPrincipal extends javax.swing.JPanel {
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel4.setText("Aqui é possível consultar as categorias dos produtos e cadastrá-las.");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        TabelaCategorias.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "ID Categoria", "Nome da Categoria"
             }
-        ));
-        jScrollPane1.setViewportView(jTable1);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(TabelaCategorias);
+        if (TabelaCategorias.getColumnModel().getColumnCount() > 0) {
+            TabelaCategorias.getColumnModel().getColumn(0).setResizable(false);
+            TabelaCategorias.getColumnModel().getColumn(1).setResizable(false);
+        }
 
         CdCatBtn.setBackground(new java.awt.Color(239, 86, 96));
         CdCatBtn.setForeground(new java.awt.Color(255, 255, 255));
@@ -133,35 +147,17 @@ public class CategoriaPrincipal extends javax.swing.JPanel {
             }
         });
 
-        PesquisaLabel.setText("Pesquisar:");
-
-        FiltroLabel.setText("Filtro:");
-
-        FiltroCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        PesquisarBtn.setBackground(new java.awt.Color(239, 86, 96));
-        PesquisarBtn.setForeground(new java.awt.Color(255, 255, 255));
-        PesquisarBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Search.png"))); // NOI18N
-        PesquisarBtn.setText("Pesquisar");
-        PesquisarBtn.setBorderPainted(false);
-        PesquisarBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        PesquisarBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                PesquisarBtnActionPerformed(evt);
-            }
-        });
-
         PesquisaLabel1.setText("Nome da Categoria:");
 
-        CancelarBtn.setBackground(new java.awt.Color(239, 86, 96));
-        CancelarBtn.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
-        CancelarBtn.setForeground(new java.awt.Color(255, 255, 255));
-        CancelarBtn.setText("Cancelar");
-        CancelarBtn.setBorderPainted(false);
-        CancelarBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        CancelarBtn.addActionListener(new java.awt.event.ActionListener() {
+        ExcluirBtn.setBackground(new java.awt.Color(239, 86, 96));
+        ExcluirBtn.setForeground(new java.awt.Color(255, 255, 255));
+        ExcluirBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Delete.png"))); // NOI18N
+        ExcluirBtn.setText("Excluir");
+        ExcluirBtn.setBorderPainted(false);
+        ExcluirBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        ExcluirBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CancelarBtnActionPerformed(evt);
+                ExcluirBtnActionPerformed(evt);
             }
         });
 
@@ -179,20 +175,13 @@ public class CategoriaPrincipal extends javax.swing.JPanel {
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Pesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(PesquisaLabel)
                             .addComponent(NomeCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(PesquisaLabel1))
                         .addGap(34, 34, 34)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(FiltroLabel)
-                            .addComponent(FiltroCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(CdCatBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(CdCatBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(PesquisarBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)
-                            .addComponent(CancelarBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addContainerGap(44, Short.MAX_VALUE))))
+                        .addComponent(ExcluirBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(25, Short.MAX_VALUE))))
             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         jPanel3Layout.setVerticalGroup(
@@ -202,26 +191,17 @@ public class CategoriaPrincipal extends javax.swing.JPanel {
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(30, 30, 30)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(PesquisaLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(NomeCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(CancelarBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(CdCatBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(PesquisaLabel)
-                    .addComponent(FiltroLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Pesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(FiltroCombo)
-                    .addComponent(PesquisarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(CdCatBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(ExcluirBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         jPanel2.setBackground(new java.awt.Color(185, 35, 44));
@@ -308,10 +288,6 @@ public class CategoriaPrincipal extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void PesquisarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PesquisarBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_PesquisarBtnActionPerformed
-
     private void RetornarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RetornarActionPerformed
         // TODO add your handling code here:
         TelaBoasVindas TelaInicio = new TelaBoasVindas();
@@ -337,31 +313,47 @@ public class CategoriaPrincipal extends javax.swing.JPanel {
                 options[0]);
             if (resposta == 1) {
             }else{
+                JBDCCategorias CadastroCategoraiBanco = new JBDCCategorias();
+                
+                NomeIDCategoriaModel ModelCategoria = new NomeIDCategoriaModel();
+                ModelCategoria.setNome(NomeCategoria.getText());
+                
+                CadastroCategoraiBanco.AdicionarCategoria(ModelCategoria);
                 NomeCategoria.setText("");
- 
+                MostrarCategoriasTabela();
             }
         }
     }//GEN-LAST:event_CdCatBtnActionPerformed
 
-    private void CancelarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelarBtnActionPerformed
+    private void ExcluirBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExcluirBtnActionPerformed
         // TODO add your handling code here:
-        String[] options = {"Sim", "Cancelar"};
-        int resposta = JOptionPane.showOptionDialog(
+        NomeIDCategoriaModel ListaCliente = new NomeIDCategoriaModel();
+        JBDCCategorias ClientesJBDC = new JBDCCategorias();
+        int LinhaSelecionada = TabelaCategorias.getSelectedRow();
+        DefaultTableModel ModeloTabela = (DefaultTableModel) TabelaCategorias.getModel();
+        int ClienteId = ClientesJBDC.getCategorias().get(LinhaSelecionada).getId();
+        String ClienteNome = ClientesJBDC.getCategorias().get(LinhaSelecionada).getNome();
+        
+         String[] options = {"Sim", "Cancelar"};
+         int resposta = JOptionPane.showOptionDialog(
             this,
-            "Esta ação apagará todos os campos, tem certeza?",
+            "Deseja excluir mesmo este imóvel?" + "\n\n"+
+            "Id do Cliente: " + ClienteId + "\n" +
+            "Nome do Cliente: " + ClienteNome+"\n\n",
             "Confirmação",
             JOptionPane.DEFAULT_OPTION,
             JOptionPane.WARNING_MESSAGE,
             null,
             options,
-            options[0]
-        );
+            options[0]);
         if (resposta == 0) {
-             NomeCategoria.setText("");
+            ListaCliente.setId(ClienteId);
+            ClientesJBDC.ExcluirCategoria(ListaCliente);
+            MostrarCategoriasTabela();
         } else {
-            CancelarBtn.requestFocus();
+            JOptionPane.showMessageDialog(null, "Operação Cancelada!");
         }
-    }//GEN-LAST:event_CancelarBtnActionPerformed
+    }//GEN-LAST:event_ExcluirBtnActionPerformed
 
     private void ShowPanel(JPanel p){
     p.setSize(800,700);
@@ -373,19 +365,33 @@ public class CategoriaPrincipal extends javax.swing.JPanel {
     PainelCentral.repaint();    
      }
     
+     public void MostrarCategoriasTabela(){
+        JBDCCategorias CategoriaTabela = new JBDCCategorias();
+        ArrayList<NomeIDCategoriaModel> ListaCategoria =  CategoriaTabela.getCategorias();
+        
+        
+        DefaultTableModel model = (DefaultTableModel)TabelaCategorias.getModel();
+         model.setRowCount(0);
+         model.setColumnCount(2);
+        
+        Object[] row = new Object[2];
+        for(int i = 0;i < ListaCategoria.size();i++){
+            row[0] = ListaCategoria.get(i).getId();
+            row[1] = ListaCategoria.get(i).getNome();
+            model.addRow(row.clone());
+
+        }
+       
+    }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton CancelarBtn;
     private javax.swing.JButton CdCatBtn;
-    private javax.swing.JComboBox<String> FiltroCombo;
-    private javax.swing.JLabel FiltroLabel;
+    private javax.swing.JButton ExcluirBtn;
     private javax.swing.JTextField NomeCategoria;
     private javax.swing.JPanel PainelCentral;
-    private javax.swing.JTextField Pesquisa;
-    private javax.swing.JLabel PesquisaLabel;
     private javax.swing.JLabel PesquisaLabel1;
-    private javax.swing.JButton PesquisarBtn;
     private javax.swing.JButton Retornar;
+    private javax.swing.JTable TabelaCategorias;
     private javax.swing.JLabel TituloLabel2;
     private javax.swing.JLabel TituloLabel3;
     private javax.swing.JLabel jLabel3;
@@ -393,6 +399,5 @@ public class CategoriaPrincipal extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }
