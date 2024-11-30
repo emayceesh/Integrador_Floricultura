@@ -160,22 +160,16 @@ public class JBDCProdutos {
             ColunaSelecionada = "p.NomeProduto";
             break;
         case 2:
-            ColunaSelecionada = "p.QuantidadeProduto";
+            ColunaSelecionada = "c.NomeCategoria";
             break;
         case 3:
-            ColunaSelecionada = "p.PrecoProdutoUnitario";
+            ColunaSelecionada = "f.nomefornecedor";
             break;
         case 4:
-            ColunaSelecionada = "p.DescontoProduto";
+            ColunaSelecionada = "p.PrecoProdutoUnitario";
             break;
         case 5:
-            ColunaSelecionada = "p.DescricaoProduto";
-            break;
-        case 6:
-            ColunaSelecionada = "p.idFornecedor_produtos";  // Filtro por fornecedor
-            break;
-        case 7:
-            ColunaSelecionada = "p.idProdutoCategoria";  // Filtro por categoria do produto
+            ColunaSelecionada = "p.DescontoProduto";
             break;
     }
 
@@ -187,14 +181,19 @@ public class JBDCProdutos {
     "    p.PrecoProdutoUnitario, \n" +
     "    p.DescontoProduto, \n" +
     "    p.DescricaoProduto, \n" +
-    "    p.idFornecedor_produtos, \n" +
-    "    p.idProdutoCategoria \n" +
+    "    f.nomefornecedor, \n" +
+    "    c.NomeCategoria\n" +
     "FROM \n" +
     "    produtos AS p \n" +
-    "WHERE " + ColunaSelecionada + " = ? \n" +
+    "LEFT JOIN \n" +
+    "    fornecedor_floricultura AS f ON f.idfornecedor = p.idFornecedor_produtos \n" +
+    "LEFT JOIN \n" +
+    "    categoria AS c ON c.IdCategoria = p.idProdutoCategoria \n" +
+    "WHERE " + ColunaSelecionada + " LIKE ? \n" +
     "ORDER BY \n" +
     "    p.idProduto;";
 
+   
     try {
         if (this.conexao.conectar()) {
 
@@ -230,8 +229,8 @@ public class JBDCProdutos {
                 produtoModel.setPrecoProdutoUnitario(SentencaProdutos.getInt("PrecoProdutoUnitario"));
                 produtoModel.setDescontoProduto(SentencaProdutos.getInt("DescontoProduto"));
                 produtoModel.setDescricaoProduto(SentencaProdutos.getString("DescricaoProduto"));
-                produtoModel.setIdFornecedorProdutos(SentencaProdutos.getString("idFornecedor_produtos"));
-                produtoModel.setIdProdutoCategoria(SentencaProdutos.getString("idProdutoCategoria"));
+                produtoModel.setIdFornecedorProdutos(SentencaProdutos.getString("nomefornecedor"));
+                produtoModel.setIdProdutoCategoria(SentencaProdutos.getString("NomeCategoria"));
 
                 ListaProduto.add(produtoModel);
             }
