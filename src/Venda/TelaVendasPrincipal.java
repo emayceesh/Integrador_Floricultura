@@ -4,6 +4,8 @@
  */
 package Venda;
 
+import Model.ClientesModel;
+import Model.VendasModel;
 import TelaInicial.TelaBoasVindas;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -12,6 +14,11 @@ import java.awt.event.MouseListener;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.plaf.basic.BasicButtonUI;
+import Venda.TelaRealizarVendas;
+import dao.JBDCClientes;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+import dao.JBDCVendas;
 
 /**
  *
@@ -24,6 +31,7 @@ public class TelaVendasPrincipal extends javax.swing.JPanel {
      */
     public TelaVendasPrincipal() {
         initComponents();
+        MostrarClientesTabela();
         JButton [] btns = {BtnVendas,BtnPesquisa,Retornar};
        for(JButton btn : btns){
            btn.setBackground(new Color(186,47,57));
@@ -74,7 +82,7 @@ public class TelaVendasPrincipal extends javax.swing.JPanel {
         jLabel6 = new javax.swing.JLabel();
         BtnPesquisa = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        TabelaVendas = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
         TituloLabel2 = new javax.swing.JLabel();
         TituloLabel3 = new javax.swing.JLabel();
@@ -125,7 +133,7 @@ public class TelaVendasPrincipal extends javax.swing.JPanel {
         BtnPesquisa.setBorderPainted(false);
         BtnPesquisa.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        TabelaVendas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
                 {null, null, null, null, null, null},
@@ -140,21 +148,29 @@ public class TelaVendasPrincipal extends javax.swing.JPanel {
                 {null, null, null, null, null, null}
             },
             new String [] {
-                "IdVenda", "IdCliente", "Produto", "Quantidade", "Cod. Venda", "Data Venda"
+                "IdVenda", "Cliente", "Produto", "Quantidade", "Cod. Venda", "Data Venda"
             }
         ) {
-            Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
             };
 
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
-        jTable2.setMaximumSize(new java.awt.Dimension(2147483647, 297));
-        jTable2.setMinimumSize(new java.awt.Dimension(105, 297));
-        jTable2.setShowVerticalLines(true);
-        jScrollPane2.setViewportView(jTable2);
+        TabelaVendas.setMaximumSize(new java.awt.Dimension(2147483647, 297));
+        TabelaVendas.setMinimumSize(new java.awt.Dimension(105, 297));
+        TabelaVendas.setShowVerticalLines(true);
+        jScrollPane2.setViewportView(TabelaVendas);
+        if (TabelaVendas.getColumnModel().getColumnCount() > 0) {
+            TabelaVendas.getColumnModel().getColumn(0).setResizable(false);
+            TabelaVendas.getColumnModel().getColumn(1).setResizable(false);
+            TabelaVendas.getColumnModel().getColumn(2).setResizable(false);
+            TabelaVendas.getColumnModel().getColumn(3).setResizable(false);
+            TabelaVendas.getColumnModel().getColumn(4).setResizable(false);
+            TabelaVendas.getColumnModel().getColumn(5).setResizable(false);
+        }
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -296,8 +312,8 @@ public class TelaVendasPrincipal extends javax.swing.JPanel {
 
     private void BtnVendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnVendasActionPerformed
         // TODO add your handling code here:
-        TelaRealizarVendas VaiParaRealizar = new TelaRealizarVendas();
-        ShowPanel(VaiParaRealizar);
+        RealizarVenda TeladeVendas = new RealizarVenda();
+        TeladeVendas.setVisible(true);
     }//GEN-LAST:event_BtnVendasActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
@@ -319,6 +335,36 @@ public class TelaVendasPrincipal extends javax.swing.JPanel {
     MostraConteudo.revalidate();
     MostraConteudo.repaint();    
     }
+    
+    public void MostrarClientesTabela(){
+        JBDCVendas ListaJBDCVendas = new JBDCVendas();
+        ArrayList<VendasModel> ListaVendas =  ListaJBDCVendas.MostrarListavendas();
+        
+        
+        DefaultTableModel model = (DefaultTableModel)TabelaVendas.getModel();
+         model.setRowCount(0);
+         model.setColumnCount(6);
+        
+        Object[] row = new Object[6];
+        for(int i = 0;i < ListaVendas.size();i++){
+            row[0] = ListaVendas.get(i).getIdvenda();
+            row[1] = ListaVendas.get(i).getIdcliente();
+            row[2] = ListaVendas.get(i).getProduto_venda();
+            row[3] = ListaVendas.get(i).getQuantidade_venda();
+            row[4] = ListaVendas.get(i).getCodigo_venda();
+            row[5] = ListaVendas.get(i).getDataVenda(); 
+            model.addRow(row.clone());
+
+        }
+       
+    }
+    
+     public void RecarregarClientesTabela() {
+    DefaultTableModel model = (DefaultTableModel) TabelaVendas.getModel();
+    model.setRowCount(0);
+    model.setColumnCount(6);
+    MostrarClientesTabela();
+}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnPesquisa;
@@ -326,6 +372,7 @@ public class TelaVendasPrincipal extends javax.swing.JPanel {
     private javax.swing.JComboBox<String> FiltroCombo;
     private javax.swing.JPanel MostraConteudo;
     private javax.swing.JButton Retornar;
+    private javax.swing.JTable TabelaVendas;
     private javax.swing.JLabel TituloLabel2;
     private javax.swing.JLabel TituloLabel3;
     private javax.swing.JLabel jLabel3;
@@ -335,7 +382,6 @@ public class TelaVendasPrincipal extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable2;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 

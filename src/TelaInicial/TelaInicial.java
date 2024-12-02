@@ -100,8 +100,6 @@ public class TelaInicial extends javax.swing.JFrame {
         Operador = new javax.swing.JLabel();
         Titulo = new javax.swing.JLabel();
         Separator1 = new javax.swing.JLabel();
-        ConsultaProdutosRapido2 = new javax.swing.JButton();
-        ConsultaProdutosRapido3 = new javax.swing.JButton();
         Content = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -210,22 +208,6 @@ public class TelaInicial extends javax.swing.JFrame {
         Separator1.setText("Sistema Floricultura");
         Separator1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
-        ConsultaProdutosRapido2.setBackground(new java.awt.Color(239, 86, 96));
-        ConsultaProdutosRapido2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        ConsultaProdutosRapido2.setForeground(new java.awt.Color(255, 255, 255));
-        ConsultaProdutosRapido2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Task.png"))); // NOI18N
-        ConsultaProdutosRapido2.setText("Logs");
-        ConsultaProdutosRapido2.setBorderPainted(false);
-        ConsultaProdutosRapido2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-
-        ConsultaProdutosRapido3.setBackground(new java.awt.Color(239, 86, 96));
-        ConsultaProdutosRapido3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        ConsultaProdutosRapido3.setForeground(new java.awt.Color(255, 255, 255));
-        ConsultaProdutosRapido3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Task.png"))); // NOI18N
-        ConsultaProdutosRapido3.setText("Logs");
-        ConsultaProdutosRapido3.setBorderPainted(false);
-        ConsultaProdutosRapido3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -238,11 +220,9 @@ public class TelaInicial extends javax.swing.JFrame {
             .addComponent(ConsultaProdutosRapido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(Principal, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(Titulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(ConsultaProdutosRapido2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(Operador, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(ConsultaProdutosRapido3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addContainerGap()
@@ -268,10 +248,6 @@ public class TelaInicial extends javax.swing.JFrame {
                 .addComponent(CadastroProdutosRapido, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(ConsultaProdutosRapido, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(ConsultaProdutosRapido2, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(ConsultaProdutosRapido3, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(Operador, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(15, 15, 15))
@@ -364,14 +340,10 @@ public class TelaInicial extends javax.swing.JFrame {
     }//GEN-LAST:event_ConsultaRapidaActionPerformed
 
     private void ConsultaProdutosRapidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConsultaProdutosRapidoActionPerformed
-<<<<<<< HEAD
-        TelaRealizarVendas vendasRealizadas = new TelaRealizarVendas();
-        ShowPanel(vendasRealizadas);       // TODO add your handling code here:
-=======
-        // TODO add your handling code here:
+
+       // TODO add your handling code here:
         ProdutosPrincipal TelaProdutos = new ProdutosPrincipal();
         ShowPanel(TelaProdutos);
->>>>>>> 361182a4bc79faa29a798f8624bbee385a25e61c
     }//GEN-LAST:event_ConsultaProdutosRapidoActionPerformed
 
     
@@ -429,8 +401,6 @@ public class TelaInicial extends javax.swing.JFrame {
     private javax.swing.JButton CadastroProdutosRapido;
     private javax.swing.JButton CadastroRapido;
     private javax.swing.JButton ConsultaProdutosRapido;
-    private javax.swing.JButton ConsultaProdutosRapido2;
-    private javax.swing.JButton ConsultaProdutosRapido3;
     private javax.swing.JButton ConsultaRapida;
     private javax.swing.JPanel Content;
     private javax.swing.JLabel MenuRapido;

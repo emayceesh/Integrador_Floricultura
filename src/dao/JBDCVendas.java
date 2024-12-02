@@ -62,9 +62,9 @@ public class JBDCVendas {
                 + "v.codigoVenda, \n"
                 + "v.dataVenda \n"
                 + "FROM \n"
-                + "Vendas as v\n"
+                + "vendas as v\n"
                 + "ORDER BY \n"
-                + "     v.idvenda;";
+                + "v.idvenda;";
         
         try {
             if (this.conexao.conectar()) {
@@ -105,7 +105,7 @@ public class JBDCVendas {
                 + "v.codigoVenda, \n"
                 + "v.dataVenda \n"
                 + "FROM \n"
-                + "Vendas as v\n"
+                + "vendas as v\n"
                 + "ORDER BY \n"
                 + "     v.idvenda;";
         
@@ -199,7 +199,7 @@ public class JBDCVendas {
                 + "v.codigoVenda, \n"
                 + "v.dataVenda \n"
                 + "FROM \n"
-                + "Vendas as v\n"
+                + "vendas as v\n"
                 + "ORDER BY \n"
                 + "     v.idvenda;";
         

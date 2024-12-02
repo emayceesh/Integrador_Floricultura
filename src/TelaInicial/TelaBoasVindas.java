@@ -28,21 +28,82 @@ public class TelaBoasVindas extends javax.swing.JPanel {
 
         Content = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
+        TituloLabel5 = new javax.swing.JLabel();
+        TituloLabel6 = new javax.swing.JLabel();
+        TituloLabel7 = new javax.swing.JLabel();
+        TituloLabel8 = new javax.swing.JLabel();
+        TituloLabel9 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        TituloLabel3 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         TituloLabel2 = new javax.swing.JLabel();
-        TituloLabel3 = new javax.swing.JLabel();
+        TituloLabel4 = new javax.swing.JLabel();
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+
+        TituloLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        TituloLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        TituloLabel5.setText("No menu ao Lado é possível consultar os campos desejados");
+
+        TituloLabel6.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        TituloLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        TituloLabel6.setText("Para cada seção há mais opções");
+
+        TituloLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        TituloLabel7.setText("Exemplo: Para cadastrar um Produto , vá para a aba -> Produtos e em seguida verá as opções!");
+
+        TituloLabel8.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        TituloLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        TituloLabel8.setText("Sistema Casa da Planta");
+
+        TituloLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        TituloLabel9.setText("Grupo 07 - Centro Universitário União das Américas");
+
+        jPanel1.setLayout(null);
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/ExemploInicial.png"))); // NOI18N
+        jPanel1.add(jLabel2);
+        jLabel2.setBounds(0, 0, 600, 120);
+
+        TituloLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        TituloLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        TituloLabel3.setText("Sistema Floricultura - Casa da Planta");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(65, 65, 65)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(TituloLabel3)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(TituloLabel9)
+                    .addComponent(TituloLabel8)
+                    .addComponent(TituloLabel7)
+                    .addComponent(TituloLabel5)
+                    .addComponent(TituloLabel6))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 503, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(32, 32, 32)
+                .addComponent(TituloLabel3)
+                .addGap(18, 18, 18)
+                .addComponent(TituloLabel5)
+                .addGap(48, 48, 48)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                .addComponent(TituloLabel6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(TituloLabel7)
+                .addGap(67, 67, 67)
+                .addComponent(TituloLabel8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(TituloLabel9)
+                .addGap(24, 24, 24))
         );
 
         jPanel2.setBackground(new java.awt.Color(185, 35, 44));
@@ -52,10 +113,10 @@ public class TelaBoasVindas extends javax.swing.JPanel {
         TituloLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         TituloLabel2.setText("Bem Vindo, Usuário!");
 
-        TituloLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        TituloLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        TituloLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        TituloLabel3.setText("Casa da Planta");
+        TituloLabel4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        TituloLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        TituloLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        TituloLabel4.setText("Sistema Floricultura - Casa da Planta");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -63,19 +124,25 @@ public class TelaBoasVindas extends javax.swing.JPanel {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(63, 63, 63)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(TituloLabel2)
-                    .addComponent(TituloLabel3))
-                .addContainerGap(390, Short.MAX_VALUE))
+                .addComponent(TituloLabel2)
+                .addContainerGap(391, Short.MAX_VALUE))
+            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2Layout.createSequentialGroup()
+                    .addGap(73, 73, 73)
+                    .addComponent(TituloLabel4)
+                    .addContainerGap(441, Short.MAX_VALUE)))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(50, 50, 50)
                 .addComponent(TituloLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(TituloLabel3)
-                .addContainerGap(68, Short.MAX_VALUE))
+                .addContainerGap(99, Short.MAX_VALUE))
+            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                    .addContainerGap(114, Short.MAX_VALUE)
+                    .addComponent(TituloLabel4)
+                    .addGap(58, 58, 58)))
         );
 
         javax.swing.GroupLayout ContentLayout = new javax.swing.GroupLayout(Content);
@@ -90,8 +157,9 @@ public class TelaBoasVindas extends javax.swing.JPanel {
             .addGroup(ContentLayout.createSequentialGroup()
                 .addGap(0, 0, 0)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -115,6 +183,14 @@ public class TelaBoasVindas extends javax.swing.JPanel {
     private javax.swing.JPanel Content;
     private javax.swing.JLabel TituloLabel2;
     private javax.swing.JLabel TituloLabel3;
+    private javax.swing.JLabel TituloLabel4;
+    private javax.swing.JLabel TituloLabel5;
+    private javax.swing.JLabel TituloLabel6;
+    private javax.swing.JLabel TituloLabel7;
+    private javax.swing.JLabel TituloLabel8;
+    private javax.swing.JLabel TituloLabel9;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     // End of variables declaration//GEN-END:variables
