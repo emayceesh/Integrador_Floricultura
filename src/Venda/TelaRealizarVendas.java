@@ -16,6 +16,7 @@ import javax.swing.plaf.basic.BasicButtonUI;
 import Venda.TelaVendasPrincipal;
 import dao.JBDCVendas;
 import Model.VendasModel;
+
 /**
  *
  * @author gm
@@ -248,18 +249,45 @@ public class TelaRealizarVendas extends javax.swing.JPanel {
 
     private void ConfirmaVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConfirmaVendaActionPerformed
         // TODO add your handling code here:
-        if ( 
-    OperadorText.getText().isEmpty() &&
-    ProdutoText.getText().isEmpty() &&
-    QuantText.getText().isEmpty() &&
-    CodVendaText.getText().isEmpty() &&
-    DataText.getText().isEmpty()) {
-            //passa mensagem de erro quando areas estão vazias.
-            JOptionPane.showMessageDialog(null, "Os Campos devem estar preenchidos para realizar uma venda!");
-        }else{
+        if (OperadorText.getText().isEmpty() && ProdutoText.getText().isEmpty() && QuantText.getText().isEmpty() && DataText.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Os Campos da venda devem estar preenchidos!");
+        } else {
             String[] options = {"Sim", "Não"};
-           
+            
+            int resposta = JOptionPane.showOptionDialog(
+                    null, 
+                    "Venda Realizada!" + "\n"
+                    + "ID da venda: " + CodVendaText.getText() + "\n"
+                    + "Realizar nova venda?",
+                    "Confirmação", 
+                    JOptionPane.YES_NO_OPTION, 
+                    JOptionPane.QUESTION_MESSAGE, 
+                    null, 
+                    options, 
+                    options[0] 
+            );
+
+            if (resposta == JOptionPane.YES_OPTION) {
+                VendasModel ModelVendas = new VendasModel();
+                ModelVendas.setOperador_venda(OperadorText.getText());
+                ModelVendas.setProduto_venda(ProdutoText.getText());
+                ModelVendas.setQuantidade_venda(QuantText.getText());
+                ModelVendas.setDataVenda(DataText.getText());
+
+                // Salvar os dados no banco
+                JBDCVendas VendasBanco = new JBDCVendas();
+                VendasBanco.RealizarVenda(ModelVendas);
+
+                // Limpar os campos
+                OperadorText.setText("");
+                ProdutoText.setText("");
+                QuantText.setText("");
+                DataText.setText("");
+            } else {
+                JOptionPane.showMessageDialog(null, "Venda finalizada sem realizar nova.");
+            }
         }
+
     }//GEN-LAST:event_ConfirmaVendaActionPerformed
 
     private void CancelaVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelaVendaActionPerformed
@@ -268,16 +296,16 @@ public class TelaRealizarVendas extends javax.swing.JPanel {
         ShowPanel(CancelaAVenda);
     }//GEN-LAST:event_CancelaVendaActionPerformed
 
-    private void ShowPanel(JPanel p){
-    p.setSize(800,724);
-    p.setLocation(0,0);
-    
-    MostraConteudo.removeAll();
-    MostraConteudo.add(p, BorderLayout.CENTER); 
-    MostraConteudo.revalidate();
-    MostraConteudo.repaint();    
+    private void ShowPanel(JPanel p) {
+        p.setSize(800, 724);
+        p.setLocation(0, 0);
+
+        MostraConteudo.removeAll();
+        MostraConteudo.add(p, BorderLayout.CENTER);
+        MostraConteudo.revalidate();
+        MostraConteudo.repaint();
     }
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton CancelaVenda;
     private javax.swing.JComboBox<String> ClienteCBox;

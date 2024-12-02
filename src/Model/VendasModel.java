@@ -4,7 +4,7 @@
  */
 package Model;
 
-import java.time.LocalDate;
+import java.util.Date;
 
 /**
  *
@@ -13,19 +13,21 @@ import java.time.LocalDate;
 public class VendasModel {
     private int idvenda;
     private int idcliente;
-    private int operador_venda;
-    private int produto_venda;
-    private int quantidadeVenda;
+    private String operador_venda;
+    private String produto_venda;
+    private int valor_consulta;
+    private String quantidadeVenda;
     private String codigo_venda;
-    private LocalDate dataVenda;
+    private String item_pesquisado;
+    private String dataVenda;
     
     public VendasModel(){
         
     }
     
-    public VendasModel(int idvenda, int idcliente, int operador_venda,
-            int produto_venda, int quantidade_venda, String codigo_venda,
-            LocalDate datavenda) {
+    public VendasModel(int idvenda, int idcliente, String operador_venda,
+            String produto_venda, String quantidade_venda, String codigo_venda,
+            Date datavenda) {
         this.idvenda = idvenda;
         this.idcliente = idcliente;
         this.operador_venda = operador_venda;
@@ -54,27 +56,27 @@ public class VendasModel {
         this.idcliente = idcliente;
     }
 
-    public int getOperador_venda() {
+    public String getOperador_venda() {
         return operador_venda;
     }
 
-    public void setOperador_venda(int operador_venda) {
+    public void setOperador_venda(String operador_venda) {
         this.operador_venda = operador_venda;
     }
 
-    public int getProduto_venda() {
+    public String getProduto_venda() {
         return produto_venda;
     }
 
-    public void setProduto_venda(int produto_venda) {
+    public void setProduto_venda(String produto_venda) {
         this.produto_venda = produto_venda;
     }
 
-    public int getQuantidade_venda() {
+    public String getQuantidade_venda() {
         return quantidadeVenda;
     }
 
-    public void setQuantidade_venda(int quantidade_venda) {
+    public void setQuantidade_venda(String quantidade_venda) {
         this.quantidadeVenda = quantidade_venda;
     }
 
@@ -86,11 +88,27 @@ public class VendasModel {
         this.codigo_venda = codigo_venda;
     }
 
-    public LocalDate getDataVenda() {
+    public String getDataVenda() {
         return dataVenda;
     }
 
-    public void setDataVenda(LocalDate dataVenda) {
+    public void setDataVenda(String dataVenda) {
         this.dataVenda = dataVenda;
+    }
+    
+    public int getValor_Consulta() {
+        return valor_consulta;
+    }
+    
+    public void setValor_Consulta(int valor_consulta) {
+        this.valor_consulta = valor_consulta;
+    }
+    
+    public String getItem_Pesquisado() {
+        return item_pesquisado;
+    }
+    
+    public void setItem_Pesquisado() {
+        this.item_pesquisado = item_pesquisado;
     }
 }

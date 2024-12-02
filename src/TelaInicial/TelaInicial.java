@@ -32,6 +32,7 @@ import Model.OperadorModel;
 import TelaInicial.TelaBoasVindas;
 
 import Produtos.entradaProdutos;
+import Venda.TelaRealizarVendas;
 
 /**
  *
@@ -170,6 +171,11 @@ public class TelaInicial extends javax.swing.JFrame {
         ConsultaProdutosRapido.setText("Logs");
         ConsultaProdutosRapido.setBorderPainted(false);
         ConsultaProdutosRapido.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        ConsultaProdutosRapido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ConsultaProdutosRapidoActionPerformed(evt);
+            }
+        });
 
         Principal.setBackground(new java.awt.Color(239, 86, 96));
         Principal.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -332,6 +338,11 @@ public class TelaInicial extends javax.swing.JFrame {
         ClientesPrincipal ClientesPrincipal = new ClientesPrincipal();
         ShowPanel(ClientesPrincipal);
     }//GEN-LAST:event_ConsultaRapidaActionPerformed
+
+    private void ConsultaProdutosRapidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConsultaProdutosRapidoActionPerformed
+        TelaRealizarVendas vendasRealizadas = new TelaRealizarVendas();
+        ShowPanel(vendasRealizadas);       // TODO add your handling code here:
+    }//GEN-LAST:event_ConsultaProdutosRapidoActionPerformed
 
     
     private void ShowPanel(JPanel p){
