@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package Produtos;
+/*package Produtos;
 
 /**
  *
@@ -284,7 +284,7 @@ public class CadastrarProduto extends javax.swing.JPanel {
             .addComponent(PainelCentralCadastrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
-
+/*
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // Verificação se os campos essenciais estão vazios
     String CheckNome = NomeProduto.getText();
@@ -370,7 +370,7 @@ public class CadastrarProduto extends javax.swing.JPanel {
     private void jTextField4KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField4KeyPressed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField4KeyPressed
-
+*/
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel PainelCentralCadastrar;
