@@ -304,7 +304,7 @@ public class JBDCClientes {
 "    c.documento, \n" +
 "    c.email, c.cidadecliente \n" +
 "FROM \n" +
-"    cliente_floricultura AS c WHERE " + ColunaSelecionada + " = ? \n" +
+"    cliente_floricultura AS c WHERE " + ColunaSelecionada + " LIKE ? \n" +
 "ORDER BY \n" +
 "    c.idcliente;";
         try {
